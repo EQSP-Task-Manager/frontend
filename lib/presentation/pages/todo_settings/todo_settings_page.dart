@@ -138,7 +138,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                   )
                 : Center(
                     child: CircularProgressIndicator(
-                      color: getIt.get<ThemeBloc>().currentTheme.blue,
+                      color: getIt.get<ThemeBloc>().currentTheme.black,
                     ),
                   ),
           ),

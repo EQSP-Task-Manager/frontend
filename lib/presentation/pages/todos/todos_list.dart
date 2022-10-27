@@ -43,8 +43,8 @@ class _TodosListState extends State<TodosList> with TickerProviderStateMixin {
       child: SliverPadding(
         padding: const EdgeInsets.only(
           bottom: 28,
-          left: 8,
-          right: 8,
+          left: 20,
+          right: 20,
           top: 8,
         ),
         sliver: SliverAnimatedList(
@@ -241,7 +241,7 @@ class _DecoratedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, AppTheme>(builder: (context, state) {
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Container(
           decoration: BoxDecoration(
             color: getIt.get<ThemeBloc>().currentTheme.backSecondary,
@@ -249,7 +249,13 @@ class _DecoratedItem extends StatelessWidget {
               width: 0,
               color: getIt.get<ThemeBloc>().currentTheme.backSecondary,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 16,
+              )
+            ],
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
           ),
           child: Opacity(opacity: opacity, child: child),
         ),
