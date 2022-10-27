@@ -76,8 +76,8 @@ abstract class AppTheme {
 
   Color get importanceColor => getIt.get<RemoteConfigService>().importanceColor;
 
-  final red = const Color(0xFFFF3B30);
-  final green = const Color(0xFF34C759);
+  final red = const Color(0xFFFF6666);
+  final green = const Color(0xFF6CE590);
   final black = const Color(0xFF1A1A1A);
   final grey = const Color(0xFF8E8E93);
 
