@@ -15,44 +15,5 @@ class LightTheme extends AppTheme {
           backPrimary: const Color(0xFFF7F6F2),
           backSecondary: const Color(0xFFFFFFFF),
           backElevated: const Color(0xFFFFFFFF),
-        ) {
-    themeData = ThemeData(
-      fontFamily: 'Roboto',
-      scaffoldBackgroundColor: backPrimary,
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        foregroundColor: Colors.white,
-      ),
-      iconTheme: IconThemeData(
-        color: blue,
-      ),
-      checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.all(supportSeparator),
-      ),
-      appBarTheme: AppBarTheme(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-        ),
-        color: backPrimary,
-        titleTextStyle: const TextTheme().largeTitle.copyWith(
-              color: labelPrimary,
-            ),
-      ),
-      colorScheme: ColorScheme.light(
-        primary: backPrimary,
-        secondary: blue,
-        onPrimary: labelPrimary,
-      ),
-      buttonTheme: ButtonThemeData(
-        disabledColor: labelDisable,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(const TextTheme().button),
-          foregroundColor: MaterialStateProperty.all(blue),
-        ),
-      ),
-      dividerTheme: DividerThemeData(color: supportSeparator),
-    );
-  }
+        );
 }
