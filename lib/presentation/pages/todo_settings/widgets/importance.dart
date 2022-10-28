@@ -104,12 +104,3 @@ class __ImportanceState extends State<_Importance> {
     );
   }
 }
-
-class _ImportanceList extends StatelessWidget {
-  const _ImportanceList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
