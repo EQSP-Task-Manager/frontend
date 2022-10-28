@@ -92,9 +92,8 @@ extension CustomTextTheme on TextTheme {
       );
 
   TextStyle get title => GoogleFonts.raleway(
-        fontSize: 20,
-        height: 32 / 20,
-        fontWeight: FontWeight.w500,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
       );
 
   TextStyle get button => GoogleFonts.raleway(

@@ -49,7 +49,7 @@ main() async {
 
       todosBloc.add(const TodosEvent.add(
         actionTool: ActionTool.todosPage,
-        text: 'kek',
+        title: 'kek',
         importance: Importance.low,
       ));
 
@@ -74,7 +74,7 @@ main() async {
       //добавленному таску
       expect(
           difference.length == 1 &&
-              difference[0].text == 'kek' &&
+              difference[0].title == 'kek' &&
               !difference[0].done,
           true);
     });

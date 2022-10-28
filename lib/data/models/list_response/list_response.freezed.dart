@@ -37,7 +37,8 @@ mixin _$ListResponse {
 abstract class $ListResponseCopyWith<$Res> {
   factory $ListResponseCopyWith(
           ListResponse value, $Res Function(ListResponse) then) =
-      _$ListResponseCopyWithImpl<$Res>;
+      _$ListResponseCopyWithImpl<$Res, ListResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'list') List<Todo> list,
@@ -45,33 +46,36 @@ abstract class $ListResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ListResponseCopyWithImpl<$Res> implements $ListResponseCopyWith<$Res> {
+class _$ListResponseCopyWithImpl<$Res, $Val extends ListResponse>
+    implements $ListResponseCopyWith<$Res> {
   _$ListResponseCopyWithImpl(this._value, this._then);
 
-  final ListResponse _value;
   // ignore: unused_field
-  final $Res Function(ListResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? list = freezed,
-    Object? revision = freezed,
+    Object? status = null,
+    Object? list = null,
+    Object? revision = null,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      list: list == freezed
+      list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      revision: revision == freezed
+      revision: null == revision
           ? _value.revision
           : revision // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -82,6 +86,7 @@ abstract class _$$_ListResponseCopyWith<$Res>
           _$_ListResponse value, $Res Function(_$_ListResponse) then) =
       __$$_ListResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'list') List<Todo> list,
@@ -90,31 +95,29 @@ abstract class _$$_ListResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_ListResponseCopyWithImpl<$Res>
-    extends _$ListResponseCopyWithImpl<$Res>
+    extends _$ListResponseCopyWithImpl<$Res, _$_ListResponse>
     implements _$$_ListResponseCopyWith<$Res> {
   __$$_ListResponseCopyWithImpl(
       _$_ListResponse _value, $Res Function(_$_ListResponse) _then)
-      : super(_value, (v) => _then(v as _$_ListResponse));
+      : super(_value, _then);
 
-  @override
-  _$_ListResponse get _value => super._value as _$_ListResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? list = freezed,
-    Object? revision = freezed,
+    Object? status = null,
+    Object? list = null,
+    Object? revision = null,
   }) {
     return _then(_$_ListResponse(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      list: list == freezed
+      list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      revision: revision == freezed
+      revision: null == revision
           ? _value.revision
           : revision // ignore: cast_nullable_to_non_nullable
               as int,
@@ -159,21 +162,20 @@ class _$_ListResponse implements _ListResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ListResponse &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._list, _list) &&
-            const DeepCollectionEquality().equals(other.revision, revision));
+            (identical(other.revision, revision) ||
+                other.revision == revision));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(_list),
-      const DeepCollectionEquality().hash(revision));
+  int get hashCode => Object.hash(runtimeType, status,
+      const DeepCollectionEquality().hash(_list), revision);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ListResponseCopyWith<_$_ListResponse> get copyWith =>
       __$$_ListResponseCopyWithImpl<_$_ListResponse>(this, _$identity);
 

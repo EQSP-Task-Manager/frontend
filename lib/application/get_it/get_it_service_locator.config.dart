@@ -4,21 +4,27 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:get_it/get_it.dart' as _i1;
-import 'package:injectable/injectable.dart' as _i2;
-import 'package:done/application/services/remote_config_service.dart'
-    as _i4;
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:done/application/services/remote_config_service.dart' as _i4;
 import 'package:done/data/api/api.dart' as _i6;
-import 'package:done/presentation/ui/app_bar/bloc/app_bar_bloc.dart'
-    as _i3;
-import 'package:done/presentation/ui/theme/bloc/theme_bloc.dart'
-    as _i5; // ignore_for_file: unnecessary_lambdas
+import 'package:done/presentation/ui/app_bar/bloc/app_bar_bloc.dart' as _i3;
+import 'package:done/presentation/ui/theme/bloc/theme_bloc.dart' as _i5;
+import 'package:get_it/get_it.dart' as _i1;
+import 'package:injectable/injectable.dart'
+    as _i2; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
-_i1.GetIt $initGetIt(_i1.GetIt get,
-    {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
-  final gh = _i2.GetItHelper(get, environment, environmentFilter);
+_i1.GetIt $initGetIt(
+  _i1.GetIt get, {
+  String? environment,
+  _i2.EnvironmentFilter? environmentFilter,
+}) {
+  final gh = _i2.GetItHelper(
+    get,
+    environment,
+    environmentFilter,
+  );
   gh.singleton<_i3.AppBarBloc>(_i3.AppBarBloc());
   gh.singleton<_i4.RemoteConfigService>(_i4.RemoteConfigService());
   gh.singleton<_i5.ThemeBloc>(_i5.ThemeBloc());

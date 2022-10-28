@@ -48,23 +48,25 @@ class __ImportanceState extends State<_Importance> {
           alignedDropdown: true,
           child: DropdownButton<Widget>(
             key: const Key('dropdown'),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
             value: null,
             itemHeight: null,
-            elevation: 1,
+            elevation: 0,
             iconSize: 0,
+            style: Theme.of(context).textTheme.body,
             dropdownColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
             hint: Transform.translate(
               offset: const Offset(-16, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(S.of(context).importance,
-                      style: Theme.of(context).textTheme.body.copyWith(
-                          color: getIt
-                              .get<ThemeBloc>()
-                              .currentTheme
-                              .labelPrimary)),
-                  const SizedBox(height: 4),
+                  Text(
+                    S.of(context).importance,
+                    style: Theme.of(context).textTheme.title.copyWith(
+                          color: context.read<ThemeBloc>().currentTheme.black,
+                        ),
+                  ),
+                  const SizedBox(height: 8),
                   Text(
                     importanceTranslations[valueToSubmit]!,
                     style: Theme.of(context).textTheme.subhead.copyWith(
@@ -100,5 +102,14 @@ class __ImportanceState extends State<_Importance> {
         ),
       ),
     );
+  }
+}
+
+class _ImportanceList extends StatelessWidget {
+  const _ImportanceList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

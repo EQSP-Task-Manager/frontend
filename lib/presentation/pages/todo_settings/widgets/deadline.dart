@@ -41,9 +41,7 @@ class __DeadlineState extends State<_Deadline> {
           children: [
             Text(
               S.of(context).deadline,
-              style: Theme.of(context).textTheme.body.copyWith(
-                    color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
-                  ),
+              style: Theme.of(context).textTheme.title,
             ),
             if (deadlineText != null) const SizedBox(height: 4),
             if (deadlineText != null)

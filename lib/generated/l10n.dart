@@ -159,6 +159,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Task Title`
+  String get taskTitle {
+    return Intl.message(
+      'Task Title',
+      name: 'taskTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add description`
+  String get addDescription {
+    return Intl.message(
+      'Add description',
+      name: 'addDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -18,41 +18,44 @@ class TodoAdapter extends TypeAdapter<Todo> {
     };
     return Todo(
       id: fields[0] as String,
-      text: fields[1] as String,
-      importance: fields[2] as Importance,
-      deadline: fields[3] as int?,
-      done: fields[4] as bool,
-      color: fields[5] as String?,
-      createdAt: fields[6] as int,
-      changedAt: fields[7] as int,
-      deviceId: fields[8] as String,
-      tag: fields[9] as Tag?,
+      title: fields[1] as String,
+      description: fields[2] as String,
+      importance: fields[3] as Importance,
+      deadline: fields[4] as int?,
+      done: fields[5] as bool,
+      color: fields[6] as String?,
+      createdAt: fields[7] as int,
+      changedAt: fields[8] as int,
+      deviceId: fields[9] as String,
+      tag: fields[10] as Tag?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Todo obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.text)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.importance)
+      ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.deadline)
+      ..write(obj.importance)
       ..writeByte(4)
-      ..write(obj.done)
+      ..write(obj.deadline)
       ..writeByte(5)
-      ..write(obj.color)
+      ..write(obj.done)
       ..writeByte(6)
-      ..write(obj.createdAt)
+      ..write(obj.color)
       ..writeByte(7)
-      ..write(obj.changedAt)
+      ..write(obj.createdAt)
       ..writeByte(8)
-      ..write(obj.deviceId)
+      ..write(obj.changedAt)
       ..writeByte(9)
+      ..write(obj.deviceId)
+      ..writeByte(10)
       ..write(obj.tag);
   }
 
@@ -161,7 +164,8 @@ class TagAdapter extends TypeAdapter<Tag> {
 
 _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       id: json['id'] as String,
-      text: json['text'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
       importance: $enumDecode(_$ImportanceEnumMap, json['importance']),
       deadline: json['deadline'] as int?,
       done: json['done'] as bool,
@@ -174,7 +178,8 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
 
 Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'id': instance.id,
-      'text': instance.text,
+      'title': instance.title,
+      'description': instance.description,
       'importance': _$ImportanceEnumMap[instance.importance]!,
       'deadline': instance.deadline,
       'done': instance.done,

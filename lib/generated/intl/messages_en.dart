@@ -22,9 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addDescription":
+            MessageLookupByLibrary.simpleMessage("Add description"),
         "basic": MessageLookupByLibrary.simpleMessage("No"),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "high": MessageLookupByLibrary.simpleMessage("!! High"),
         "importance": MessageLookupByLibrary.simpleMessage("Importance"),
@@ -32,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myTodos": MessageLookupByLibrary.simpleMessage("My todos"),
         "new_": MessageLookupByLibrary.simpleMessage("New"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "taskTitle": MessageLookupByLibrary.simpleMessage("Task Title"),
         "whatShouldBeDone":
             MessageLookupByLibrary.simpleMessage("What should be done...")
       };

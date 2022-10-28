@@ -3,11 +3,20 @@ part of '../todo_settings_page.dart';
 class _TextInput extends StatefulWidget {
   final Todo? element;
   final Function(String) submit;
+  final bool isTaskTitle;
+  final bool isDescription;
+  final String title;
+  final String hintText;
   const _TextInput({
     this.element,
     required this.submit,
+    required this.title,
+    required this.hintText,
+    this.isDescription = false,
+    this.isTaskTitle = false,
     Key? key,
-  }) : super(key: key);
+  })  : assert(isTaskTitle != isDescription),
+        super(key: key);
 
   @override
   State<_TextInput> createState() => _TextInputState();
@@ -21,7 +30,11 @@ class _TextInputState extends State<_TextInput> {
   void initState() {
     super.initState();
     if (widget.element != null) {
-      _textController.text = widget.element!.text;
+      if (widget.isTaskTitle) {
+        _textController.text = widget.element!.title;
+      } else {
+        _textController.text = widget.element!.description;
+      }
     }
   }
 
@@ -34,22 +47,22 @@ class _TextInputState extends State<_TextInput> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: getIt.get<ThemeBloc>().currentTheme.backSecondary,
-      margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          top: 16,
-          bottom: 16,
-          right: 8,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.title,
+          style: Theme.of(context).textTheme.title,
         ),
-        child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
+        const SizedBox(height: 8),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(
+              color: context.read<ThemeBloc>().currentTheme.labelTertiary,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+          ),
           child: AppBarHider(
             textField: TextField(
               focusNode: _textFocus,
@@ -58,16 +71,17 @@ class _TextInputState extends State<_TextInput> {
               style: Theme.of(context).textTheme.body.copyWith(
                     color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
                   ),
-              minLines: 4,
-              maxLines: 1000,
+              minLines: 1,
+              maxLines: null,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(right: 16),
-                border: InputBorder.none,
-                hintText: S.of(context).whatShouldBeDone,
+                contentPadding: const EdgeInsets.all(16),
+                hintText: widget.hintText,
+                border: _border,
+                focusedBorder: _border,
+                enabledBorder: _border,
                 hintStyle: Theme.of(context).textTheme.body.copyWith(
                       color: getIt.get<ThemeBloc>().currentTheme.labelTertiary,
                     ),
-                fillColor: Colors.white,
               ),
               onChanged: (text) {
                 widget.submit(text);
@@ -75,7 +89,14 @@ class _TextInputState extends State<_TextInput> {
             ),
           ),
         ),
-      ),
+      ],
     );
   }
+
+  OutlineInputBorder get _border => const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.transparent,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      );
 }

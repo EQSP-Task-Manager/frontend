@@ -78,7 +78,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       );
     } else if (event.actionTool == ActionTool.settingsPage) {
       itemToEdit = itemToEdit.copyWith(
-        text: event.text ?? itemToEdit.text,
+        title: event.title ?? itemToEdit.title,
+        description: event.description ?? itemToEdit.description,
         importance: event.importance ?? itemToEdit.importance,
         deadline: event.deadline != null
             ? event.deadline!.toUtc().millisecondsSinceEpoch
@@ -127,7 +128,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
     Todo itemToAdd = Todo(
       id: uuid.v1(),
-      text: event.text,
+      title: event.title ?? '',
+      description: event.description ?? '',
       importance: event.importance,
       deadline: event.deadline != null
           ? event.deadline!.toUtc().millisecondsSinceEpoch

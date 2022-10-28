@@ -35,7 +35,8 @@ mixin _$ElementRequest {
 abstract class $ElementRequestCopyWith<$Res> {
   factory $ElementRequestCopyWith(
           ElementRequest value, $Res Function(ElementRequest) then) =
-      _$ElementRequestCopyWithImpl<$Res>;
+      _$ElementRequestCopyWithImpl<$Res, ElementRequest>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'element') Todo element});
@@ -44,35 +45,38 @@ abstract class $ElementRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ElementRequestCopyWithImpl<$Res>
+class _$ElementRequestCopyWithImpl<$Res, $Val extends ElementRequest>
     implements $ElementRequestCopyWith<$Res> {
   _$ElementRequestCopyWithImpl(this._value, this._then);
 
-  final ElementRequest _value;
   // ignore: unused_field
-  final $Res Function(ElementRequest) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? element = freezed,
+    Object? status = null,
+    Object? element = null,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      element: element == freezed
+      element: null == element
           ? _value.element
           : element // ignore: cast_nullable_to_non_nullable
               as Todo,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get element {
     return $TodoCopyWith<$Res>(_value.element, (value) {
-      return _then(_value.copyWith(element: value));
+      return _then(_value.copyWith(element: value) as $Val);
     });
   }
 }
@@ -84,6 +88,7 @@ abstract class _$$_ElementRequestCopyWith<$Res>
           _$_ElementRequest value, $Res Function(_$_ElementRequest) then) =
       __$$_ElementRequestCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'element') Todo element});
@@ -94,26 +99,24 @@ abstract class _$$_ElementRequestCopyWith<$Res>
 
 /// @nodoc
 class __$$_ElementRequestCopyWithImpl<$Res>
-    extends _$ElementRequestCopyWithImpl<$Res>
+    extends _$ElementRequestCopyWithImpl<$Res, _$_ElementRequest>
     implements _$$_ElementRequestCopyWith<$Res> {
   __$$_ElementRequestCopyWithImpl(
       _$_ElementRequest _value, $Res Function(_$_ElementRequest) _then)
-      : super(_value, (v) => _then(v as _$_ElementRequest));
+      : super(_value, _then);
 
-  @override
-  _$_ElementRequest get _value => super._value as _$_ElementRequest;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? element = freezed,
+    Object? status = null,
+    Object? element = null,
   }) {
     return _then(_$_ElementRequest(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      element: element == freezed
+      element: null == element
           ? _value.element
           : element // ignore: cast_nullable_to_non_nullable
               as Todo,
@@ -148,19 +151,17 @@ class _$_ElementRequest implements _ElementRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ElementRequest &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.element, element));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.element, element) || other.element == element));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(element));
+  int get hashCode => Object.hash(runtimeType, status, element);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ElementRequestCopyWith<_$_ElementRequest> get copyWith =>
       __$$_ElementRequestCopyWithImpl<_$_ElementRequest>(this, _$identity);
 

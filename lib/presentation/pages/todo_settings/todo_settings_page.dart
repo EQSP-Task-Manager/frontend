@@ -29,13 +29,15 @@ class TodoSettingsPage extends StatefulWidget {
 }
 
 class SubmitionData extends InheritedWidget {
-  final String? textToSubmit;
+  final String? titleToSubmit;
+  final String? descriptionToSubmit;
   final Importance? importanceToSubmit;
   final DateTime? deadlineToSubmit;
 
   const SubmitionData({
     Key? key,
-    this.textToSubmit,
+    this.titleToSubmit,
+    this.descriptionToSubmit,
     this.importanceToSubmit,
     this.deadlineToSubmit,
     required Widget child,
@@ -47,13 +49,14 @@ class SubmitionData extends InheritedWidget {
 
   @override
   bool updateShouldNotify(SubmitionData oldWidget) =>
-      textToSubmit != oldWidget.textToSubmit ||
+      titleToSubmit != oldWidget.titleToSubmit ||
       importanceToSubmit != oldWidget.importanceToSubmit ||
       deadlineToSubmit != oldWidget.deadlineToSubmit;
 }
 
 class _TodoSettingsPageState extends State<TodoSettingsPage> {
-  String? textToSubmit;
+  String? titleToSubmit;
+  String? descriptionToSubmit;
   Importance? importanceToSubmit;
   DateTime? deadlineToSubmit;
   Todo? todo;
@@ -86,7 +89,8 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
   }
 
   void initSubmissionData() {
-    textToSubmit = todo!.text;
+    titleToSubmit = todo!.title;
+    descriptionToSubmit = todo!.description;
     importanceToSubmit = todo!.importance;
     if (todo!.deadline != null) {
       deadlineToSubmit = DateTime.fromMillisecondsSinceEpoch(todo!.deadline!);
@@ -103,9 +107,10 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                 ? CustomScrollView(
                     slivers: [
                       SubmitionData(
-                        textToSubmit: textToSubmit,
+                        titleToSubmit: titleToSubmit,
                         importanceToSubmit: importanceToSubmit,
                         deadlineToSubmit: deadlineToSubmit,
+                        descriptionToSubmit: descriptionToSubmit,
                         child: _AppBar(
                           element: todo,
                         ),
@@ -116,9 +121,14 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                           child: _PageContent(
                             element: todo,
                             supportSeparator: themeState.supportSeparator,
-                            submitText: (value) {
+                            submitTaskTitle: (value) {
                               setState(() {
-                                textToSubmit = value;
+                                titleToSubmit = value;
+                              });
+                            },
+                            submitTaskDescription: (value) {
+                              setState(() {
+                                descriptionToSubmit = value;
                               });
                             },
                             submitImportance: (value) {
@@ -144,19 +154,6 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
           ),
         );
       },
-    );
-  }
-}
-
-class _HorizontalPadding extends StatelessWidget {
-  final Widget child;
-  const _HorizontalPadding({required this.child, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: child,
     );
   }
 }
@@ -201,7 +198,8 @@ class _AppBar extends StatelessWidget {
     element == null
         ? context.read<TodosBloc>().add(
               TodosEvent.add(
-                text: submitionData.textToSubmit ?? '',
+                title: submitionData.titleToSubmit,
+                description: submitionData.descriptionToSubmit,
                 importance:
                     submitionData.importanceToSubmit ?? Importance.basic,
                 deadline: submitionData.deadlineToSubmit,
@@ -213,7 +211,8 @@ class _AppBar extends StatelessWidget {
         : context.read<TodosBloc>().add(
               TodosEvent.edit(
                 item: element!,
-                text: submitionData.textToSubmit ?? '',
+                title: submitionData.titleToSubmit,
+                description: submitionData.descriptionToSubmit,
                 importance:
                     submitionData.importanceToSubmit ?? Importance.basic,
                 deadline: submitionData.deadlineToSubmit,
@@ -224,7 +223,8 @@ class _AppBar extends StatelessWidget {
 }
 
 class _PageContent extends StatelessWidget {
-  final Function(String) submitText;
+  final Function(String) submitTaskTitle;
+  final Function(String) submitTaskDescription;
   final Function(Importance) submitImportance;
   final Function(DateTime?) submitDeadline;
   final Color supportSeparator;
@@ -232,69 +232,51 @@ class _PageContent extends StatelessWidget {
   const _PageContent({
     required this.submitDeadline,
     required this.submitImportance,
-    required this.submitText,
+    required this.submitTaskTitle,
+    required this.submitTaskDescription,
     required this.supportSeparator,
     required this.element,
     Key? key,
   }) : super(key: key);
 
-  final SizedBox smallHeight = const SizedBox(
-    height: 16,
-  );
-
-  final SizedBox mediumHeight = const SizedBox(
-    height: 23,
-  );
-
-  final SizedBox largeHeight = const SizedBox(
-    height: 45,
-  );
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _HorizontalPadding(
-          child: _TextInput(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _TextInput(
+            title: S.of(context).taskTitle,
+            hintText: S.of(context).whatShouldBeDone,
             element: element,
-            submit: submitText,
+            submit: submitTaskTitle,
+            isTaskTitle: true,
           ),
-        ),
-        mediumHeight,
-        _HorizontalPadding(
-          child: _Importance(
+          const SizedBox(height: 30),
+          _Importance(
             element: element,
             submit: submitImportance,
           ),
-        ),
-        smallHeight,
-        _HorizontalPadding(
-          child: Divider(
-            height: 0.5,
-            color: supportSeparator,
-          ),
-        ),
-        smallHeight,
-        _HorizontalPadding(
-          child: _Deadline(
+          const SizedBox(height: 30),
+          _Deadline(
             element: element,
             submit: submitDeadline,
           ),
-        ),
-        largeHeight,
-        Divider(
-          height: 0.5,
-          color: supportSeparator,
-        ),
-        mediumHeight,
-        _HorizontalPadding(
-          child: _DeleteButton(
+          const SizedBox(height: 30),
+          _TextInput(
+            title: S.of(context).description,
+            hintText: S.of(context).addDescription,
+            element: element,
+            submit: submitTaskDescription,
+            isDescription: true,
+          ),
+          const SizedBox(height: 30),
+          _DeleteButton(
             element: element,
           ),
-        ),
-        mediumHeight,
-      ],
+        ],
+      ),
     );
   }
 }
