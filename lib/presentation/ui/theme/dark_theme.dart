@@ -15,44 +15,5 @@ class DarkTheme extends AppTheme {
           backPrimary: const Color(0xFF161618),
           backSecondary: const Color(0xFF252528),
           backElevated: const Color(0xFF3C3C3F),
-        ) {
-    themeData = ThemeData(
-      fontFamily: 'Roboto',
-      scaffoldBackgroundColor: backPrimary,
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        foregroundColor: Colors.white,
-      ),
-      iconTheme: IconThemeData(
-        color: blue,
-      ),
-      checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.all(supportSeparator),
-      ),
-      appBarTheme: AppBarTheme(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
-        ),
-        color: backPrimary,
-        titleTextStyle: const TextTheme().largeTitle.copyWith(
-              color: labelPrimary,
-            ),
-      ),
-      colorScheme: ColorScheme.light(
-        primary: backPrimary,
-        secondary: blue,
-        onPrimary: labelPrimary,
-      ),
-      buttonTheme: ButtonThemeData(
-        disabledColor: labelDisable,
-      ),
-      textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all(const TextTheme().button),
-          foregroundColor: MaterialStateProperty.all(blue),
-        ),
-      ),
-      dividerTheme: DividerThemeData(color: supportSeparator),
-    );
-  }
+        );
 }

@@ -40,6 +40,7 @@ class _TodosAppBarState extends State<_TodosAppBar> {
             snap: false,
             floating: false,
             expandedHeight: 132,
+            elevation: 0,
             flexibleSpace: LayoutBuilder(builder: (context, constraints) {
               double minimumHeight =
                   MediaQuery.of(context).padding.top + kToolbarHeight;

@@ -10,6 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: create firebase options
+        uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'lib'
+          file: 'firebase_options.dart'
+          content: ${{ secrets.FIREBASE_OPTIONS}}
+      - name: create google services
+        uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'android/app'
+          file: 'google-services.json'
+          content: ${{ secrets.GOOGLE_SERVICES}}
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
@@ -24,6 +36,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: create firebase options
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'lib'
+        file: 'firebase_options.dart'
+        content: ${{ secrets.FIREBASE_OPTIONS}}
+    - name: create google services
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'android/app'
+        file: 'google-services.json'
+        content: ${{ secrets.GOOGLE_SERVICES}}
     - uses: actions/setup-java@v1
       with:
         java-version: "12.x"
@@ -32,8 +56,6 @@ jobs:
       with:
         channel: "stable"
     - run: flutter build apk -t lib/main_dev.dart --flavor=dev
-      env:
-        TOKEN: ${{ secrets.TOKEN }}
     - name: upload artifact to Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
       with:

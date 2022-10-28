@@ -7,7 +7,8 @@ class TodosEvent with _$TodosEvent {
   const factory TodosEvent.edit({
     required Todo item,
     required ActionTool actionTool,
-    String? text,
+    String? title,
+    String? description,
     Importance? importance,
     DateTime? deadline,
   }) = _Edit;
@@ -19,7 +20,8 @@ class TodosEvent with _$TodosEvent {
 
   const factory TodosEvent.add({
     required ActionTool actionTool,
-    required String text,
+    String? title,
+    String? description,
     required Importance importance,
     String? color,
     Tag? tag,

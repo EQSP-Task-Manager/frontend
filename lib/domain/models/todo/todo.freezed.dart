@@ -23,32 +23,35 @@ mixin _$Todo {
   @JsonKey(name: 'id')
   @HiveField(0)
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'text')
+  @JsonKey(name: 'title')
   @HiveField(1)
-  String get text => throw _privateConstructorUsedError;
-  @JsonKey(name: 'importance')
+  String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
   @HiveField(2)
+  String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'importance')
+  @HiveField(3)
   Importance get importance => throw _privateConstructorUsedError;
   @JsonKey(name: 'deadline')
-  @HiveField(3)
+  @HiveField(4)
   int? get deadline => throw _privateConstructorUsedError;
   @JsonKey(name: 'done')
-  @HiveField(4)
+  @HiveField(5)
   bool get done => throw _privateConstructorUsedError;
   @JsonKey(name: 'color')
-  @HiveField(5)
+  @HiveField(6)
   String? get color => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  @HiveField(6)
+  @HiveField(7)
   int get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'changed_at')
-  @HiveField(7)
+  @HiveField(8)
   int get changedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_updated_by')
-  @HiveField(8)
+  @HiveField(9)
   String get deviceId => throw _privateConstructorUsedError;
   @JsonKey(name: 'tag')
-  @HiveField(9)
+  @HiveField(10)
   Tag? get tag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,83 +62,93 @@ mixin _$Todo {
 /// @nodoc
 abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res>;
+      _$TodoCopyWithImpl<$Res, Todo>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') @HiveField(0) String id,
-      @JsonKey(name: 'text') @HiveField(1) String text,
-      @JsonKey(name: 'importance') @HiveField(2) Importance importance,
-      @JsonKey(name: 'deadline') @HiveField(3) int? deadline,
-      @JsonKey(name: 'done') @HiveField(4) bool done,
-      @JsonKey(name: 'color') @HiveField(5) String? color,
-      @JsonKey(name: 'created_at') @HiveField(6) int createdAt,
-      @JsonKey(name: 'changed_at') @HiveField(7) int changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(8) String deviceId,
-      @JsonKey(name: 'tag') @HiveField(9) Tag? tag});
+      @JsonKey(name: 'title') @HiveField(1) String title,
+      @JsonKey(name: 'description') @HiveField(2) String description,
+      @JsonKey(name: 'importance') @HiveField(3) Importance importance,
+      @JsonKey(name: 'deadline') @HiveField(4) int? deadline,
+      @JsonKey(name: 'done') @HiveField(5) bool done,
+      @JsonKey(name: 'color') @HiveField(6) String? color,
+      @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
+      @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
+      @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
+      @JsonKey(name: 'tag') @HiveField(10) Tag? tag});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
+class _$TodoCopyWithImpl<$Res, $Val extends Todo>
+    implements $TodoCopyWith<$Res> {
   _$TodoCopyWithImpl(this._value, this._then);
 
-  final Todo _value;
   // ignore: unused_field
-  final $Res Function(Todo) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? text = freezed,
-    Object? importance = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? importance = null,
     Object? deadline = freezed,
-    Object? done = freezed,
+    Object? done = null,
     Object? color = freezed,
-    Object? createdAt = freezed,
-    Object? changedAt = freezed,
-    Object? deviceId = freezed,
+    Object? createdAt = null,
+    Object? changedAt = null,
+    Object? deviceId = null,
     Object? tag = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      importance: importance == freezed
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      importance: null == importance
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance,
-      deadline: deadline == freezed
+      deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as int?,
-      done: done == freezed
+      done: null == done
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      changedAt: changedAt == freezed
+      changedAt: null == changedAt
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: deviceId == freezed
+      deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: freezed == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as Tag?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -144,79 +157,84 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$$_TodoCopyWith(_$_Todo value, $Res Function(_$_Todo) then) =
       __$$_TodoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'id') @HiveField(0) String id,
-      @JsonKey(name: 'text') @HiveField(1) String text,
-      @JsonKey(name: 'importance') @HiveField(2) Importance importance,
-      @JsonKey(name: 'deadline') @HiveField(3) int? deadline,
-      @JsonKey(name: 'done') @HiveField(4) bool done,
-      @JsonKey(name: 'color') @HiveField(5) String? color,
-      @JsonKey(name: 'created_at') @HiveField(6) int createdAt,
-      @JsonKey(name: 'changed_at') @HiveField(7) int changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(8) String deviceId,
-      @JsonKey(name: 'tag') @HiveField(9) Tag? tag});
+      @JsonKey(name: 'title') @HiveField(1) String title,
+      @JsonKey(name: 'description') @HiveField(2) String description,
+      @JsonKey(name: 'importance') @HiveField(3) Importance importance,
+      @JsonKey(name: 'deadline') @HiveField(4) int? deadline,
+      @JsonKey(name: 'done') @HiveField(5) bool done,
+      @JsonKey(name: 'color') @HiveField(6) String? color,
+      @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
+      @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
+      @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
+      @JsonKey(name: 'tag') @HiveField(10) Tag? tag});
 }
 
 /// @nodoc
-class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
+class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
     implements _$$_TodoCopyWith<$Res> {
   __$$_TodoCopyWithImpl(_$_Todo _value, $Res Function(_$_Todo) _then)
-      : super(_value, (v) => _then(v as _$_Todo));
+      : super(_value, _then);
 
-  @override
-  _$_Todo get _value => super._value as _$_Todo;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? text = freezed,
-    Object? importance = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? importance = null,
     Object? deadline = freezed,
-    Object? done = freezed,
+    Object? done = null,
     Object? color = freezed,
-    Object? createdAt = freezed,
-    Object? changedAt = freezed,
-    Object? deviceId = freezed,
+    Object? createdAt = null,
+    Object? changedAt = null,
+    Object? deviceId = null,
     Object? tag = freezed,
   }) {
     return _then(_$_Todo(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      text: text == freezed
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      importance: importance == freezed
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      importance: null == importance
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance,
-      deadline: deadline == freezed
+      deadline: freezed == deadline
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as int?,
-      done: done == freezed
+      done: null == done
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
+      color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: createdAt == freezed
+      createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      changedAt: changedAt == freezed
+      changedAt: null == changedAt
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: deviceId == freezed
+      deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: tag == freezed
+      tag: freezed == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as Tag?,
@@ -229,15 +247,16 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 class _$_Todo implements _Todo {
   const _$_Todo(
       {@JsonKey(name: 'id') @HiveField(0) required this.id,
-      @JsonKey(name: 'text') @HiveField(1) required this.text,
-      @JsonKey(name: 'importance') @HiveField(2) required this.importance,
-      @JsonKey(name: 'deadline') @HiveField(3) required this.deadline,
-      @JsonKey(name: 'done') @HiveField(4) required this.done,
-      @JsonKey(name: 'color') @HiveField(5) required this.color,
-      @JsonKey(name: 'created_at') @HiveField(6) required this.createdAt,
-      @JsonKey(name: 'changed_at') @HiveField(7) required this.changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(8) required this.deviceId,
-      @JsonKey(name: 'tag') @HiveField(9) required this.tag});
+      @JsonKey(name: 'title') @HiveField(1) required this.title,
+      @JsonKey(name: 'description') @HiveField(2) required this.description,
+      @JsonKey(name: 'importance') @HiveField(3) required this.importance,
+      @JsonKey(name: 'deadline') @HiveField(4) required this.deadline,
+      @JsonKey(name: 'done') @HiveField(5) required this.done,
+      @JsonKey(name: 'color') @HiveField(6) required this.color,
+      @JsonKey(name: 'created_at') @HiveField(7) required this.createdAt,
+      @JsonKey(name: 'changed_at') @HiveField(8) required this.changedAt,
+      @JsonKey(name: 'last_updated_by') @HiveField(9) required this.deviceId,
+      @JsonKey(name: 'tag') @HiveField(10) required this.tag});
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
 
@@ -246,45 +265,49 @@ class _$_Todo implements _Todo {
   @HiveField(0)
   final String id;
   @override
-  @JsonKey(name: 'text')
+  @JsonKey(name: 'title')
   @HiveField(1)
-  final String text;
+  final String title;
+  @override
+  @JsonKey(name: 'description')
+  @HiveField(2)
+  final String description;
   @override
   @JsonKey(name: 'importance')
-  @HiveField(2)
+  @HiveField(3)
   final Importance importance;
   @override
   @JsonKey(name: 'deadline')
-  @HiveField(3)
+  @HiveField(4)
   final int? deadline;
   @override
   @JsonKey(name: 'done')
-  @HiveField(4)
+  @HiveField(5)
   final bool done;
   @override
   @JsonKey(name: 'color')
-  @HiveField(5)
+  @HiveField(6)
   final String? color;
   @override
   @JsonKey(name: 'created_at')
-  @HiveField(6)
+  @HiveField(7)
   final int createdAt;
   @override
   @JsonKey(name: 'changed_at')
-  @HiveField(7)
+  @HiveField(8)
   final int changedAt;
   @override
   @JsonKey(name: 'last_updated_by')
-  @HiveField(8)
+  @HiveField(9)
   final String deviceId;
   @override
   @JsonKey(name: 'tag')
-  @HiveField(9)
+  @HiveField(10)
   final Tag? tag;
 
   @override
   String toString() {
-    return 'Todo(id: $id, text: $text, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId, tag: $tag)';
+    return 'Todo(id: $id, title: $title, description: $description, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId, tag: $tag)';
   }
 
   @override
@@ -292,36 +315,33 @@ class _$_Todo implements _Todo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Todo &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality()
-                .equals(other.importance, importance) &&
-            const DeepCollectionEquality().equals(other.deadline, deadline) &&
-            const DeepCollectionEquality().equals(other.done, done) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.changedAt, changedAt) &&
-            const DeepCollectionEquality().equals(other.deviceId, deviceId) &&
-            const DeepCollectionEquality().equals(other.tag, tag));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.importance, importance) ||
+                other.importance == importance) &&
+            (identical(other.deadline, deadline) ||
+                other.deadline == deadline) &&
+            (identical(other.done, done) || other.done == done) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.changedAt, changedAt) ||
+                other.changedAt == changedAt) &&
+            (identical(other.deviceId, deviceId) ||
+                other.deviceId == deviceId) &&
+            (identical(other.tag, tag) || other.tag == tag));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(importance),
-      const DeepCollectionEquality().hash(deadline),
-      const DeepCollectionEquality().hash(done),
-      const DeepCollectionEquality().hash(color),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(changedAt),
-      const DeepCollectionEquality().hash(deviceId),
-      const DeepCollectionEquality().hash(tag));
+  int get hashCode => Object.hash(runtimeType, id, title, description,
+      importance, deadline, done, color, createdAt, changedAt, deviceId, tag);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_TodoCopyWith<_$_Todo> get copyWith =>
       __$$_TodoCopyWithImpl<_$_Todo>(this, _$identity);
 
@@ -338,32 +358,35 @@ abstract class _Todo implements Todo {
       {@JsonKey(name: 'id')
       @HiveField(0)
           required final String id,
-      @JsonKey(name: 'text')
+      @JsonKey(name: 'title')
       @HiveField(1)
-          required final String text,
-      @JsonKey(name: 'importance')
+          required final String title,
+      @JsonKey(name: 'description')
       @HiveField(2)
+          required final String description,
+      @JsonKey(name: 'importance')
+      @HiveField(3)
           required final Importance importance,
       @JsonKey(name: 'deadline')
-      @HiveField(3)
+      @HiveField(4)
           required final int? deadline,
       @JsonKey(name: 'done')
-      @HiveField(4)
+      @HiveField(5)
           required final bool done,
       @JsonKey(name: 'color')
-      @HiveField(5)
+      @HiveField(6)
           required final String? color,
       @JsonKey(name: 'created_at')
-      @HiveField(6)
+      @HiveField(7)
           required final int createdAt,
       @JsonKey(name: 'changed_at')
-      @HiveField(7)
+      @HiveField(8)
           required final int changedAt,
       @JsonKey(name: 'last_updated_by')
-      @HiveField(8)
+      @HiveField(9)
           required final String deviceId,
       @JsonKey(name: 'tag')
-      @HiveField(9)
+      @HiveField(10)
           required final Tag? tag}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
@@ -373,40 +396,44 @@ abstract class _Todo implements Todo {
   @HiveField(0)
   String get id;
   @override
-  @JsonKey(name: 'text')
+  @JsonKey(name: 'title')
   @HiveField(1)
-  String get text;
+  String get title;
+  @override
+  @JsonKey(name: 'description')
+  @HiveField(2)
+  String get description;
   @override
   @JsonKey(name: 'importance')
-  @HiveField(2)
+  @HiveField(3)
   Importance get importance;
   @override
   @JsonKey(name: 'deadline')
-  @HiveField(3)
+  @HiveField(4)
   int? get deadline;
   @override
   @JsonKey(name: 'done')
-  @HiveField(4)
+  @HiveField(5)
   bool get done;
   @override
   @JsonKey(name: 'color')
-  @HiveField(5)
+  @HiveField(6)
   String? get color;
   @override
   @JsonKey(name: 'created_at')
-  @HiveField(6)
+  @HiveField(7)
   int get createdAt;
   @override
   @JsonKey(name: 'changed_at')
-  @HiveField(7)
+  @HiveField(8)
   int get changedAt;
   @override
   @JsonKey(name: 'last_updated_by')
-  @HiveField(8)
+  @HiveField(9)
   String get deviceId;
   @override
   @JsonKey(name: 'tag')
-  @HiveField(9)
+  @HiveField(10)
   Tag? get tag;
   @override
   @JsonKey(ignore: true)

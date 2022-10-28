@@ -9,5 +9,9 @@
     "high": "!! High",
     "deadline": "Deadline",
     "delete": "Delete",
-    "save": "Save"
+    "save": "Save",
+    "taskTitle": "Task Title",
+    "category": "Category",
+    "description": "Description",
+    "addDescription": "Add description"
 }

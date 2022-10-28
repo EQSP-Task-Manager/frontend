@@ -52,6 +52,7 @@ dependencies:
   shake: ^2.1.0
   uni_links: ^0.5.1
   firebase_analytics: ^9.3.3
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   integration_test:
@@ -102,5 +103,6 @@ flutter:
     - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
+
 flutter_intl:
   enabled: true

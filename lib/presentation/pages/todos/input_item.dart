@@ -88,7 +88,7 @@ class _InputItemState extends State<_InputItem> with WidgetsBindingObserver {
       if (_controller.text != '') {
         context.read<TodosBloc>().add(
               TodosEvent.add(
-                text: _controller.text,
+                title: _controller.text,
                 importance: Importance.basic,
                 deadline: null,
                 actionTool: ActionTool.todosPage,

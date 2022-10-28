@@ -66,11 +66,11 @@ class _TodosPageState extends State<TodosPage> {
                       removed: todoListWithActionOnItem,
                       edited: todoListWithActionOnItem,
                       added: todoListWithActionOnItem,
-                      orElse: () => const SliverFillRemaining(
+                      orElse: () => SliverFillRemaining(
                         hasScrollBody: false,
                         child: Center(
                           child: CircularProgressIndicator(
-                            color: Colors.blue,
+                            color: context.read<ThemeBloc>().currentTheme.black,
                           ),
                         ),
                       ),

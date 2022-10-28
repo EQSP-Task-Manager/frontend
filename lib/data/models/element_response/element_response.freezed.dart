@@ -37,7 +37,8 @@ mixin _$ElementResponse {
 abstract class $ElementResponseCopyWith<$Res> {
   factory $ElementResponseCopyWith(
           ElementResponse value, $Res Function(ElementResponse) then) =
-      _$ElementResponseCopyWithImpl<$Res>;
+      _$ElementResponseCopyWithImpl<$Res, ElementResponse>;
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'element') Todo element,
@@ -47,40 +48,43 @@ abstract class $ElementResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ElementResponseCopyWithImpl<$Res>
+class _$ElementResponseCopyWithImpl<$Res, $Val extends ElementResponse>
     implements $ElementResponseCopyWith<$Res> {
   _$ElementResponseCopyWithImpl(this._value, this._then);
 
-  final ElementResponse _value;
   // ignore: unused_field
-  final $Res Function(ElementResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? element = freezed,
-    Object? revision = freezed,
+    Object? status = null,
+    Object? element = null,
+    Object? revision = null,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      element: element == freezed
+      element: null == element
           ? _value.element
           : element // ignore: cast_nullable_to_non_nullable
               as Todo,
-      revision: revision == freezed
+      revision: null == revision
           ? _value.revision
           : revision // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get element {
     return $TodoCopyWith<$Res>(_value.element, (value) {
-      return _then(_value.copyWith(element: value));
+      return _then(_value.copyWith(element: value) as $Val);
     });
   }
 }
@@ -92,6 +96,7 @@ abstract class _$$_ElementResponseCopyWith<$Res>
           _$_ElementResponse value, $Res Function(_$_ElementResponse) then) =
       __$$_ElementResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(name: 'status') String status,
       @JsonKey(name: 'element') Todo element,
@@ -103,31 +108,29 @@ abstract class _$$_ElementResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_ElementResponseCopyWithImpl<$Res>
-    extends _$ElementResponseCopyWithImpl<$Res>
+    extends _$ElementResponseCopyWithImpl<$Res, _$_ElementResponse>
     implements _$$_ElementResponseCopyWith<$Res> {
   __$$_ElementResponseCopyWithImpl(
       _$_ElementResponse _value, $Res Function(_$_ElementResponse) _then)
-      : super(_value, (v) => _then(v as _$_ElementResponse));
+      : super(_value, _then);
 
-  @override
-  _$_ElementResponse get _value => super._value as _$_ElementResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? element = freezed,
-    Object? revision = freezed,
+    Object? status = null,
+    Object? element = null,
+    Object? revision = null,
   }) {
     return _then(_$_ElementResponse(
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      element: element == freezed
+      element: null == element
           ? _value.element
           : element // ignore: cast_nullable_to_non_nullable
               as Todo,
-      revision: revision == freezed
+      revision: null == revision
           ? _value.revision
           : revision // ignore: cast_nullable_to_non_nullable
               as int,
@@ -166,21 +169,19 @@ class _$_ElementResponse implements _ElementResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ElementResponse &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.element, element) &&
-            const DeepCollectionEquality().equals(other.revision, revision));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.element, element) || other.element == element) &&
+            (identical(other.revision, revision) ||
+                other.revision == revision));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(element),
-      const DeepCollectionEquality().hash(revision));
+  int get hashCode => Object.hash(runtimeType, status, element, revision);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ElementResponseCopyWith<_$_ElementResponse> get copyWith =>
       __$$_ElementResponseCopyWithImpl<_$_ElementResponse>(this, _$identity);
 

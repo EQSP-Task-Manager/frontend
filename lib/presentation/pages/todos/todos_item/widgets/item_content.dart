@@ -40,7 +40,7 @@ class _ItemContentState extends State<ItemContent> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final textSpan = TextSpan(
-          text: widget.element.text,
+          text: widget.element.title,
           style: Theme.of(context).textTheme.body.copyWith(
                 color: widget.element.done
                     ? getIt.get<ThemeBloc>().currentTheme.labelTertiary

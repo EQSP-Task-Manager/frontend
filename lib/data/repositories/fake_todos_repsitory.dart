@@ -17,7 +17,9 @@ class FakeTodosRepsitoryImpl implements TodosRepository {
     todos = List<Todo>.generate(30, (index) {
       return Todo(
         id: uuid.v1(),
-        text: String.fromCharCodes(
+        title: String.fromCharCodes(
+            List.generate(15, (index) => random.nextInt(33) + 89)),
+        description: String.fromCharCodes(
             List.generate(15, (index) => random.nextInt(33) + 89)),
         importance: Importance.basic,
         deadline: null,
