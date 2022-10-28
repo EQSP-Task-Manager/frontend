@@ -10,13 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: 1arp/create-a-file-action@0.2
-        with:
-          path: 'lib'
-          file: 'firebase_options.dart'
-          content: ${{ secrets.FIREBASE_OPTIONS }}
-
+      - uses: "finnp/create-file-action@master"
+          env:
+            FILE_NAME: "dir/fileName.txt"
+            FILE_DATA: "file content"
   flutter_test:
+    needs: create_firebase_options
     name: Run flutter test and analyze
     runs-on: ubuntu-latest
     steps:
@@ -32,6 +31,7 @@ jobs:
       - run: flutter test
 
   build:
+    needs: create_firebase_options
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
