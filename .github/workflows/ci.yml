@@ -16,6 +16,12 @@ jobs:
           path: 'lib'
           file: 'firebase_options.dart'
           content: ${{ secrets.FIREBASE_OPTIONS}}
+      - name: create google services
+        uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'android/app'
+          file: 'google-services.json'
+          content: ${{ secrets.GOOGLE_SERVICES}}
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
@@ -36,6 +42,12 @@ jobs:
         path: 'lib'
         file: 'firebase_options.dart'
         content: ${{ secrets.FIREBASE_OPTIONS}}
+    - name: create google services
+        uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'android/app'
+          file: 'google-services.json'
+          content: ${{ secrets.GOOGLE_SERVICES}}
     - uses: actions/setup-java@v1
       with:
         java-version: "12.x"
