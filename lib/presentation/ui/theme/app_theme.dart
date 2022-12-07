@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:done/application/application.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 export 'dark_theme.dart';
 export 'light_theme.dart';
 export 'bloc/theme_bloc.dart';

@@ -73,11 +73,4 @@ class _TagState extends State<_Tag> {
       ],
     );
   }
-
-  OutlineInputBorder get _border => const OutlineInputBorder(
-        borderSide: BorderSide(
-          color: Colors.transparent,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      );
 }

@@ -67,7 +67,7 @@ void main() async {
   testWidgets("Delete a todo", (WidgetTester tester) async {
     await pumpTodosList(tester);
 
-    await tester.pump(Duration(seconds: 3));
+    await tester.pump(const Duration(seconds: 3));
 
     String targetTitle = initialTodos.first.title;
     Finder firstTodoTitle = find.textContaining(
@@ -120,7 +120,6 @@ void main() async {
   });
 
   testWidgets("Add a task by input item", (WidgetTester tester) async {
-    
     await pumpTodosList(tester);
 
     final list = find.byType(Scrollable);
@@ -143,7 +142,7 @@ void main() async {
     await tester.showKeyboard(textInput);
     await tester.enterText(textInput, 'A new task');
     await tester.testTextInput.receiveAction(TextInputAction.done);
-    await tester.pumpAndSettle(Duration(seconds: 5));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
 
     expect(find.byIcon(Icons.info_outline), findsWidgets);
   });
