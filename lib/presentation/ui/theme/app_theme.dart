@@ -77,7 +77,7 @@ abstract class AppTheme {
   Color get importanceColor => getIt.get<RemoteConfigService>().importanceColor;
 
   final red = const Color(0xFFFF6666);
-  final green = const Color(0xFF6CE590);
+  final green = const Color(0xFF51D979);
   final black = const Color(0xFF1A1A1A);
   final grey = const Color(0xFF8E8E93);
 
@@ -106,6 +106,12 @@ extension CustomTextTheme on TextTheme {
         fontSize: 16,
         height: 20 / 16,
         fontWeight: FontWeight.w500,
+      );
+
+  TextStyle get smallBody => const TextStyle(
+        fontSize: 14,
+        height: 18 / 14,
+        fontWeight: FontWeight.w400,
       );
 
   TextStyle get subhead => const TextStyle(
