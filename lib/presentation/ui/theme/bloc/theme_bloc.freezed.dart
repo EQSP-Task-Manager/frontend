@@ -25,9 +25,9 @@ mixin _$ThemeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? setDark,
-    TResult? Function()? setLight,
-    TResult? Function()? changeTheme,
+    TResult Function()? setDark,
+    TResult Function()? setLight,
+    TResult Function()? changeTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$ThemeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetDark value)? setDark,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_SetDark value)? setDark,
+    TResult Function(_SetLight value)? setLight,
+    TResult Function(_ChangeTheme value)? changeTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,18 +66,16 @@ mixin _$ThemeEvent {
 abstract class $ThemeEventCopyWith<$Res> {
   factory $ThemeEventCopyWith(
           ThemeEvent value, $Res Function(ThemeEvent) then) =
-      _$ThemeEventCopyWithImpl<$Res, ThemeEvent>;
+      _$ThemeEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ThemeEventCopyWithImpl<$Res, $Val extends ThemeEvent>
-    implements $ThemeEventCopyWith<$Res> {
+class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
   _$ThemeEventCopyWithImpl(this._value, this._then);
 
+  final ThemeEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ThemeEvent) _then;
 }
 
 /// @nodoc
@@ -88,11 +86,13 @@ abstract class _$$_SetDarkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SetDarkCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$_SetDark>
+class __$$_SetDarkCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     implements _$$_SetDarkCopyWith<$Res> {
   __$$_SetDarkCopyWithImpl(_$_SetDark _value, $Res Function(_$_SetDark) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SetDark));
+
+  @override
+  _$_SetDark get _value => super._value as _$_SetDark;
 }
 
 /// @nodoc
@@ -127,9 +127,9 @@ class _$_SetDark implements _SetDark {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? setDark,
-    TResult? Function()? setLight,
-    TResult? Function()? changeTheme,
+    TResult Function()? setDark,
+    TResult Function()? setLight,
+    TResult Function()? changeTheme,
   }) {
     return setDark?.call();
   }
@@ -161,9 +161,9 @@ class _$_SetDark implements _SetDark {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetDark value)? setDark,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_SetDark value)? setDark,
+    TResult Function(_SetLight value)? setLight,
+    TResult Function(_ChangeTheme value)? changeTheme,
   }) {
     return setDark?.call(this);
   }
@@ -195,12 +195,14 @@ abstract class _$$_SetLightCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SetLightCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$_SetLight>
+class __$$_SetLightCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     implements _$$_SetLightCopyWith<$Res> {
   __$$_SetLightCopyWithImpl(
       _$_SetLight _value, $Res Function(_$_SetLight) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SetLight));
+
+  @override
+  _$_SetLight get _value => super._value as _$_SetLight;
 }
 
 /// @nodoc
@@ -235,9 +237,9 @@ class _$_SetLight implements _SetLight {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? setDark,
-    TResult? Function()? setLight,
-    TResult? Function()? changeTheme,
+    TResult Function()? setDark,
+    TResult Function()? setLight,
+    TResult Function()? changeTheme,
   }) {
     return setLight?.call();
   }
@@ -269,9 +271,9 @@ class _$_SetLight implements _SetLight {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetDark value)? setDark,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_SetDark value)? setDark,
+    TResult Function(_SetLight value)? setLight,
+    TResult Function(_ChangeTheme value)? changeTheme,
   }) {
     return setLight?.call(this);
   }
@@ -303,12 +305,14 @@ abstract class _$$_ChangeThemeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ChangeThemeCopyWithImpl<$Res>
-    extends _$ThemeEventCopyWithImpl<$Res, _$_ChangeTheme>
+class __$$_ChangeThemeCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     implements _$$_ChangeThemeCopyWith<$Res> {
   __$$_ChangeThemeCopyWithImpl(
       _$_ChangeTheme _value, $Res Function(_$_ChangeTheme) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ChangeTheme));
+
+  @override
+  _$_ChangeTheme get _value => super._value as _$_ChangeTheme;
 }
 
 /// @nodoc
@@ -343,9 +347,9 @@ class _$_ChangeTheme implements _ChangeTheme {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? setDark,
-    TResult? Function()? setLight,
-    TResult? Function()? changeTheme,
+    TResult Function()? setDark,
+    TResult Function()? setLight,
+    TResult Function()? changeTheme,
   }) {
     return changeTheme?.call();
   }
@@ -377,9 +381,9 @@ class _$_ChangeTheme implements _ChangeTheme {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SetDark value)? setDark,
-    TResult? Function(_SetLight value)? setLight,
-    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_SetDark value)? setDark,
+    TResult Function(_SetLight value)? setLight,
+    TResult Function(_ChangeTheme value)? changeTheme,
   }) {
     return changeTheme?.call(this);
   }

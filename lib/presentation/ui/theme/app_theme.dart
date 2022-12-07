@@ -80,6 +80,7 @@ abstract class AppTheme {
   final green = const Color(0xFF51D979);
   final black = const Color(0xFF1A1A1A);
   final grey = const Color(0xFF8E8E93);
+  final purple = const Color(0xFFBD84D4);
 
   final white = const Color(0xFFFFFFFF);
 }

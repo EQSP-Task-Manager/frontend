@@ -13,6 +13,7 @@ part 'widgets/text_input.dart';
 part 'widgets/importance.dart';
 part 'widgets/deadline.dart';
 part 'widgets/delete_button.dart';
+part 'widgets/tag.dart';
 
 class TodoSettingsPage extends StatefulWidget {
   final String? todoId;
@@ -33,6 +34,7 @@ class SubmitionData extends InheritedWidget {
   final String? descriptionToSubmit;
   final Importance? importanceToSubmit;
   final DateTime? deadlineToSubmit;
+  final List<Tag>? tagsToSubmit;
 
   const SubmitionData({
     Key? key,
@@ -40,6 +42,7 @@ class SubmitionData extends InheritedWidget {
     this.descriptionToSubmit,
     this.importanceToSubmit,
     this.deadlineToSubmit,
+    this.tagsToSubmit,
     required Widget child,
   }) : super(key: key, child: child);
 
@@ -59,8 +62,10 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
   String? descriptionToSubmit;
   Importance? importanceToSubmit;
   DateTime? deadlineToSubmit;
+  List<Tag>? tagsToSubmit;
   Todo? todo;
   bool todoFetched = false;
+  ScrollController controller = ScrollController();
 
   @override
   void initState() {
@@ -73,6 +78,12 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
       initSubmissionData();
       todoFetched = true;
     }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void fecthTodo() async {
@@ -92,6 +103,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
     titleToSubmit = todo!.title;
     descriptionToSubmit = todo!.description;
     importanceToSubmit = todo!.importance;
+    tagsToSubmit = todo!.tags;
     if (todo!.deadline != null) {
       deadlineToSubmit = DateTime.fromMillisecondsSinceEpoch(todo!.deadline!);
     }
@@ -105,12 +117,14 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
           body: SafeArea(
             child: todoFetched
                 ? CustomScrollView(
+                    controller: controller,
                     slivers: [
                       SubmitionData(
                         titleToSubmit: titleToSubmit,
                         importanceToSubmit: importanceToSubmit,
                         deadlineToSubmit: deadlineToSubmit,
                         descriptionToSubmit: descriptionToSubmit,
+                        tagsToSubmit: tagsToSubmit,
                         child: _AppBar(
                           element: todo,
                         ),
@@ -119,6 +133,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: _PageContent(
+                            scrollController: controller,
                             element: todo,
                             supportSeparator: themeState.supportSeparator,
                             submitTaskTitle: (value) {
@@ -139,6 +154,11 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                             submitDeadline: (value) {
                               setState(() {
                                 deadlineToSubmit = value;
+                              });
+                            },
+                            submitTags: (value) {
+                              setState(() {
+                                tagsToSubmit = value;
                               });
                             },
                           ),
@@ -204,7 +224,7 @@ class _AppBar extends StatelessWidget {
                     submitionData.importanceToSubmit ?? Importance.basic,
                 deadline: submitionData.deadlineToSubmit,
                 actionTool: ActionTool.settingsPage,
-                tag: Tag.work,
+                tags: submitionData.tagsToSubmit,
                 color: 'fc03ad',
               ),
             )
@@ -222,13 +242,15 @@ class _AppBar extends StatelessWidget {
   }
 }
 
-class _PageContent extends StatelessWidget {
+class _PageContent extends StatefulWidget {
   final Function(String) submitTaskTitle;
   final Function(String) submitTaskDescription;
   final Function(Importance) submitImportance;
   final Function(DateTime?) submitDeadline;
+  final Function(List<Tag>) submitTags;
   final Color supportSeparator;
   final Todo? element;
+  final ScrollController scrollController;
   const _PageContent({
     required this.submitDeadline,
     required this.submitImportance,
@@ -236,48 +258,62 @@ class _PageContent extends StatelessWidget {
     required this.submitTaskDescription,
     required this.supportSeparator,
     required this.element,
+    required this.scrollController,
+    required this.submitTags,
     Key? key,
   }) : super(key: key);
 
   @override
+  State<_PageContent> createState() => _PageContentState();
+}
+
+class _PageContentState extends State<_PageContent> {
+  late List<Widget> items = [
+    _TextInput(
+      key: const Key('titleTextInput'),
+      title: S.of(context).taskTitle,
+      hintText: S.of(context).whatShouldBeDone,
+      element: widget.element,
+      submit: widget.submitTaskTitle,
+      isTaskTitle: true,
+    ),
+    _Tag(
+      submit: widget.submitTags,
+    ),
+    _Importance(
+      element: widget.element,
+      submit: widget.submitImportance,
+    ),
+    _Deadline(
+      element: widget.element,
+      submit: widget.submitDeadline,
+    ),
+    _TextInput(
+      key: const Key('descriptionTextInput'),
+      title: S.of(context).description,
+      hintText: S.of(context).addDescription,
+      element: widget.element,
+      submit: widget.submitTaskDescription,
+      isDescription: true,
+    ),
+    _DeleteButton(
+      element: widget.element,
+    ),
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _TextInput(
-            key: const Key('titleTextInput'),
-            title: S.of(context).taskTitle,
-            hintText: S.of(context).whatShouldBeDone,
-            element: element,
-            submit: submitTaskTitle,
-            isTaskTitle: true,
-          ),
-          const SizedBox(height: 30),
-          _Importance(
-            element: element,
-            submit: submitImportance,
-          ),
-          const SizedBox(height: 30),
-          _Deadline(
-            element: element,
-            submit: submitDeadline,
-          ),
-          const SizedBox(height: 30),
-          _TextInput(
-            key: const Key('descriptionTextInput'),
-            title: S.of(context).description,
-            hintText: S.of(context).addDescription,
-            element: element,
-            submit: submitTaskDescription,
-            isDescription: true,
-          ),
-          const SizedBox(height: 30),
-          _DeleteButton(
-            element: element,
-          ),
-        ],
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (overscroll) {
+        overscroll.disallowIndicator();
+        return true;
+      },
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        shrinkWrap: true,
+        itemBuilder: (context, index) => items[index],
+        separatorBuilder: (p0, p1) => const SizedBox(height: 30),
+        itemCount: items.length,
       ),
     );
   }

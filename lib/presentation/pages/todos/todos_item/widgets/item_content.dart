@@ -29,12 +29,6 @@ class _ItemContentState extends State<ItemContent> {
   final infoButtonSize = 20.0;
   final importanceIconSize = 16.0;
 
-  final tagIcon = {
-    Tag.home: Icons.home_outlined,
-    Tag.study: Icons.school_outlined,
-    Tag.work: Icons.work_outline,
-  };
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -98,12 +92,23 @@ class _ItemContentState extends State<ItemContent> {
                         descriprionSpan: descriprionSpan,
                         importanceIconSize: importanceIconSize,
                       ),
-                      if (widget.element.tag != null) const SizedBox(height: 5),
-                      if (widget.element.tag != null)
-                        Icon(
-                          tagIcon[widget.element.tag],
-                          color:
-                              getIt.get<ThemeBloc>().currentTheme.labelTertiary,
+                      if (widget.element.tags != null)
+                        const SizedBox(height: 5),
+                      if (widget.element.tags != null)
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: widget.element.tags!
+                              .map(
+                                (tag) => Icon(
+                                  tag.iconData,
+                                  color: getIt
+                                      .get<ThemeBloc>()
+                                      .currentTheme
+                                      .labelTertiary,
+                                ),
+                              )
+                              .toList(),
                         ),
                     ],
                   ),
@@ -143,7 +148,7 @@ class _ItemContentState extends State<ItemContent> {
     final metrics = textPainter.computeLineMetrics();
 
     if (widget.element.deadline != null) return false;
-    if (widget.element.tag != null) return false;
+    if (widget.element.tags != null) return false;
     if (metrics.length == 1) {
       // если строка одна, но иконки важности не позволяют тексту
       // уместиться в эту одну строку, то централизировать не нужно

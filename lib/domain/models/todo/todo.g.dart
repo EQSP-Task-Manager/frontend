@@ -27,7 +27,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
       createdAt: fields[7] as int,
       changedAt: fields[8] as int,
       deviceId: fields[9] as String,
-      tag: fields[10] as Tag?,
+      tags: (fields[10] as List?)?.cast<Tag>(),
     );
   }
 
@@ -56,7 +56,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
       ..writeByte(9)
       ..write(obj.deviceId)
       ..writeByte(10)
-      ..write(obj.tag);
+      ..write(obj.tags);
   }
 
   @override
@@ -127,6 +127,10 @@ class TagAdapter extends TypeAdapter<Tag> {
         return Tag.work;
       case 2:
         return Tag.study;
+      case 3:
+        return Tag.sport;
+      case 4:
+        return Tag.friends;
       default:
         return Tag.home;
     }
@@ -143,6 +147,12 @@ class TagAdapter extends TypeAdapter<Tag> {
         break;
       case Tag.study:
         writer.writeByte(2);
+        break;
+      case Tag.sport:
+        writer.writeByte(3);
+        break;
+      case Tag.friends:
+        writer.writeByte(4);
         break;
     }
   }
@@ -173,7 +183,9 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       createdAt: json['created_at'] as int,
       changedAt: json['changed_at'] as int,
       deviceId: json['last_updated_by'] as String,
-      tag: $enumDecodeNullable(_$TagEnumMap, json['tag']),
+      tags: (json['tags'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$TagEnumMap, e))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
@@ -187,7 +199,7 @@ Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'created_at': instance.createdAt,
       'changed_at': instance.changedAt,
       'last_updated_by': instance.deviceId,
-      'tag': _$TagEnumMap[instance.tag],
+      'tags': instance.tags?.map((e) => _$TagEnumMap[e]!).toList(),
     };
 
 const _$ImportanceEnumMap = {
@@ -199,5 +211,7 @@ const _$ImportanceEnumMap = {
 const _$TagEnumMap = {
   Tag.home: 'home',
   Tag.work: 'work',
-  Tag.study: 'important',
+  Tag.study: 'study',
+  Tag.sport: 'sport',
+  Tag.friends: 'firends',
 };

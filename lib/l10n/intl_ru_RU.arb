@@ -13,5 +13,6 @@
     "taskTitle": "Название задания",
     "category": "Категория",
     "description": "Описание",
-    "addDescription": "Добавить описание"
+    "addDescription": "Добавить описание",
+    "tag": "Тег"
 }
