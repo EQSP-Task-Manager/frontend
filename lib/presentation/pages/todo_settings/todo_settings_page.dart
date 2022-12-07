@@ -247,6 +247,7 @@ class _PageContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _TextInput(
+            key: const Key('titleTextInput'),
             title: S.of(context).taskTitle,
             hintText: S.of(context).whatShouldBeDone,
             element: element,
@@ -265,6 +266,7 @@ class _PageContent extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           _TextInput(
+            key: const Key('descriptionTextInput'),
             title: S.of(context).description,
             hintText: S.of(context).addDescription,
             element: element,

@@ -1,17 +1,17 @@
 part of 'todos_page.dart';
 
-class _InputItem extends StatefulWidget {
-  const _InputItem({Key? key}) : super(key: key);
+class InputItem extends StatefulWidget {
+  const InputItem({Key? key}) : super(key: key);
 
   @override
-  State<_InputItem> createState() => _InputItemState();
+  State<InputItem> createState() => _InputItemState();
 }
 
-class _InputItemState extends State<_InputItem> with WidgetsBindingObserver {
+class _InputItemState extends State<InputItem> with WidgetsBindingObserver {
   final FocusNode _focus = FocusNode();
   final FocusNode _textFocus = FocusNode();
   final TextEditingController _controller = TextEditingController();
-  final TextInputAction _textInputAction = TextInputAction.none;
+  final TextInputAction _textInputAction = TextInputAction.done;
 
   @override
   void initState() {
@@ -65,6 +65,7 @@ class _InputItemState extends State<_InputItem> with WidgetsBindingObserver {
                 ),
                 style: Theme.of(context).textTheme.body.copyWith(
                     color: getIt.get<ThemeBloc>().currentTheme.labelPrimary),
+                onSubmitted: (_) => onEnterPressed(),
               ),
             ),
           ),
@@ -74,11 +75,14 @@ class _InputItemState extends State<_InputItem> with WidgetsBindingObserver {
   }
 
   void onEnterPressed() {
-    if (_controller.text[_controller.text.length - 1] == '\n') {
-      _controller.text =
-          _controller.text.substring(0, _controller.text.length - 1);
-    }
-    _focus.unfocus();
+    // if (_controller.text[_controller.text.length - 1] == '\n') {
+    //   _controller.text =
+    //       _controller.text.substring(0, _controller.text.length - 1);
+    // }
+
+    onKeyboardGone();
+
+    //_focus.unfocus();
   }
 
   void onKeyboardGone() {

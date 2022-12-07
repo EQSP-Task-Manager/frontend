@@ -68,7 +68,7 @@ class _ItemContentState extends State<ItemContent> {
                 ),
               Padding(
                 padding: checkboxPadding,
-                child: _ItemCheckbox(
+                child: ItemCheckbox(
                   element: widget.element,
                 ),
               ),

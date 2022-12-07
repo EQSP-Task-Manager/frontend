@@ -42,7 +42,7 @@ class __ImportanceState extends State<_Importance> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 164,
-      height: 50,
+      height: 51,
       child: DropdownButtonHideUnderline(
         child: ButtonTheme(
           alignedDropdown: true,
