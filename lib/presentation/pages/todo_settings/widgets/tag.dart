@@ -47,8 +47,8 @@ class _TagState extends State<_Tag> {
                         horizontal: 12,
                       ),
                       decoration: BoxDecoration(
-                        color:
-                            tag.color.withOpacity(tags.contains(tag) ? 1 : 0.3),
+                        color: tag.color
+                            .withOpacity(tags.contains(tag) ? 1 : 0.15),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(
