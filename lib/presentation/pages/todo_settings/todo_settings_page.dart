@@ -216,6 +216,7 @@ class _AppBar extends StatelessWidget {
                 importance:
                     submitionData.importanceToSubmit ?? Importance.basic,
                 deadline: submitionData.deadlineToSubmit,
+                tags: submitionData.tagsToSubmit,
                 actionTool: ActionTool.settingsPage,
               ),
             );
@@ -238,6 +239,45 @@ class _PageContent extends StatelessWidget {
     required this.element,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_PageContent> createState() => _PageContentState();
+}
+
+class _PageContentState extends State<_PageContent> {
+  late List<Widget> items = [
+    _TextInput(
+      key: const Key('titleTextInput'),
+      title: S.of(context).taskTitle,
+      hintText: S.of(context).whatShouldBeDone,
+      element: widget.element,
+      submit: widget.submitTaskTitle,
+      isTaskTitle: true,
+    ),
+    _Tag(
+      element: widget.element,
+      submit: widget.submitTags,
+    ),
+    _Importance(
+      element: widget.element,
+      submit: widget.submitImportance,
+    ),
+    _Deadline(
+      element: widget.element,
+      submit: widget.submitDeadline,
+    ),
+    _TextInput(
+      key: const Key('descriptionTextInput'),
+      title: S.of(context).description,
+      hintText: S.of(context).addDescription,
+      element: widget.element,
+      submit: widget.submitTaskDescription,
+      isDescription: true,
+    ),
+    _DeleteButton(
+      element: widget.element,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {

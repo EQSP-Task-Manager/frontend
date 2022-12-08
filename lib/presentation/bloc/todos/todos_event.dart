@@ -10,6 +10,7 @@ class TodosEvent with _$TodosEvent {
     String? title,
     String? description,
     Importance? importance,
+    List<Tag>? tags,
     DateTime? deadline,
   }) = _Edit;
 
