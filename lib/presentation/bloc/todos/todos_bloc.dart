@@ -136,7 +136,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       createdAt: now.toUtc().millisecondsSinceEpoch,
       changedAt: now.toUtc().millisecondsSinceEpoch,
       deviceId: await getDeviceId() ?? '',
-      tag: event.tag,
+      tags: event.tags,
     );
 
     _currentTodos.add(itemToAdd);

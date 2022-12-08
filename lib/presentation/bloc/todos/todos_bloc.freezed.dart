@@ -35,7 +35,7 @@ mixin _$TodosEvent {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -54,12 +54,18 @@ mixin _$TodosEvent {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,8 +81,14 @@ mixin _$TodosEvent {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -95,12 +107,12 @@ mixin _$TodosEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,18 +132,16 @@ mixin _$TodosEvent {
 abstract class $TodosEventCopyWith<$Res> {
   factory $TodosEventCopyWith(
           TodosEvent value, $Res Function(TodosEvent) then) =
-      _$TodosEventCopyWithImpl<$Res, TodosEvent>;
+      _$TodosEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TodosEventCopyWithImpl<$Res, $Val extends TodosEvent>
-    implements $TodosEventCopyWith<$Res> {
+class _$TodosEventCopyWithImpl<$Res> implements $TodosEventCopyWith<$Res> {
   _$TodosEventCopyWithImpl(this._value, this._then);
 
+  final TodosEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(TodosEvent) _then;
 }
 
 /// @nodoc
@@ -141,11 +151,13 @@ abstract class _$$_FetchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FetchCopyWithImpl<$Res>
-    extends _$TodosEventCopyWithImpl<$Res, _$_Fetch>
+class __$$_FetchCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_FetchCopyWith<$Res> {
   __$$_FetchCopyWithImpl(_$_Fetch _value, $Res Function(_$_Fetch) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Fetch));
+
+  @override
+  _$_Fetch get _value => super._value as _$_Fetch;
 }
 
 /// @nodoc
@@ -187,7 +199,7 @@ class _$_Fetch implements _Fetch {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -209,12 +221,18 @@ class _$_Fetch implements _Fetch {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return fetch?.call();
   }
@@ -233,8 +251,14 @@ class _$_Fetch implements _Fetch {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -262,12 +286,12 @@ class _$_Fetch implements _Fetch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return fetch?.call(this);
   }
@@ -298,7 +322,6 @@ abstract class _Fetch implements TodosEvent {
 abstract class _$$_EditCopyWith<$Res> {
   factory _$$_EditCopyWith(_$_Edit value, $Res Function(_$_Edit) then) =
       __$$_EditCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {Todo item,
       ActionTool actionTool,
@@ -312,17 +335,18 @@ abstract class _$$_EditCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditCopyWithImpl<$Res>
-    extends _$TodosEventCopyWithImpl<$Res, _$_Edit>
+class __$$_EditCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_EditCopyWith<$Res> {
   __$$_EditCopyWithImpl(_$_Edit _value, $Res Function(_$_Edit) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Edit));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Edit get _value => super._value as _$_Edit;
+
   @override
   $Res call({
-    Object? item = null,
-    Object? actionTool = null,
+    Object? item = freezed,
+    Object? actionTool = freezed,
     Object? title = freezed,
     Object? description = freezed,
     Object? importance = freezed,
@@ -330,23 +354,23 @@ class __$$_EditCopyWithImpl<$Res>
     Object? deadline = freezed,
   }) {
     return _then(_$_Edit(
-      item: null == item
+      item: item == freezed
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Todo,
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
-      title: freezed == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      importance: freezed == importance
+      importance: importance == freezed
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance?,
@@ -362,7 +386,6 @@ class __$$_EditCopyWithImpl<$Res>
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get item {
     return $TodoCopyWith<$Res>(_value.item, (value) {
       return _then(_value.copyWith(item: value));
@@ -440,7 +463,6 @@ class _$_Edit implements _Edit {
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_EditCopyWith<_$_Edit> get copyWith =>
       __$$_EditCopyWithImpl<_$_Edit>(this, _$identity);
 
@@ -464,7 +486,7 @@ class _$_Edit implements _Edit {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -487,12 +509,18 @@ class _$_Edit implements _Edit {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return edit?.call(
         item, actionTool, title, description, importance, tags, deadline);
@@ -512,8 +540,14 @@ class _$_Edit implements _Edit {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -542,12 +576,12 @@ class _$_Edit implements _Edit {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return edit?.call(this);
   }
@@ -595,31 +629,31 @@ abstract class _Edit implements TodosEvent {
 abstract class _$$_RemoveCopyWith<$Res> {
   factory _$$_RemoveCopyWith(_$_Remove value, $Res Function(_$_Remove) then) =
       __$$_RemoveCopyWithImpl<$Res>;
-  @useResult
   $Res call({Todo item, ActionTool actionTool});
 
   $TodoCopyWith<$Res> get item;
 }
 
 /// @nodoc
-class __$$_RemoveCopyWithImpl<$Res>
-    extends _$TodosEventCopyWithImpl<$Res, _$_Remove>
+class __$$_RemoveCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_RemoveCopyWith<$Res> {
   __$$_RemoveCopyWithImpl(_$_Remove _value, $Res Function(_$_Remove) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Remove));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Remove get _value => super._value as _$_Remove;
+
   @override
   $Res call({
-    Object? item = null,
-    Object? actionTool = null,
+    Object? item = freezed,
+    Object? actionTool = freezed,
   }) {
     return _then(_$_Remove(
-      item: null == item
+      item: item == freezed
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Todo,
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
@@ -627,7 +661,6 @@ class __$$_RemoveCopyWithImpl<$Res>
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get item {
     return $TodoCopyWith<$Res>(_value.item, (value) {
       return _then(_value.copyWith(item: value));
@@ -655,17 +688,19 @@ class _$_Remove implements _Remove {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Remove &&
-            (identical(other.item, item) || other.item == item) &&
-            (identical(other.actionTool, actionTool) ||
-                other.actionTool == actionTool));
+            const DeepCollectionEquality().equals(other.item, item) &&
+            const DeepCollectionEquality()
+                .equals(other.actionTool, actionTool));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, item, actionTool);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(item),
+      const DeepCollectionEquality().hash(actionTool));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_RemoveCopyWith<_$_Remove> get copyWith =>
       __$$_RemoveCopyWithImpl<_$_Remove>(this, _$identity);
 
@@ -689,7 +724,7 @@ class _$_Remove implements _Remove {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -711,12 +746,18 @@ class _$_Remove implements _Remove {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return remove?.call(item, actionTool);
   }
@@ -735,8 +776,14 @@ class _$_Remove implements _Remove {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -764,12 +811,12 @@ class _$_Remove implements _Remove {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return remove?.call(this);
   }
@@ -808,60 +855,61 @@ abstract class _Remove implements TodosEvent {
 abstract class _$$_AddCopyWith<$Res> {
   factory _$$_AddCopyWith(_$_Add value, $Res Function(_$_Add) then) =
       __$$_AddCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {ActionTool actionTool,
       String? title,
       String? description,
       Importance importance,
       String? color,
-      Tag? tag,
+      List<Tag>? tags,
       DateTime? deadline});
 }
 
 /// @nodoc
-class __$$_AddCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res, _$_Add>
+class __$$_AddCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_AddCopyWith<$Res> {
   __$$_AddCopyWithImpl(_$_Add _value, $Res Function(_$_Add) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Add));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Add get _value => super._value as _$_Add;
+
   @override
   $Res call({
-    Object? actionTool = null,
+    Object? actionTool = freezed,
     Object? title = freezed,
     Object? description = freezed,
-    Object? importance = null,
+    Object? importance = freezed,
     Object? color = freezed,
-    Object? tag = freezed,
+    Object? tags = freezed,
     Object? deadline = freezed,
   }) {
     return _then(_$_Add(
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
-      title: freezed == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      importance: null == importance
+      importance: importance == freezed
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance,
-      color: freezed == color
+      color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as Tag?,
-      deadline: freezed == deadline
+      tags: tags == freezed
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
+      deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -878,8 +926,9 @@ class _$_Add implements _Add {
       this.description,
       required this.importance,
       this.color,
-      this.tag,
-      this.deadline});
+      final List<Tag>? tags,
+      this.deadline})
+      : _tags = tags;
 
   @override
   final ActionTool actionTool;
@@ -891,14 +940,21 @@ class _$_Add implements _Add {
   final Importance importance;
   @override
   final String? color;
+  final List<Tag>? _tags;
   @override
-  final Tag? tag;
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final DateTime? deadline;
 
   @override
   String toString() {
-    return 'TodosEvent.add(actionTool: $actionTool, title: $title, description: $description, importance: $importance, color: $color, tag: $tag, deadline: $deadline)';
+    return 'TodosEvent.add(actionTool: $actionTool, title: $title, description: $description, importance: $importance, color: $color, tags: $tags, deadline: $deadline)';
   }
 
   @override
@@ -906,26 +962,31 @@ class _$_Add implements _Add {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Add &&
-            (identical(other.actionTool, actionTool) ||
-                other.actionTool == actionTool) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.importance, importance) ||
-                other.importance == importance) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.tag, tag) || other.tag == tag) &&
-            (identical(other.deadline, deadline) ||
-                other.deadline == deadline));
+            const DeepCollectionEquality()
+                .equals(other.actionTool, actionTool) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.importance, importance) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other.deadline, deadline));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, actionTool, title, description,
-      importance, color, tag, deadline);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(actionTool),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(importance),
+      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(deadline));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_AddCopyWith<_$_Add> get copyWith =>
       __$$_AddCopyWithImpl<_$_Add>(this, _$identity);
 
@@ -949,14 +1010,14 @@ class _$_Add implements _Add {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
     required TResult Function() showDone,
   }) {
     return add(
-        actionTool, title, description, importance, color, tag, deadline);
+        actionTool, title, description, importance, color, tags, deadline);
   }
 
   @override
@@ -972,15 +1033,21 @@ class _$_Add implements _Add {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return add?.call(
-        actionTool, title, description, importance, color, tag, deadline);
+        actionTool, title, description, importance, color, tags, deadline);
   }
 
   @override
@@ -997,8 +1064,14 @@ class _$_Add implements _Add {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -1006,7 +1079,7 @@ class _$_Add implements _Add {
   }) {
     if (add != null) {
       return add(
-          actionTool, title, description, importance, color, tag, deadline);
+          actionTool, title, description, importance, color, tags, deadline);
     }
     return orElse();
   }
@@ -1027,12 +1100,12 @@ class _$_Add implements _Add {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return add?.call(this);
   }
@@ -1062,7 +1135,7 @@ abstract class _Add implements TodosEvent {
       final String? description,
       required final Importance importance,
       final String? color,
-      final Tag? tag,
+      final List<Tag>? tags,
       final DateTime? deadline}) = _$_Add;
 
   ActionTool get actionTool;
@@ -1070,7 +1143,7 @@ abstract class _Add implements TodosEvent {
   String? get description;
   Importance get importance;
   String? get color;
-  Tag? get tag;
+  List<Tag>? get tags;
   DateTime? get deadline;
   @JsonKey(ignore: true)
   _$$_AddCopyWith<_$_Add> get copyWith => throw _privateConstructorUsedError;
@@ -1084,12 +1157,14 @@ abstract class _$$_HideDoneCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_HideDoneCopyWithImpl<$Res>
-    extends _$TodosEventCopyWithImpl<$Res, _$_HideDone>
+class __$$_HideDoneCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_HideDoneCopyWith<$Res> {
   __$$_HideDoneCopyWithImpl(
       _$_HideDone _value, $Res Function(_$_HideDone) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_HideDone));
+
+  @override
+  _$_HideDone get _value => super._value as _$_HideDone;
 }
 
 /// @nodoc
@@ -1131,7 +1206,7 @@ class _$_HideDone implements _HideDone {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -1153,12 +1228,18 @@ class _$_HideDone implements _HideDone {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return hideDone?.call();
   }
@@ -1177,8 +1258,14 @@ class _$_HideDone implements _HideDone {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -1206,12 +1293,12 @@ class _$_HideDone implements _HideDone {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return hideDone?.call(this);
   }
@@ -1246,12 +1333,14 @@ abstract class _$$_ShowDoneCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShowDoneCopyWithImpl<$Res>
-    extends _$TodosEventCopyWithImpl<$Res, _$_ShowDone>
+class __$$_ShowDoneCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     implements _$$_ShowDoneCopyWith<$Res> {
   __$$_ShowDoneCopyWithImpl(
       _$_ShowDone _value, $Res Function(_$_ShowDone) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ShowDone));
+
+  @override
+  _$_ShowDone get _value => super._value as _$_ShowDone;
 }
 
 /// @nodoc
@@ -1293,7 +1382,7 @@ class _$_ShowDone implements _ShowDone {
             String? description,
             Importance importance,
             String? color,
-            Tag? tag,
+            List<Tag>? tags,
             DateTime? deadline)
         add,
     required TResult Function() hideDone,
@@ -1315,12 +1404,18 @@ class _$_ShowDone implements _ShowDone {
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
-    TResult? Function(Todo item, ActionTool actionTool)? remove,
-    TResult? Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(Todo item, ActionTool actionTool)? remove,
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
-    TResult? Function()? hideDone,
-    TResult? Function()? showDone,
+    TResult Function()? hideDone,
+    TResult Function()? showDone,
   }) {
     return showDone?.call();
   }
@@ -1339,8 +1434,14 @@ class _$_ShowDone implements _ShowDone {
             DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
-    TResult Function(ActionTool actionTool, String? title, String? description,
-            Importance importance, String? color, Tag? tag, DateTime? deadline)?
+    TResult Function(
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance importance,
+            String? color,
+            List<Tag>? tags,
+            DateTime? deadline)?
         add,
     TResult Function()? hideDone,
     TResult Function()? showDone,
@@ -1368,12 +1469,12 @@ class _$_ShowDone implements _ShowDone {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Fetch value)? fetch,
-    TResult? Function(_Edit value)? edit,
-    TResult? Function(_Remove value)? remove,
-    TResult? Function(_Add value)? add,
-    TResult? Function(_HideDone value)? hideDone,
-    TResult? Function(_ShowDone value)? showDone,
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Edit value)? edit,
+    TResult Function(_Remove value)? remove,
+    TResult Function(_Add value)? add,
+    TResult Function(_HideDone value)? hideDone,
+    TResult Function(_ShowDone value)? showDone,
   }) {
     return showDone?.call(this);
   }
@@ -1419,15 +1520,15 @@ mixin _$TodosState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) =>
@@ -1459,11 +1560,11 @@ mixin _$TodosState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1482,18 +1583,16 @@ mixin _$TodosState {
 abstract class $TodosStateCopyWith<$Res> {
   factory $TodosStateCopyWith(
           TodosState value, $Res Function(TodosState) then) =
-      _$TodosStateCopyWithImpl<$Res, TodosState>;
+      _$TodosStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TodosStateCopyWithImpl<$Res, $Val extends TodosState>
-    implements $TodosStateCopyWith<$Res> {
+class _$TodosStateCopyWithImpl<$Res> implements $TodosStateCopyWith<$Res> {
   _$TodosStateCopyWithImpl(this._value, this._then);
 
+  final TodosState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(TodosState) _then;
 }
 
 /// @nodoc
@@ -1504,11 +1603,13 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$TodosStateCopyWithImpl<$Res, _$_Initial>
+class __$$_InitialCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Initial));
+
+  @override
+  _$_Initial get _value => super._value as _$_Initial;
 }
 
 /// @nodoc
@@ -1551,15 +1652,15 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) {
@@ -1603,11 +1704,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) {
     return initial?.call(this);
   }
@@ -1638,30 +1739,30 @@ abstract class _$$_DataFetchedCopyWith<$Res> {
   factory _$$_DataFetchedCopyWith(
           _$_DataFetched value, $Res Function(_$_DataFetched) then) =
       __$$_DataFetchedCopyWithImpl<$Res>;
-  @useResult
   $Res call({List<Todo> todos, bool showDone});
 }
 
 /// @nodoc
-class __$$_DataFetchedCopyWithImpl<$Res>
-    extends _$TodosStateCopyWithImpl<$Res, _$_DataFetched>
+class __$$_DataFetchedCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
     implements _$$_DataFetchedCopyWith<$Res> {
   __$$_DataFetchedCopyWithImpl(
       _$_DataFetched _value, $Res Function(_$_DataFetched) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_DataFetched));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_DataFetched get _value => super._value as _$_DataFetched;
+
   @override
   $Res call({
-    Object? todos = null,
-    Object? showDone = null,
+    Object? todos = freezed,
+    Object? showDone = freezed,
   }) {
     return _then(_$_DataFetched(
-      todos: null == todos
+      todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      showDone: null == showDone
+      showDone: showDone == freezed
           ? _value.showDone
           : showDone // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -1697,17 +1798,17 @@ class _$_DataFetched implements _DataFetched {
         (other.runtimeType == runtimeType &&
             other is _$_DataFetched &&
             const DeepCollectionEquality().equals(other._todos, _todos) &&
-            (identical(other.showDone, showDone) ||
-                other.showDone == showDone));
+            const DeepCollectionEquality().equals(other.showDone, showDone));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_todos), showDone);
+      runtimeType,
+      const DeepCollectionEquality().hash(_todos),
+      const DeepCollectionEquality().hash(showDone));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_DataFetchedCopyWith<_$_DataFetched> get copyWith =>
       __$$_DataFetchedCopyWithImpl<_$_DataFetched>(this, _$identity);
 
@@ -1732,15 +1833,15 @@ class _$_DataFetched implements _DataFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) {
@@ -1784,11 +1885,11 @@ class _$_DataFetched implements _DataFetched {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) {
     return dataFetched?.call(this);
   }
@@ -1825,7 +1926,6 @@ abstract class _DataFetched implements TodosState {
 abstract class _$$_AddedCopyWith<$Res> {
   factory _$$_AddedCopyWith(_$_Added value, $Res Function(_$_Added) then) =
       __$$_AddedCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {List<Todo> todos, Todo addedItem, ActionTool actionTool, bool showDone});
 
@@ -1833,34 +1933,35 @@ abstract class _$$_AddedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AddedCopyWithImpl<$Res>
-    extends _$TodosStateCopyWithImpl<$Res, _$_Added>
+class __$$_AddedCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
     implements _$$_AddedCopyWith<$Res> {
   __$$_AddedCopyWithImpl(_$_Added _value, $Res Function(_$_Added) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Added));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Added get _value => super._value as _$_Added;
+
   @override
   $Res call({
-    Object? todos = null,
-    Object? addedItem = null,
-    Object? actionTool = null,
-    Object? showDone = null,
+    Object? todos = freezed,
+    Object? addedItem = freezed,
+    Object? actionTool = freezed,
+    Object? showDone = freezed,
   }) {
     return _then(_$_Added(
-      todos: null == todos
+      todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      addedItem: null == addedItem
+      addedItem: addedItem == freezed
           ? _value.addedItem
           : addedItem // ignore: cast_nullable_to_non_nullable
               as Todo,
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
-      showDone: null == showDone
+      showDone: showDone == freezed
           ? _value.showDone
           : showDone // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -1868,7 +1969,6 @@ class __$$_AddedCopyWithImpl<$Res>
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get addedItem {
     return $TodoCopyWith<$Res>(_value.addedItem, (value) {
       return _then(_value.copyWith(addedItem: value));
@@ -1912,25 +2012,22 @@ class _$_Added implements _Added {
         (other.runtimeType == runtimeType &&
             other is _$_Added &&
             const DeepCollectionEquality().equals(other._todos, _todos) &&
-            (identical(other.addedItem, addedItem) ||
-                other.addedItem == addedItem) &&
-            (identical(other.actionTool, actionTool) ||
-                other.actionTool == actionTool) &&
-            (identical(other.showDone, showDone) ||
-                other.showDone == showDone));
+            const DeepCollectionEquality().equals(other.addedItem, addedItem) &&
+            const DeepCollectionEquality()
+                .equals(other.actionTool, actionTool) &&
+            const DeepCollectionEquality().equals(other.showDone, showDone));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_todos),
-      addedItem,
-      actionTool,
-      showDone);
+      const DeepCollectionEquality().hash(addedItem),
+      const DeepCollectionEquality().hash(actionTool),
+      const DeepCollectionEquality().hash(showDone));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_AddedCopyWith<_$_Added> get copyWith =>
       __$$_AddedCopyWithImpl<_$_Added>(this, _$identity);
 
@@ -1955,15 +2052,15 @@ class _$_Added implements _Added {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) {
@@ -2007,11 +2104,11 @@ class _$_Added implements _Added {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) {
     return added?.call(this);
   }
@@ -2054,7 +2151,6 @@ abstract class _$$_RemovedCopyWith<$Res> {
   factory _$$_RemovedCopyWith(
           _$_Removed value, $Res Function(_$_Removed) then) =
       __$$_RemovedCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {List<Todo> todos,
       Todo removedItem,
@@ -2065,34 +2161,35 @@ abstract class _$$_RemovedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_RemovedCopyWithImpl<$Res>
-    extends _$TodosStateCopyWithImpl<$Res, _$_Removed>
+class __$$_RemovedCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
     implements _$$_RemovedCopyWith<$Res> {
   __$$_RemovedCopyWithImpl(_$_Removed _value, $Res Function(_$_Removed) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Removed));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Removed get _value => super._value as _$_Removed;
+
   @override
   $Res call({
-    Object? todos = null,
-    Object? removedItem = null,
-    Object? actionTool = null,
-    Object? showDone = null,
+    Object? todos = freezed,
+    Object? removedItem = freezed,
+    Object? actionTool = freezed,
+    Object? showDone = freezed,
   }) {
     return _then(_$_Removed(
-      todos: null == todos
+      todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      removedItem: null == removedItem
+      removedItem: removedItem == freezed
           ? _value.removedItem
           : removedItem // ignore: cast_nullable_to_non_nullable
               as Todo,
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
-      showDone: null == showDone
+      showDone: showDone == freezed
           ? _value.showDone
           : showDone // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -2100,7 +2197,6 @@ class __$$_RemovedCopyWithImpl<$Res>
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get removedItem {
     return $TodoCopyWith<$Res>(_value.removedItem, (value) {
       return _then(_value.copyWith(removedItem: value));
@@ -2144,25 +2240,23 @@ class _$_Removed implements _Removed {
         (other.runtimeType == runtimeType &&
             other is _$_Removed &&
             const DeepCollectionEquality().equals(other._todos, _todos) &&
-            (identical(other.removedItem, removedItem) ||
-                other.removedItem == removedItem) &&
-            (identical(other.actionTool, actionTool) ||
-                other.actionTool == actionTool) &&
-            (identical(other.showDone, showDone) ||
-                other.showDone == showDone));
+            const DeepCollectionEquality()
+                .equals(other.removedItem, removedItem) &&
+            const DeepCollectionEquality()
+                .equals(other.actionTool, actionTool) &&
+            const DeepCollectionEquality().equals(other.showDone, showDone));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_todos),
-      removedItem,
-      actionTool,
-      showDone);
+      const DeepCollectionEquality().hash(removedItem),
+      const DeepCollectionEquality().hash(actionTool),
+      const DeepCollectionEquality().hash(showDone));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_RemovedCopyWith<_$_Removed> get copyWith =>
       __$$_RemovedCopyWithImpl<_$_Removed>(this, _$identity);
 
@@ -2187,15 +2281,15 @@ class _$_Removed implements _Removed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) {
@@ -2239,11 +2333,11 @@ class _$_Removed implements _Removed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) {
     return removed?.call(this);
   }
@@ -2285,7 +2379,6 @@ abstract class _Removed implements TodosState {
 abstract class _$$_EditedCopyWith<$Res> {
   factory _$$_EditedCopyWith(_$_Edited value, $Res Function(_$_Edited) then) =
       __$$_EditedCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {List<Todo> todos,
       Todo editedItem,
@@ -2296,34 +2389,35 @@ abstract class _$$_EditedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_EditedCopyWithImpl<$Res>
-    extends _$TodosStateCopyWithImpl<$Res, _$_Edited>
+class __$$_EditedCopyWithImpl<$Res> extends _$TodosStateCopyWithImpl<$Res>
     implements _$$_EditedCopyWith<$Res> {
   __$$_EditedCopyWithImpl(_$_Edited _value, $Res Function(_$_Edited) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Edited));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Edited get _value => super._value as _$_Edited;
+
   @override
   $Res call({
-    Object? todos = null,
-    Object? editedItem = null,
-    Object? actionTool = null,
-    Object? showDone = null,
+    Object? todos = freezed,
+    Object? editedItem = freezed,
+    Object? actionTool = freezed,
+    Object? showDone = freezed,
   }) {
     return _then(_$_Edited(
-      todos: null == todos
+      todos: todos == freezed
           ? _value._todos
           : todos // ignore: cast_nullable_to_non_nullable
               as List<Todo>,
-      editedItem: null == editedItem
+      editedItem: editedItem == freezed
           ? _value.editedItem
           : editedItem // ignore: cast_nullable_to_non_nullable
               as Todo,
-      actionTool: null == actionTool
+      actionTool: actionTool == freezed
           ? _value.actionTool
           : actionTool // ignore: cast_nullable_to_non_nullable
               as ActionTool,
-      showDone: null == showDone
+      showDone: showDone == freezed
           ? _value.showDone
           : showDone // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -2331,7 +2425,6 @@ class __$$_EditedCopyWithImpl<$Res>
   }
 
   @override
-  @pragma('vm:prefer-inline')
   $TodoCopyWith<$Res> get editedItem {
     return $TodoCopyWith<$Res>(_value.editedItem, (value) {
       return _then(_value.copyWith(editedItem: value));
@@ -2375,25 +2468,23 @@ class _$_Edited implements _Edited {
         (other.runtimeType == runtimeType &&
             other is _$_Edited &&
             const DeepCollectionEquality().equals(other._todos, _todos) &&
-            (identical(other.editedItem, editedItem) ||
-                other.editedItem == editedItem) &&
-            (identical(other.actionTool, actionTool) ||
-                other.actionTool == actionTool) &&
-            (identical(other.showDone, showDone) ||
-                other.showDone == showDone));
+            const DeepCollectionEquality()
+                .equals(other.editedItem, editedItem) &&
+            const DeepCollectionEquality()
+                .equals(other.actionTool, actionTool) &&
+            const DeepCollectionEquality().equals(other.showDone, showDone));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_todos),
-      editedItem,
-      actionTool,
-      showDone);
+      const DeepCollectionEquality().hash(editedItem),
+      const DeepCollectionEquality().hash(actionTool),
+      const DeepCollectionEquality().hash(showDone));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_EditedCopyWith<_$_Edited> get copyWith =>
       __$$_EditedCopyWithImpl<_$_Edited>(this, _$identity);
 
@@ -2418,15 +2509,15 @@ class _$_Edited implements _Edited {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(List<Todo> todos, bool showDone)? dataFetched,
-    TResult? Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
+    TResult Function()? initial,
+    TResult Function(List<Todo> todos, bool showDone)? dataFetched,
+    TResult Function(List<Todo> todos, Todo addedItem, ActionTool actionTool,
             bool showDone)?
         added,
-    TResult? Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo removedItem, ActionTool actionTool,
             bool showDone)?
         removed,
-    TResult? Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
+    TResult Function(List<Todo> todos, Todo editedItem, ActionTool actionTool,
             bool showDone)?
         edited,
   }) {
@@ -2470,11 +2561,11 @@ class _$_Edited implements _Edited {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_DataFetched value)? dataFetched,
-    TResult? Function(_Added value)? added,
-    TResult? Function(_Removed value)? removed,
-    TResult? Function(_Edited value)? edited,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_DataFetched value)? dataFetched,
+    TResult Function(_Added value)? added,
+    TResult Function(_Removed value)? removed,
+    TResult Function(_Edited value)? edited,
   }) {
     return edited?.call(this);
   }

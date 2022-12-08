@@ -25,7 +25,7 @@ class TodosEvent with _$TodosEvent {
     String? description,
     required Importance importance,
     String? color,
-    Tag? tag,
+    List<Tag>? tags,
     DateTime? deadline,
   }) = _Add;
 

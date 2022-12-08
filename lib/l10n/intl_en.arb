@@ -13,5 +13,6 @@
     "taskTitle": "Task Title",
     "category": "Category",
     "description": "Description",
-    "addDescription": "Add description"
+    "addDescription": "Add description",
+    "tag": "Tag"
 }

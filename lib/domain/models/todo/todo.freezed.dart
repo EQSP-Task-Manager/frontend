@@ -50,9 +50,9 @@ mixin _$Todo {
   @JsonKey(name: 'last_updated_by')
   @HiveField(9)
   String get deviceId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tag')
+  @JsonKey(name: 'tags')
   @HiveField(10)
-  Tag? get tag => throw _privateConstructorUsedError;
+  List<Tag>? get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,8 +62,7 @@ mixin _$Todo {
 /// @nodoc
 abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res, Todo>;
-  @useResult
+      _$TodoCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(name: 'id') @HiveField(0) String id,
       @JsonKey(name: 'title') @HiveField(1) String title,
@@ -75,80 +74,77 @@ abstract class $TodoCopyWith<$Res> {
       @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
       @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
-      @JsonKey(name: 'tag') @HiveField(10) Tag? tag});
+      @JsonKey(name: 'tags') @HiveField(10) List<Tag>? tags});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res, $Val extends Todo>
-    implements $TodoCopyWith<$Res> {
+class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
   _$TodoCopyWithImpl(this._value, this._then);
 
+  final Todo _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(Todo) _then;
 
-  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? description = null,
-    Object? importance = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? importance = freezed,
     Object? deadline = freezed,
-    Object? done = null,
+    Object? done = freezed,
     Object? color = freezed,
-    Object? createdAt = null,
-    Object? changedAt = null,
-    Object? deviceId = null,
-    Object? tag = freezed,
+    Object? createdAt = freezed,
+    Object? changedAt = freezed,
+    Object? deviceId = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      importance: null == importance
+      importance: importance == freezed
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance,
-      deadline: freezed == deadline
+      deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as int?,
-      done: null == done
+      done: done == freezed
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: freezed == color
+      color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
+      createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      changedAt: null == changedAt
+      changedAt: changedAt == freezed
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: null == deviceId
+      deviceId: deviceId == freezed
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as Tag?,
-    ) as $Val);
+      tags: tags == freezed
+          ? _value.tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
+    ));
   }
 }
 
@@ -157,7 +153,6 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$$_TodoCopyWith(_$_Todo value, $Res Function(_$_Todo) then) =
       __$$_TodoCopyWithImpl<$Res>;
   @override
-  @useResult
   $Res call(
       {@JsonKey(name: 'id') @HiveField(0) String id,
       @JsonKey(name: 'title') @HiveField(1) String title,
@@ -169,75 +164,77 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
       @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
-      @JsonKey(name: 'tag') @HiveField(10) Tag? tag});
+      @JsonKey(name: 'tags') @HiveField(10) List<Tag>? tags});
 }
 
 /// @nodoc
-class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res, _$_Todo>
+class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
     implements _$$_TodoCopyWith<$Res> {
   __$$_TodoCopyWithImpl(_$_Todo _value, $Res Function(_$_Todo) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Todo));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_Todo get _value => super._value as _$_Todo;
+
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? description = null,
-    Object? importance = null,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? importance = freezed,
     Object? deadline = freezed,
-    Object? done = null,
+    Object? done = freezed,
     Object? color = freezed,
-    Object? createdAt = null,
-    Object? changedAt = null,
-    Object? deviceId = null,
-    Object? tag = freezed,
+    Object? createdAt = freezed,
+    Object? changedAt = freezed,
+    Object? deviceId = freezed,
+    Object? tags = freezed,
   }) {
     return _then(_$_Todo(
-      id: null == id
+      id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
+      title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: description == freezed
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      importance: null == importance
+      importance: importance == freezed
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance,
-      deadline: freezed == deadline
+      deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as int?,
-      done: null == done
+      done: done == freezed
           ? _value.done
           : done // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: freezed == color
+      color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: null == createdAt
+      createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as int,
-      changedAt: null == changedAt
+      changedAt: changedAt == freezed
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: null == deviceId
+      deviceId: deviceId == freezed
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
               as String,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as Tag?,
+      tags: tags == freezed
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
     ));
   }
 }
@@ -256,7 +253,8 @@ class _$_Todo implements _Todo {
       @JsonKey(name: 'created_at') @HiveField(7) required this.createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) required this.changedAt,
       @JsonKey(name: 'last_updated_by') @HiveField(9) required this.deviceId,
-      @JsonKey(name: 'tag') @HiveField(10) required this.tag});
+      @JsonKey(name: 'tags') @HiveField(10) required final List<Tag>? tags})
+      : _tags = tags;
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
 
@@ -300,14 +298,20 @@ class _$_Todo implements _Todo {
   @JsonKey(name: 'last_updated_by')
   @HiveField(9)
   final String deviceId;
+  final List<Tag>? _tags;
   @override
-  @JsonKey(name: 'tag')
+  @JsonKey(name: 'tags')
   @HiveField(10)
-  final Tag? tag;
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, description: $description, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId, tag: $tag)';
+    return 'Todo(id: $id, title: $title, description: $description, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId, tags: $tags)';
   }
 
   @override
@@ -315,33 +319,39 @@ class _$_Todo implements _Todo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Todo &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.importance, importance) ||
-                other.importance == importance) &&
-            (identical(other.deadline, deadline) ||
-                other.deadline == deadline) &&
-            (identical(other.done, done) || other.done == done) &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.changedAt, changedAt) ||
-                other.changedAt == changedAt) &&
-            (identical(other.deviceId, deviceId) ||
-                other.deviceId == deviceId) &&
-            (identical(other.tag, tag) || other.tag == tag));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.importance, importance) &&
+            const DeepCollectionEquality().equals(other.deadline, deadline) &&
+            const DeepCollectionEquality().equals(other.done, done) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.changedAt, changedAt) &&
+            const DeepCollectionEquality().equals(other.deviceId, deviceId) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description,
-      importance, deadline, done, color, createdAt, changedAt, deviceId, tag);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(importance),
+      const DeepCollectionEquality().hash(deadline),
+      const DeepCollectionEquality().hash(done),
+      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(changedAt),
+      const DeepCollectionEquality().hash(deviceId),
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_TodoCopyWith<_$_Todo> get copyWith =>
       __$$_TodoCopyWithImpl<_$_Todo>(this, _$identity);
 
@@ -385,9 +395,9 @@ abstract class _Todo implements Todo {
       @JsonKey(name: 'last_updated_by')
       @HiveField(9)
           required final String deviceId,
-      @JsonKey(name: 'tag')
+      @JsonKey(name: 'tags')
       @HiveField(10)
-          required final Tag? tag}) = _$_Todo;
+          required final List<Tag>? tags}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
@@ -432,9 +442,9 @@ abstract class _Todo implements Todo {
   @HiveField(9)
   String get deviceId;
   @override
-  @JsonKey(name: 'tag')
+  @JsonKey(name: 'tags')
   @HiveField(10)
-  Tag? get tag;
+  List<Tag>? get tags;
   @override
   @JsonKey(ignore: true)
   _$$_TodoCopyWith<_$_Todo> get copyWith => throw _privateConstructorUsedError;
