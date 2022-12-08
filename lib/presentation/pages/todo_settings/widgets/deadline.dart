@@ -48,7 +48,7 @@ class __DeadlineState extends State<_Deadline> {
               Text(
                 deadlineText!,
                 style: Theme.of(context).textTheme.body.copyWith(
-                      color: Colors.blue,
+                      color: context.read<ThemeBloc>().currentTheme.purple,
                     ),
               ),
           ],
@@ -56,6 +56,7 @@ class __DeadlineState extends State<_Deadline> {
         const Spacer(),
         Switch(
           value: deadlineSet,
+          activeColor: context.read<ThemeBloc>().currentTheme.purple,
           inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
           inactiveTrackColor:
               getIt.get<ThemeBloc>().currentTheme.supportOverlay,

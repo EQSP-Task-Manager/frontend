@@ -1,4 +1,3 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:done/data/data.dart';
 import 'package:done/domain/domain.dart';
 import 'package:done/presentation/presentation.dart';
@@ -6,11 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() async {
   late TodosBloc todosBloc;
-  await Hive.initFlutter();
-  Hive.registerAdapter(ImportanceAdapter());
-  Hive.registerAdapter(TodoAdapter());
-  await Hive.openBox<Todo>('todos');
-  await Hive.openBox<int>('lastRevision');
 
   setUp(() {
     todosBloc = TodosBloc(FakeTodosRepsitoryImpl());

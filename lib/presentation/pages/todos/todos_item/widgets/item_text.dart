@@ -2,12 +2,14 @@ part of '../todos_item.dart';
 
 class _ItemText extends StatefulWidget {
   final Todo element;
-  final TextSpan textSpan;
+  final TextSpan titleSpan;
+  final TextSpan? descriprionSpan;
   final double importanceIconSize;
   const _ItemText({
     required this.element,
-    required this.textSpan,
+    required this.titleSpan,
     required this.importanceIconSize,
+    this.descriprionSpan,
     Key? key,
   }) : super(key: key);
 
@@ -16,14 +18,7 @@ class _ItemText extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<_ItemText> {
-  late TextSpan currentTextSpan;
   bool edited = false;
-
-  @override
-  void initState() {
-    super.initState();
-    currentTextSpan = widget.textSpan;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +51,8 @@ class _MyWidgetState extends State<_ItemText> {
                 if (widget.element.importance != Importance.basic &&
                     !widget.element.done)
                   importanceIcon,
-                widget.textSpan,
+                widget.titleSpan,
+                if (widget.descriprionSpan != null) widget.descriprionSpan!,
               ],
             ),
           ),

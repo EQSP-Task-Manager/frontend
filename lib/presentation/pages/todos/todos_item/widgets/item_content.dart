@@ -29,17 +29,11 @@ class _ItemContentState extends State<ItemContent> {
   final infoButtonSize = 20.0;
   final importanceIconSize = 16.0;
 
-  final tagIcon = {
-    Tag.home: Icons.home_outlined,
-    Tag.study: Icons.school_outlined,
-    Tag.work: Icons.work_outline,
-  };
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final textSpan = TextSpan(
+        final titleSpan = TextSpan(
           text: widget.element.title,
           style: Theme.of(context).textTheme.body.copyWith(
                 color: widget.element.done
@@ -51,13 +45,27 @@ class _ItemContentState extends State<ItemContent> {
               ),
         );
 
+        final descriprionSpan = widget.element.description.isNotEmpty
+            ? TextSpan(
+                text: '\n${widget.element.description}',
+                style: Theme.of(context).textTheme.smallBody.copyWith(
+                      color: widget.element.done
+                          ? getIt.get<ThemeBloc>().currentTheme.labelTertiary
+                          : getIt.get<ThemeBloc>().currentTheme.labelSecondary,
+                      decoration: widget.element.done
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ),
+              )
+            : null;
+
         double maxTextWidth = constraints.maxWidth -
             checkboxOccupiableWidth -
             infoButtonOccupiableWidth;
 
         return IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: centralizeText(textSpan, maxTextWidth)
+            crossAxisAlignment: centralizeText(titleSpan, maxTextWidth)
                 ? CrossAxisAlignment.center
                 : CrossAxisAlignment.start,
             children: [
@@ -68,7 +76,7 @@ class _ItemContentState extends State<ItemContent> {
                 ),
               Padding(
                 padding: checkboxPadding,
-                child: _ItemCheckbox(
+                child: ItemCheckbox(
                   element: widget.element,
                 ),
               ),
@@ -80,15 +88,27 @@ class _ItemContentState extends State<ItemContent> {
                     children: [
                       _ItemText(
                         element: widget.element,
-                        textSpan: textSpan,
+                        titleSpan: titleSpan,
+                        descriprionSpan: descriprionSpan,
                         importanceIconSize: importanceIconSize,
                       ),
-                      if (widget.element.tag != null) const SizedBox(height: 5),
-                      if (widget.element.tag != null)
-                        Icon(
-                          tagIcon[widget.element.tag],
-                          color:
-                              getIt.get<ThemeBloc>().currentTheme.labelTertiary,
+                      if (widget.element.tags != null)
+                        const SizedBox(height: 5),
+                      if (widget.element.tags != null)
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: widget.element.tags!
+                              .map(
+                                (tag) => Icon(
+                                  tag.iconData,
+                                  color: getIt
+                                      .get<ThemeBloc>()
+                                      .currentTheme
+                                      .labelTertiary,
+                                ),
+                              )
+                              .toList(),
                         ),
                     ],
                   ),
@@ -128,7 +148,7 @@ class _ItemContentState extends State<ItemContent> {
     final metrics = textPainter.computeLineMetrics();
 
     if (widget.element.deadline != null) return false;
-    if (widget.element.tag != null) return false;
+    if (widget.element.tags != null) return false;
     if (metrics.length == 1) {
       // если строка одна, но иконки важности не позволяют тексту
       // уместиться в эту одну строку, то централизировать не нужно

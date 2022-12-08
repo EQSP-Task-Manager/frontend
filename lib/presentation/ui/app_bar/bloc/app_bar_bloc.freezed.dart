@@ -24,8 +24,8 @@ mixin _$AppBarEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hide,
-    TResult? Function()? show,
+    TResult Function()? hide,
+    TResult Function()? show,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$AppBarEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Hide value)? hide,
-    TResult? Function(_Show value)? show,
+    TResult Function(_Hide value)? hide,
+    TResult Function(_Show value)? show,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,18 +60,16 @@ mixin _$AppBarEvent {
 abstract class $AppBarEventCopyWith<$Res> {
   factory $AppBarEventCopyWith(
           AppBarEvent value, $Res Function(AppBarEvent) then) =
-      _$AppBarEventCopyWithImpl<$Res, AppBarEvent>;
+      _$AppBarEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AppBarEventCopyWithImpl<$Res, $Val extends AppBarEvent>
-    implements $AppBarEventCopyWith<$Res> {
+class _$AppBarEventCopyWithImpl<$Res> implements $AppBarEventCopyWith<$Res> {
   _$AppBarEventCopyWithImpl(this._value, this._then);
 
+  final AppBarEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(AppBarEvent) _then;
 }
 
 /// @nodoc
@@ -81,11 +79,13 @@ abstract class _$$_HideCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_HideCopyWithImpl<$Res>
-    extends _$AppBarEventCopyWithImpl<$Res, _$_Hide>
+class __$$_HideCopyWithImpl<$Res> extends _$AppBarEventCopyWithImpl<$Res>
     implements _$$_HideCopyWith<$Res> {
   __$$_HideCopyWithImpl(_$_Hide _value, $Res Function(_$_Hide) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Hide));
+
+  @override
+  _$_Hide get _value => super._value as _$_Hide;
 }
 
 /// @nodoc
@@ -119,8 +119,8 @@ class _$_Hide implements _Hide {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hide,
-    TResult? Function()? show,
+    TResult Function()? hide,
+    TResult Function()? show,
   }) {
     return hide?.call();
   }
@@ -150,8 +150,8 @@ class _$_Hide implements _Hide {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Hide value)? hide,
-    TResult? Function(_Show value)? show,
+    TResult Function(_Hide value)? hide,
+    TResult Function(_Show value)? show,
   }) {
     return hide?.call(this);
   }
@@ -181,11 +181,13 @@ abstract class _$$_ShowCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShowCopyWithImpl<$Res>
-    extends _$AppBarEventCopyWithImpl<$Res, _$_Show>
+class __$$_ShowCopyWithImpl<$Res> extends _$AppBarEventCopyWithImpl<$Res>
     implements _$$_ShowCopyWith<$Res> {
   __$$_ShowCopyWithImpl(_$_Show _value, $Res Function(_$_Show) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_Show));
+
+  @override
+  _$_Show get _value => super._value as _$_Show;
 }
 
 /// @nodoc
@@ -219,8 +221,8 @@ class _$_Show implements _Show {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hide,
-    TResult? Function()? show,
+    TResult Function()? hide,
+    TResult Function()? show,
   }) {
     return show?.call();
   }
@@ -250,8 +252,8 @@ class _$_Show implements _Show {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Hide value)? hide,
-    TResult? Function(_Show value)? show,
+    TResult Function(_Hide value)? hide,
+    TResult Function(_Show value)? show,
   }) {
     return show?.call(this);
   }

@@ -1,17 +1,17 @@
 part of '../todos_item.dart';
 
-class _ItemCheckbox extends StatefulWidget {
+class ItemCheckbox extends StatefulWidget {
   final Todo element;
-  const _ItemCheckbox({
+  const ItemCheckbox({
     required this.element,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<_ItemCheckbox> createState() => _ItemTextState();
+  State<ItemCheckbox> createState() => _ItemTextState();
 }
 
-class _ItemTextState extends State<_ItemCheckbox> {
+class _ItemTextState extends State<ItemCheckbox> {
   @override
   Widget build(BuildContext context) {
     return Container(

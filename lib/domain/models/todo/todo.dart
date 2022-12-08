@@ -25,9 +25,15 @@ enum Tag {
   @JsonValue("work")
   @HiveField(1)
   work,
-  @JsonValue("important")
+  @JsonValue("study")
   @HiveField(2)
   study,
+  @JsonValue("sport")
+  @HiveField(3)
+  sport,
+  @JsonValue("firends")
+  @HiveField(4)
+  friends,
 }
 
 @HiveType(typeId: 0)
@@ -44,7 +50,7 @@ class Todo with _$Todo {
     @JsonKey(name: 'created_at') @HiveField(7) required int createdAt,
     @JsonKey(name: 'changed_at') @HiveField(8) required int changedAt,
     @JsonKey(name: 'last_updated_by') @HiveField(9) required String deviceId,
-    @JsonKey(name: 'tag') @HiveField(10) required Tag? tag,
+    @JsonKey(name: 'tags') @HiveField(10) required List<Tag>? tags,
   }) = _Todo;
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);

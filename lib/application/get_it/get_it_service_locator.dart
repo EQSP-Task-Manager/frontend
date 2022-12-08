@@ -10,4 +10,6 @@ final getIt = GetIt.instance;
   preferRelativeImports: false, // default
   asExtension: false, // default
 )
-void configureDependencies() => $initGetIt(getIt);
+void configureDependencies() {
+  $initGetIt(getIt);
+}

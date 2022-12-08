@@ -23,7 +23,6 @@ Future<void> tryExpect(Finder finder, Matcher matcher,
 
 void main() {
   final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
   binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
   group('end-to-end test', () {
