@@ -14,6 +14,7 @@ part 'widgets/importance.dart';
 part 'widgets/deadline.dart';
 part 'widgets/delete_button.dart';
 part 'widgets/tag.dart';
+part 'widgets/color.dart';
 
 class TodoSettingsPage extends StatefulWidget {
   final String? todoId;
@@ -35,6 +36,7 @@ class SubmitionData extends InheritedWidget {
   final Importance? importanceToSubmit;
   final DateTime? deadlineToSubmit;
   final List<Tag>? tagsToSubmit;
+  final String? colorToSubmit;
 
   const SubmitionData({
     Key? key,
@@ -43,6 +45,7 @@ class SubmitionData extends InheritedWidget {
     this.importanceToSubmit,
     this.deadlineToSubmit,
     this.tagsToSubmit,
+    this.colorToSubmit,
     required Widget child,
   }) : super(key: key, child: child);
 
@@ -63,6 +66,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
   Importance? importanceToSubmit;
   DateTime? deadlineToSubmit;
   List<Tag>? tagsToSubmit;
+  String? colorToSubmit;
   Todo? todo;
   bool todoFetched = false;
   ScrollController controller = ScrollController();
@@ -104,6 +108,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
     descriptionToSubmit = todo!.description;
     importanceToSubmit = todo!.importance;
     tagsToSubmit = todo!.tags;
+    colorToSubmit = todo!.color;
     if (todo!.deadline != null) {
       deadlineToSubmit = DateTime.fromMillisecondsSinceEpoch(todo!.deadline!);
     }
@@ -125,6 +130,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                         deadlineToSubmit: deadlineToSubmit,
                         descriptionToSubmit: descriptionToSubmit,
                         tagsToSubmit: tagsToSubmit,
+                        colorToSubmit: colorToSubmit,
                         child: _AppBar(
                           element: todo,
                         ),
@@ -159,6 +165,11 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                             submitTags: (value) {
                               setState(() {
                                 tagsToSubmit = value;
+                              });
+                            },
+                            submitColor: (value) {
+                              setState(() {
+                                colorToSubmit = value;
                               });
                             },
                           ),
@@ -225,7 +236,7 @@ class _AppBar extends StatelessWidget {
                 deadline: submitionData.deadlineToSubmit,
                 actionTool: ActionTool.settingsPage,
                 tags: submitionData.tagsToSubmit,
-                color: 'fc03ad',
+                color: submitionData.colorToSubmit,
               ),
             )
         : context.read<TodosBloc>().add(
@@ -238,6 +249,7 @@ class _AppBar extends StatelessWidget {
                 deadline: submitionData.deadlineToSubmit,
                 tags: submitionData.tagsToSubmit,
                 actionTool: ActionTool.settingsPage,
+                color: submitionData.colorToSubmit,
               ),
             );
   }
@@ -249,6 +261,7 @@ class _PageContent extends StatefulWidget {
   final Function(Importance) submitImportance;
   final Function(DateTime?) submitDeadline;
   final Function(List<Tag>) submitTags;
+  final Function(String?) submitColor;
   final Color supportSeparator;
   final Todo? element;
   final ScrollController scrollController;
@@ -261,6 +274,7 @@ class _PageContent extends StatefulWidget {
     required this.element,
     required this.scrollController,
     required this.submitTags,
+    required this.submitColor,
     Key? key,
   }) : super(key: key);
 
@@ -281,6 +295,10 @@ class _PageContentState extends State<_PageContent> {
     _Tag(
       element: widget.element,
       submit: widget.submitTags,
+    ),
+    _Color(
+      element: widget.element,
+      submit: widget.submitColor,
     ),
     _Importance(
       element: widget.element,

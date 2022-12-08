@@ -25,6 +25,7 @@ mixin _$TodosEvent {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -51,6 +52,7 @@ mixin _$TodosEvent {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -77,6 +79,7 @@ mixin _$TodosEvent {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -189,6 +192,7 @@ class _$_Fetch implements _Fetch {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -218,6 +222,7 @@ class _$_Fetch implements _Fetch {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -247,6 +252,7 @@ class _$_Fetch implements _Fetch {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -328,6 +334,7 @@ abstract class _$$_EditCopyWith<$Res> {
       String? title,
       String? description,
       Importance? importance,
+      String? color,
       List<Tag>? tags,
       DateTime? deadline});
 
@@ -350,6 +357,7 @@ class __$$_EditCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     Object? title = freezed,
     Object? description = freezed,
     Object? importance = freezed,
+    Object? color = freezed,
     Object? tags = freezed,
     Object? deadline = freezed,
   }) {
@@ -374,6 +382,10 @@ class __$$_EditCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance?,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String?,
       tags: tags == freezed
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
@@ -402,6 +414,7 @@ class _$_Edit implements _Edit {
       this.title,
       this.description,
       this.importance,
+      this.color,
       final List<Tag>? tags,
       this.deadline})
       : _tags = tags;
@@ -416,6 +429,8 @@ class _$_Edit implements _Edit {
   final String? description;
   @override
   final Importance? importance;
+  @override
+  final String? color;
   final List<Tag>? _tags;
   @override
   List<Tag>? get tags {
@@ -430,7 +445,7 @@ class _$_Edit implements _Edit {
 
   @override
   String toString() {
-    return 'TodosEvent.edit(item: $item, actionTool: $actionTool, title: $title, description: $description, importance: $importance, tags: $tags, deadline: $deadline)';
+    return 'TodosEvent.edit(item: $item, actionTool: $actionTool, title: $title, description: $description, importance: $importance, color: $color, tags: $tags, deadline: $deadline)';
   }
 
   @override
@@ -446,6 +461,7 @@ class _$_Edit implements _Edit {
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
                 .equals(other.importance, importance) &&
+            const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other.deadline, deadline));
   }
@@ -458,6 +474,7 @@ class _$_Edit implements _Edit {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(importance),
+      const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(deadline));
 
@@ -476,6 +493,7 @@ class _$_Edit implements _Edit {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -492,8 +510,8 @@ class _$_Edit implements _Edit {
     required TResult Function() hideDone,
     required TResult Function() showDone,
   }) {
-    return edit(
-        item, actionTool, title, description, importance, tags, deadline);
+    return edit(item, actionTool, title, description, importance, color, tags,
+        deadline);
   }
 
   @override
@@ -506,6 +524,7 @@ class _$_Edit implements _Edit {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -522,8 +541,8 @@ class _$_Edit implements _Edit {
     TResult Function()? hideDone,
     TResult Function()? showDone,
   }) {
-    return edit?.call(
-        item, actionTool, title, description, importance, tags, deadline);
+    return edit?.call(item, actionTool, title, description, importance, color,
+        tags, deadline);
   }
 
   @override
@@ -536,6 +555,7 @@ class _$_Edit implements _Edit {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -554,8 +574,8 @@ class _$_Edit implements _Edit {
     required TResult orElse(),
   }) {
     if (edit != null) {
-      return edit(
-          item, actionTool, title, description, importance, tags, deadline);
+      return edit(item, actionTool, title, description, importance, color, tags,
+          deadline);
     }
     return orElse();
   }
@@ -611,6 +631,7 @@ abstract class _Edit implements TodosEvent {
       final String? title,
       final String? description,
       final Importance? importance,
+      final String? color,
       final List<Tag>? tags,
       final DateTime? deadline}) = _$_Edit;
 
@@ -619,6 +640,7 @@ abstract class _Edit implements TodosEvent {
   String? get title;
   String? get description;
   Importance? get importance;
+  String? get color;
   List<Tag>? get tags;
   DateTime? get deadline;
   @JsonKey(ignore: true)
@@ -714,6 +736,7 @@ class _$_Remove implements _Remove {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -743,6 +766,7 @@ class _$_Remove implements _Remove {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -772,6 +796,7 @@ class _$_Remove implements _Remove {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1000,6 +1025,7 @@ class _$_Add implements _Add {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -1030,6 +1056,7 @@ class _$_Add implements _Add {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1060,6 +1087,7 @@ class _$_Add implements _Add {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1196,6 +1224,7 @@ class _$_HideDone implements _HideDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -1225,6 +1254,7 @@ class _$_HideDone implements _HideDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1254,6 +1284,7 @@ class _$_HideDone implements _HideDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1372,6 +1403,7 @@ class _$_ShowDone implements _ShowDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)
         edit,
@@ -1401,6 +1433,7 @@ class _$_ShowDone implements _ShowDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,
@@ -1430,6 +1463,7 @@ class _$_ShowDone implements _ShowDone {
             String? title,
             String? description,
             Importance? importance,
+            String? color,
             List<Tag>? tags,
             DateTime? deadline)?
         edit,

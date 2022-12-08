@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add description"),
         "basic": MessageLookupByLibrary.simpleMessage("No"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "color": MessageLookupByLibrary.simpleMessage("Color"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),

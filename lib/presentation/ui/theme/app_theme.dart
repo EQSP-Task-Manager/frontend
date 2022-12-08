@@ -79,9 +79,25 @@ abstract class AppTheme {
   final green = const Color(0xFF51D979);
   final black = const Color(0xFF1A1A1A);
   final grey = const Color(0xFF8E8E93);
-  final purple = const Color(0xFFBD84D4);
+  final blue = const Color(0xFF00b3d4);
 
   final white = const Color(0xFFFFFFFF);
+
+  final todoColors = const [
+    Color(0xFFff2000),
+    Color(0xFFff7d01),
+    Color(0xFFffcf00),
+    Color(0xFFfffa00),
+    Color(0xFF83ce01),
+    Color(0xFF01b700),
+    Color(0xFF00b3d4),
+    Color(0xFF007ac7),
+    Color(0xFF0024ba),
+    Color(0xFF8b20bb),
+    Color(0xFFf62394),
+    Colors.brown,
+    Colors.black,
+  ];
 }
 
 extension CustomTextTheme on TextTheme {

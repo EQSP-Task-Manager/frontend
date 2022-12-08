@@ -14,5 +14,6 @@
     "category": "Категория",
     "description": "Описание",
     "addDescription": "Добавить описание",
-    "tag": "Тег"
+    "tag": "Тег",
+    "color": "Цвет"
 }

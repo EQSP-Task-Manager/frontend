@@ -82,6 +82,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
         description: event.description ?? itemToEdit.description,
         importance: event.importance ?? itemToEdit.importance,
         deadline: event.deadline?.toUtc().millisecondsSinceEpoch,
+        color: event.color,
         tags: event.tags,
       );
     }

@@ -14,5 +14,6 @@
     "category": "Category",
     "description": "Description",
     "addDescription": "Add description",
-    "tag": "Tag"
+    "tag": "Tag",
+    "color": "Color"
 }
