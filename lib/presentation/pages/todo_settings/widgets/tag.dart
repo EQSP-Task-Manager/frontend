@@ -1,9 +1,11 @@
 part of '../todo_settings_page.dart';
 
 class _Tag extends StatefulWidget {
+  final Todo? element;
   final Function(List<Tag>) submit;
   const _Tag({
     required this.submit,
+    this.element,
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +14,7 @@ class _Tag extends StatefulWidget {
 }
 
 class _TagState extends State<_Tag> {
-  List<Tag> tags = [];
+  late List<Tag> tags = widget.element?.tags?.toList() ?? [];
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +47,8 @@ class _TagState extends State<_Tag> {
                         horizontal: 12,
                       ),
                       decoration: BoxDecoration(
-                        color:
-                            tag.color.withOpacity(tags.contains(tag) ? 1 : 0.3),
+                        color: tag.color
+                            .withOpacity(tags.contains(tag) ? 1 : 0.15),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(

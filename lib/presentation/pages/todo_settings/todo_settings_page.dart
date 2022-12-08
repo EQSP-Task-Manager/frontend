@@ -236,6 +236,7 @@ class _AppBar extends StatelessWidget {
                 importance:
                     submitionData.importanceToSubmit ?? Importance.basic,
                 deadline: submitionData.deadlineToSubmit,
+                tags: submitionData.tagsToSubmit,
                 actionTool: ActionTool.settingsPage,
               ),
             );
@@ -278,6 +279,7 @@ class _PageContentState extends State<_PageContent> {
       isTaskTitle: true,
     ),
     _Tag(
+      element: widget.element,
       submit: widget.submitTags,
     ),
     _Importance(

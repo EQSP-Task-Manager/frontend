@@ -81,9 +81,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
         title: event.title ?? itemToEdit.title,
         description: event.description ?? itemToEdit.description,
         importance: event.importance ?? itemToEdit.importance,
-        deadline: event.deadline != null
-            ? event.deadline!.toUtc().millisecondsSinceEpoch
-            : null,
+        deadline: event.deadline?.toUtc().millisecondsSinceEpoch,
+        tags: event.tags,
       );
     }
 
@@ -131,9 +130,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       title: event.title ?? '',
       description: event.description ?? '',
       importance: event.importance,
-      deadline: event.deadline != null
-          ? event.deadline!.toUtc().millisecondsSinceEpoch
-          : null,
+      deadline: event.deadline?.toUtc().millisecondsSinceEpoch,
       done: false,
       color: event.color,
       createdAt: now.toUtc().millisecondsSinceEpoch,

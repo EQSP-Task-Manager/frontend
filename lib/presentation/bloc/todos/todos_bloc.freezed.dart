@@ -19,8 +19,14 @@ mixin _$TodosEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -39,8 +45,14 @@ mixin _$TodosEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -59,8 +71,14 @@ mixin _$TodosEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -165,8 +183,14 @@ class _$_Fetch implements _Fetch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -188,8 +212,14 @@ class _$_Fetch implements _Fetch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -211,8 +241,14 @@ class _$_Fetch implements _Fetch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -292,6 +328,7 @@ abstract class _$$_EditCopyWith<$Res> {
       String? title,
       String? description,
       Importance? importance,
+      List<Tag>? tags,
       DateTime? deadline});
 
   $TodoCopyWith<$Res> get item;
@@ -313,6 +350,7 @@ class __$$_EditCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
     Object? title = freezed,
     Object? description = freezed,
     Object? importance = freezed,
+    Object? tags = freezed,
     Object? deadline = freezed,
   }) {
     return _then(_$_Edit(
@@ -336,6 +374,10 @@ class __$$_EditCopyWithImpl<$Res> extends _$TodosEventCopyWithImpl<$Res>
           ? _value.importance
           : importance // ignore: cast_nullable_to_non_nullable
               as Importance?,
+      tags: tags == freezed
+          ? _value._tags
+          : tags // ignore: cast_nullable_to_non_nullable
+              as List<Tag>?,
       deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
@@ -360,7 +402,9 @@ class _$_Edit implements _Edit {
       this.title,
       this.description,
       this.importance,
-      this.deadline});
+      final List<Tag>? tags,
+      this.deadline})
+      : _tags = tags;
 
   @override
   final Todo item;
@@ -372,12 +416,21 @@ class _$_Edit implements _Edit {
   final String? description;
   @override
   final Importance? importance;
+  final List<Tag>? _tags;
+  @override
+  List<Tag>? get tags {
+    final value = _tags;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final DateTime? deadline;
 
   @override
   String toString() {
-    return 'TodosEvent.edit(item: $item, actionTool: $actionTool, title: $title, description: $description, importance: $importance, deadline: $deadline)';
+    return 'TodosEvent.edit(item: $item, actionTool: $actionTool, title: $title, description: $description, importance: $importance, tags: $tags, deadline: $deadline)';
   }
 
   @override
@@ -393,6 +446,7 @@ class _$_Edit implements _Edit {
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
                 .equals(other.importance, importance) &&
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other.deadline, deadline));
   }
 
@@ -404,6 +458,7 @@ class _$_Edit implements _Edit {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(importance),
+      const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(deadline));
 
   @JsonKey(ignore: true)
@@ -415,8 +470,14 @@ class _$_Edit implements _Edit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -431,15 +492,22 @@ class _$_Edit implements _Edit {
     required TResult Function() hideDone,
     required TResult Function() showDone,
   }) {
-    return edit(item, actionTool, title, description, importance, deadline);
+    return edit(
+        item, actionTool, title, description, importance, tags, deadline);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -455,15 +523,21 @@ class _$_Edit implements _Edit {
     TResult Function()? showDone,
   }) {
     return edit?.call(
-        item, actionTool, title, description, importance, deadline);
+        item, actionTool, title, description, importance, tags, deadline);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -480,7 +554,8 @@ class _$_Edit implements _Edit {
     required TResult orElse(),
   }) {
     if (edit != null) {
-      return edit(item, actionTool, title, description, importance, deadline);
+      return edit(
+          item, actionTool, title, description, importance, tags, deadline);
     }
     return orElse();
   }
@@ -536,6 +611,7 @@ abstract class _Edit implements TodosEvent {
       final String? title,
       final String? description,
       final Importance? importance,
+      final List<Tag>? tags,
       final DateTime? deadline}) = _$_Edit;
 
   Todo get item;
@@ -543,6 +619,7 @@ abstract class _Edit implements TodosEvent {
   String? get title;
   String? get description;
   Importance? get importance;
+  List<Tag>? get tags;
   DateTime? get deadline;
   @JsonKey(ignore: true)
   _$$_EditCopyWith<_$_Edit> get copyWith => throw _privateConstructorUsedError;
@@ -631,8 +708,14 @@ class _$_Remove implements _Remove {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -654,8 +737,14 @@ class _$_Remove implements _Remove {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -677,8 +766,14 @@ class _$_Remove implements _Remove {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -899,8 +994,14 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -923,8 +1024,14 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -947,8 +1054,14 @@ class _$_Add implements _Add {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -1077,8 +1190,14 @@ class _$_HideDone implements _HideDone {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -1100,8 +1219,14 @@ class _$_HideDone implements _HideDone {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -1123,8 +1248,14 @@ class _$_HideDone implements _HideDone {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -1235,8 +1366,14 @@ class _$_ShowDone implements _ShowDone {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)
+    required TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)
         edit,
     required TResult Function(Todo item, ActionTool actionTool) remove,
     required TResult Function(
@@ -1258,8 +1395,14 @@ class _$_ShowDone implements _ShowDone {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
@@ -1281,8 +1424,14 @@ class _$_ShowDone implements _ShowDone {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(Todo item, ActionTool actionTool, String? title,
-            String? description, Importance? importance, DateTime? deadline)?
+    TResult Function(
+            Todo item,
+            ActionTool actionTool,
+            String? title,
+            String? description,
+            Importance? importance,
+            List<Tag>? tags,
+            DateTime? deadline)?
         edit,
     TResult Function(Todo item, ActionTool actionTool)? remove,
     TResult Function(
