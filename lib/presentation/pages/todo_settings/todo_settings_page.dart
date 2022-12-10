@@ -121,61 +121,49 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
         return Scaffold(
           body: SafeArea(
             child: todoFetched
-                ? CustomScrollView(
-                    controller: controller,
-                    slivers: [
-                      SubmitionData(
-                        titleToSubmit: titleToSubmit,
-                        importanceToSubmit: importanceToSubmit,
-                        deadlineToSubmit: deadlineToSubmit,
-                        descriptionToSubmit: descriptionToSubmit,
-                        tagsToSubmit: tagsToSubmit,
-                        colorToSubmit: colorToSubmit,
-                        child: _AppBar(
-                          element: todo,
-                        ),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: _PageContent(
-                            scrollController: controller,
+                ? NotificationListener<OverscrollIndicatorNotification>(
+                    onNotification: (overscroll) {
+                      overscroll.disallowIndicator();
+                      return true;
+                    },
+                    child: CustomScrollView(
+                      controller: controller,
+                      slivers: [
+                        SubmitionData(
+                          titleToSubmit: titleToSubmit,
+                          importanceToSubmit: importanceToSubmit,
+                          deadlineToSubmit: deadlineToSubmit,
+                          descriptionToSubmit: descriptionToSubmit,
+                          tagsToSubmit: tagsToSubmit,
+                          colorToSubmit: colorToSubmit,
+                          child: _AppBar(
                             element: todo,
-                            supportSeparator: themeState.supportSeparator,
-                            submitTaskTitle: (value) {
-                              setState(() {
-                                titleToSubmit = value;
-                              });
-                            },
-                            submitTaskDescription: (value) {
-                              setState(() {
-                                descriptionToSubmit = value;
-                              });
-                            },
-                            submitImportance: (value) {
-                              setState(() {
-                                importanceToSubmit = value;
-                              });
-                            },
-                            submitDeadline: (value) {
-                              setState(() {
-                                deadlineToSubmit = value;
-                              });
-                            },
-                            submitTags: (value) {
-                              setState(() {
-                                tagsToSubmit = value;
-                              });
-                            },
-                            submitColor: (value) {
-                              setState(() {
-                                colorToSubmit = value;
-                              });
-                            },
                           ),
                         ),
-                      ),
-                    ],
+                        SliverToBoxAdapter(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: _PageContent(
+                              scrollController: controller,
+                              element: todo,
+                              supportSeparator: themeState.supportSeparator,
+                              submitTaskTitle: (value) =>
+                                  setState(() => titleToSubmit = value),
+                              submitTaskDescription: (value) =>
+                                  setState(() => descriptionToSubmit = value),
+                              submitImportance: (value) =>
+                                  setState(() => importanceToSubmit = value),
+                              submitDeadline: (value) =>
+                                  setState(() => deadlineToSubmit = value),
+                              submitTags: (value) =>
+                                  setState(() => tagsToSubmit = value),
+                              submitColor: (value) =>
+                                  setState(() => colorToSubmit = value),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 : Center(
                     child: CircularProgressIndicator(
@@ -204,6 +192,7 @@ class _AppBar extends StatelessWidget {
         pinned: isShown,
         snap: !isShown,
         floating: !isShown,
+        elevation: 0,
         flexibleSpace: FlexibleSpaceBar(
           titlePadding: const EdgeInsets.only(left: 21, right: 16),
           title: Container(
@@ -329,6 +318,7 @@ class _PageContentState extends State<_PageContent> {
         return true;
       },
       child: ListView.separated(
+        controller: widget.scrollController,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         shrinkWrap: true,
         itemBuilder: (context, index) => items[index],

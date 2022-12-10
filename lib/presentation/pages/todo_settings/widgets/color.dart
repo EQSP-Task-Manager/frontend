@@ -45,15 +45,17 @@ class _ColorState extends State<_Color> {
                     height: 30,
                     width: 30,
                     decoration: BoxDecoration(
-                      color: color,
+                      color: this.color == colorToString(color)
+                          ? color.withOpacity(0.75)
+                          : color.withOpacity(0.2),
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: this.color == colorToString(color)
                         ? Icon(
                             Icons.check,
                             color: color.computeLuminance() > 0.5
-                                ? Colors.black
-                                : Colors.white,
+                                ? Colors.black.withOpacity(0.75)
+                                : Colors.white.withOpacity(0.75),
                           )
                         : null,
                   ),
