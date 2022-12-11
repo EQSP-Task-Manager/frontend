@@ -93,10 +93,12 @@ class _TextInputState extends State<_TextInput> {
     );
   }
 
-  OutlineInputBorder get _border => const OutlineInputBorder(
+  OutlineInputBorder get _border => OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.transparent,
+          color: getIt.get<ThemeBloc>().currentTheme is DarkTheme
+              ? Colors.transparent
+              : getIt.get<ThemeBloc>().currentTheme.labelTertiary,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       );
 }
