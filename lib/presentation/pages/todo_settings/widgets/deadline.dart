@@ -85,7 +85,7 @@ class __DeadlineState extends State<_Deadline> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: getIt.get<ThemeBloc>().currentTheme.backPrimary,
+              primary: DarkTheme().backPrimary,
             ),
           ),
           child: child!,
