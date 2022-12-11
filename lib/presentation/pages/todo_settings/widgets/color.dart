@@ -2,9 +2,7 @@ part of '../todo_settings_page.dart';
 
 class _Color extends StatefulWidget {
   final Todo? element;
-  final Function(String?) submit;
   const _Color({
-    required this.submit,
     this.element,
     Key? key,
   }) : super(key: key);
@@ -41,7 +39,9 @@ class _ColorState extends State<_Color> {
                     setState(() {
                       this.color = colorToString(color);
                     });
-                    widget.submit(this.color);
+                    context
+                        .read<SubmissionBloc>()
+                        .add(SubmissionEvent.submitColor(this.color));
                   },
                   child: Container(
                     height: 30,

@@ -2,14 +2,12 @@ part of '../todo_settings_page.dart';
 
 class _TextInput extends StatefulWidget {
   final Todo? element;
-  final Function(String) submit;
   final bool isTaskTitle;
   final bool isDescription;
   final String title;
   final String hintText;
   const _TextInput({
     this.element,
-    required this.submit,
     required this.title,
     required this.hintText,
     this.isDescription = false,
@@ -84,7 +82,11 @@ class _TextInputState extends State<_TextInput> {
                     ),
               ),
               onChanged: (text) {
-                widget.submit(text);
+                context.read<SubmissionBloc>().add(
+                      widget.isDescription
+                          ? SubmissionEvent.submitDescription(text)
+                          : SubmissionEvent.submitTitle(text),
+                    );
               },
             ),
           ),

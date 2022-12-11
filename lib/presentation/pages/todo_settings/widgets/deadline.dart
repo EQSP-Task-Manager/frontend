@@ -2,10 +2,8 @@ part of '../todo_settings_page.dart';
 
 class _Deadline extends StatefulWidget {
   final Todo? element;
-  final Function(DateTime?) submit;
   const _Deadline({
     this.element,
-    required this.submit,
     Key? key,
   }) : super(key: key);
 
@@ -69,7 +67,9 @@ class __DeadlineState extends State<_Deadline> {
                 deadlineSet = false;
                 selectedDate = DateTime.now();
                 deadlineText = null;
-                widget.submit(null);
+                context
+                    .read<SubmissionBloc>()
+                    .add(const SubmissionEvent.submitDeadline(null));
               });
             }
           },
@@ -103,7 +103,9 @@ class __DeadlineState extends State<_Deadline> {
         selectedDate = picked;
         deadlineText = DateFormat('MMMM dd, yyyy').format(selectedDate);
         deadlineSet = true;
-        widget.submit(selectedDate);
+        context
+            .read<SubmissionBloc>()
+            .add(SubmissionEvent.submitDeadline(selectedDate));
       });
     } else {
       setState(() {

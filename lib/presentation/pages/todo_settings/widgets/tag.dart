@@ -2,9 +2,7 @@ part of '../todo_settings_page.dart';
 
 class _Tag extends StatefulWidget {
   final Todo? element;
-  final Function(List<Tag>) submit;
   const _Tag({
-    required this.submit,
     this.element,
     Key? key,
   }) : super(key: key);
@@ -41,7 +39,9 @@ class _TagState extends State<_Tag> {
                           tags.add(tag);
                         }
                       });
-                      widget.submit(tags);
+                      context
+                          .read<SubmissionBloc>()
+                          .add(SubmissionEvent.submitTags(tags));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
