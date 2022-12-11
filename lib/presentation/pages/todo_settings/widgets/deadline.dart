@@ -56,9 +56,10 @@ class __DeadlineState extends State<_Deadline> {
         const Spacer(),
         Switch(
           value: deadlineSet,
-          activeColor: context.read<ThemeBloc>().currentTheme.grey,
+          activeColor: context.read<ThemeBloc>().currentTheme.white,
+          activeTrackColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
           inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
-          inactiveTrackColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
+          inactiveTrackColor: getIt.get<ThemeBloc>().currentTheme.grey,
           onChanged: (value) {
             if (value) {
               selectDate(context);
