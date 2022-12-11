@@ -16,7 +16,7 @@ class ThemeEvent with _$ThemeEvent {
 
 @Singleton()
 class ThemeBloc extends Bloc<ThemeEvent, AppTheme> {
-  AppTheme currentTheme = LightTheme();
+  AppTheme currentTheme = DarkTheme();
 
   ThemeBloc() : super(LightTheme()) {
     on<_SetDark>(_setDark);

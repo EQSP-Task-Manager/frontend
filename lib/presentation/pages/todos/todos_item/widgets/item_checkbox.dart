@@ -27,7 +27,8 @@ class _ItemTextState extends State<ItemCheckbox> {
             : widget.element.importance == Importance.important
                 ? MaterialStateProperty.all(
                     getIt.get<ThemeBloc>().currentTheme.importanceColor)
-                : null,
+                : MaterialStateProperty.all(
+                    getIt.get<ThemeBloc>().currentTheme.labelSecondary),
         value: widget.element.done,
         onChanged: (_) {
           context.read<TodosBloc>().add(

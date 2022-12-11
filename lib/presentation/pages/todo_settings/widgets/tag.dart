@@ -23,7 +23,9 @@ class _TagState extends State<_Tag> {
       children: [
         Text(
           S.of(context).tag,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.title.copyWith(
+                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              ),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -48,7 +50,7 @@ class _TagState extends State<_Tag> {
                       ),
                       decoration: BoxDecoration(
                         color: tag.color
-                            .withOpacity(tags.contains(tag) ? 1 : 0.15),
+                            .withOpacity(tags.contains(tag) ? 0.75 : 0.30),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(
@@ -63,9 +65,17 @@ class _TagState extends State<_Tag> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(tag.iconData),
+                          Icon(
+                            tag.iconData,
+                            color: textColor(tags.contains(tag)),
+                          ),
                           const SizedBox(width: 8),
-                          Text(tag.name),
+                          Text(
+                            tag.name,
+                            style: Theme.of(context).textTheme.body.copyWith(
+                                  color: textColor(tags.contains(tag)),
+                                ),
+                          ),
                         ],
                       ),
                     ),
@@ -75,4 +85,7 @@ class _TagState extends State<_Tag> {
       ],
     );
   }
+
+  Color textColor(bool isSelected) =>
+      isSelected ? LightTheme().labelPrimary : LightTheme().labelSecondary;
 }

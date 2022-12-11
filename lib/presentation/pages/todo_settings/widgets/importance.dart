@@ -60,7 +60,7 @@ class __ImportanceState extends State<_Importance> {
                 Text(
                   S.of(context).importance,
                   style: Theme.of(context).textTheme.title.copyWith(
-                        color: context.read<ThemeBloc>().currentTheme.black,
+                        color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
                       ),
                 ),
                 const SizedBox(height: 8),

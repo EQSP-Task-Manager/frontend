@@ -23,7 +23,9 @@ class _ColorState extends State<_Color> {
       children: [
         Text(
           S.of(context).color,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.title.copyWith(
+                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              ),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -46,8 +48,8 @@ class _ColorState extends State<_Color> {
                     width: 30,
                     decoration: BoxDecoration(
                       color: this.color == colorToString(color)
-                          ? color.withOpacity(0.75)
-                          : color.withOpacity(0.2),
+                          ? color.withOpacity(0.85)
+                          : color.withOpacity(0.45),
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
                     ),
                     child: this.color == colorToString(color)

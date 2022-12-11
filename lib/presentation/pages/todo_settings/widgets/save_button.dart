@@ -15,7 +15,12 @@ class _SaveButton extends StatelessWidget {
         (Router.of(context).routerDelegate as TodosRouterDelegate)
             .goToTodosPage();
       },
-      child: Text(S.of(context).save.toUpperCase()),
+      child: Text(
+        S.of(context).save.toUpperCase(),
+        style: TextStyle(
+          color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+        ),
+      ),
     );
   }
 }

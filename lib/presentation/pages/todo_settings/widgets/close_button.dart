@@ -5,18 +5,14 @@ class _CloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeBloc, AppTheme>(
-      builder: (context, themeState) {
-        return GestureDetector(
-          child: Icon(
-            Icons.close,
-            color: themeState.labelPrimary,
-          ),
-          onTap: () {
-            (Router.of(context).routerDelegate as TodosRouterDelegate)
-                .goToTodosPage();
-          },
-        );
+    return GestureDetector(
+      child: Icon(
+        Icons.close,
+        color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+      ),
+      onTap: () {
+        (Router.of(context).routerDelegate as TodosRouterDelegate)
+            .goToTodosPage();
       },
     );
   }

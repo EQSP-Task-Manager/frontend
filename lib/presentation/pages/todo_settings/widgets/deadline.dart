@@ -41,7 +41,9 @@ class __DeadlineState extends State<_Deadline> {
           children: [
             Text(
               S.of(context).deadline,
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.title.copyWith(
+                    color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+                  ),
             ),
             if (deadlineText != null) const SizedBox(height: 4),
             if (deadlineText != null)
@@ -57,9 +59,8 @@ class __DeadlineState extends State<_Deadline> {
         Switch(
           value: deadlineSet,
           activeColor: context.read<ThemeBloc>().currentTheme.grey,
-          inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
-          inactiveTrackColor:
-              getIt.get<ThemeBloc>().currentTheme.supportOverlay,
+          inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
+          inactiveTrackColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
           onChanged: (value) {
             if (value) {
               selectDate(context);
@@ -80,6 +81,16 @@ class __DeadlineState extends State<_Deadline> {
   void selectDate(BuildContext context) async {
     var now = DateTime.now();
     final DateTime? picked = await showDatePicker(
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: getIt.get<ThemeBloc>().currentTheme.backPrimary,
+            ),
+          ),
+          child: child!,
+        );
+      },
       selectableDayPredicate: (day) =>
           day.compareTo(DateTime(now.year, now.month, now.day)) >= 0,
       context: context,

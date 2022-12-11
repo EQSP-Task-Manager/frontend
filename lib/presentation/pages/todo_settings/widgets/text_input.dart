@@ -52,16 +52,14 @@ class _TextInputState extends State<_TextInput> {
       children: [
         Text(
           widget.title,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.title.copyWith(
+                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              ),
         ),
         const SizedBox(height: 8),
         Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: context.read<ThemeBloc>().currentTheme.labelTertiary,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: AppBarHider(
             textField: TextField(
@@ -79,6 +77,8 @@ class _TextInputState extends State<_TextInput> {
                 border: _border,
                 focusedBorder: _border,
                 enabledBorder: _border,
+                filled: true,
+                fillColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
                 hintStyle: Theme.of(context).textTheme.body.copyWith(
                       color: getIt.get<ThemeBloc>().currentTheme.labelTertiary,
                     ),
