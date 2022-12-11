@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myTodos": MessageLookupByLibrary.simpleMessage("Мои дела"),
         "new_": MessageLookupByLibrary.simpleMessage("Новое"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
+        "tag": MessageLookupByLibrary.simpleMessage("Тег"),
         "taskTitle": MessageLookupByLibrary.simpleMessage("Название задания"),
         "whatShouldBeDone":
             MessageLookupByLibrary.simpleMessage("Что надо сделать...")

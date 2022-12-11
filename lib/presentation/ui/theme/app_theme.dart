@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:done/application/application.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 export 'dark_theme.dart';
 export 'light_theme.dart';
 export 'bloc/theme_bloc.dart';
@@ -77,37 +76,45 @@ abstract class AppTheme {
   Color get importanceColor => getIt.get<RemoteConfigService>().importanceColor;
 
   final red = const Color(0xFFFF6666);
-  final green = const Color(0xFF6CE590);
+  final green = const Color(0xFF51D979);
   final black = const Color(0xFF1A1A1A);
   final grey = const Color(0xFF8E8E93);
+  final purple = const Color(0xFFBD84D4);
 
   final white = const Color(0xFFFFFFFF);
 }
 
 extension CustomTextTheme on TextTheme {
-  TextStyle get largeTitle => GoogleFonts.raleway(
+  // GoogleFonts.raleway
+  TextStyle get largeTitle => const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 32,
         height: 38 / 32,
       );
 
-  TextStyle get title => GoogleFonts.raleway(
+  TextStyle get title => const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
       );
 
-  TextStyle get button => GoogleFonts.raleway(
+  TextStyle get button => const TextStyle(
         fontSize: 14,
         height: 24 / 14,
       );
 
-  TextStyle get body => GoogleFonts.raleway(
+  TextStyle get body => const TextStyle(
         fontSize: 16,
         height: 20 / 16,
         fontWeight: FontWeight.w500,
       );
 
-  TextStyle get subhead => GoogleFonts.raleway(
+  TextStyle get smallBody => const TextStyle(
+        fontSize: 14,
+        height: 18 / 14,
+        fontWeight: FontWeight.w400,
+      );
+
+  TextStyle get subhead => const TextStyle(
         fontSize: 14,
         height: 20 / 14,
       );
