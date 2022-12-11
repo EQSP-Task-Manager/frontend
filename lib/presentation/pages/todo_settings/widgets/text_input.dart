@@ -2,14 +2,12 @@ part of '../todo_settings_page.dart';
 
 class _TextInput extends StatefulWidget {
   final Todo? element;
-  final Function(String) submit;
   final bool isTaskTitle;
   final bool isDescription;
   final String title;
   final String hintText;
   const _TextInput({
     this.element,
-    required this.submit,
     required this.title,
     required this.hintText,
     this.isDescription = false,
@@ -52,16 +50,14 @@ class _TextInputState extends State<_TextInput> {
       children: [
         Text(
           widget.title,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.title.copyWith(
+                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              ),
         ),
         const SizedBox(height: 8),
         Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: context.read<ThemeBloc>().currentTheme.labelTertiary,
-            ),
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           child: AppBarHider(
             textField: TextField(
@@ -79,12 +75,18 @@ class _TextInputState extends State<_TextInput> {
                 border: _border,
                 focusedBorder: _border,
                 enabledBorder: _border,
+                filled: true,
+                fillColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
                 hintStyle: Theme.of(context).textTheme.body.copyWith(
                       color: getIt.get<ThemeBloc>().currentTheme.labelTertiary,
                     ),
               ),
               onChanged: (text) {
-                widget.submit(text);
+                context.read<SubmissionBloc>().add(
+                      widget.isDescription
+                          ? SubmissionEvent.submitDescription(text)
+                          : SubmissionEvent.submitTitle(text),
+                    );
               },
             ),
           ),
@@ -93,10 +95,12 @@ class _TextInputState extends State<_TextInput> {
     );
   }
 
-  OutlineInputBorder get _border => const OutlineInputBorder(
+  OutlineInputBorder get _border => OutlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.transparent,
+          color: getIt.get<ThemeBloc>().currentTheme is DarkTheme
+              ? Colors.transparent
+              : getIt.get<ThemeBloc>().currentTheme.labelTertiary,
         ),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
       );
 }

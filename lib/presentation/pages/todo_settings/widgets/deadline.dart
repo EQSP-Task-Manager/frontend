@@ -2,10 +2,8 @@ part of '../todo_settings_page.dart';
 
 class _Deadline extends StatefulWidget {
   final Todo? element;
-  final Function(DateTime?) submit;
   const _Deadline({
     this.element,
-    required this.submit,
     Key? key,
   }) : super(key: key);
 
@@ -41,14 +39,16 @@ class __DeadlineState extends State<_Deadline> {
           children: [
             Text(
               S.of(context).deadline,
-              style: Theme.of(context).textTheme.title,
+              style: Theme.of(context).textTheme.title.copyWith(
+                    color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+                  ),
             ),
             if (deadlineText != null) const SizedBox(height: 4),
             if (deadlineText != null)
               Text(
                 deadlineText!,
                 style: Theme.of(context).textTheme.body.copyWith(
-                      color: context.read<ThemeBloc>().currentTheme.purple,
+                      color: context.read<ThemeBloc>().currentTheme.grey,
                     ),
               ),
           ],
@@ -56,10 +56,9 @@ class __DeadlineState extends State<_Deadline> {
         const Spacer(),
         Switch(
           value: deadlineSet,
-          activeColor: context.read<ThemeBloc>().currentTheme.purple,
-          inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.backElevated,
-          inactiveTrackColor:
-              getIt.get<ThemeBloc>().currentTheme.supportOverlay,
+          activeColor: context.read<ThemeBloc>().currentTheme.grey,
+          inactiveThumbColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
+          inactiveTrackColor: getIt.get<ThemeBloc>().currentTheme.lightGrey,
           onChanged: (value) {
             if (value) {
               selectDate(context);
@@ -68,7 +67,9 @@ class __DeadlineState extends State<_Deadline> {
                 deadlineSet = false;
                 selectedDate = DateTime.now();
                 deadlineText = null;
-                widget.submit(null);
+                context
+                    .read<SubmissionBloc>()
+                    .add(const SubmissionEvent.submitDeadline(null));
               });
             }
           },
@@ -80,6 +81,16 @@ class __DeadlineState extends State<_Deadline> {
   void selectDate(BuildContext context) async {
     var now = DateTime.now();
     final DateTime? picked = await showDatePicker(
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: DarkTheme().backPrimary,
+            ),
+          ),
+          child: child!,
+        );
+      },
       selectableDayPredicate: (day) =>
           day.compareTo(DateTime(now.year, now.month, now.day)) >= 0,
       context: context,
@@ -92,7 +103,9 @@ class __DeadlineState extends State<_Deadline> {
         selectedDate = picked;
         deadlineText = DateFormat('MMMM dd, yyyy').format(selectedDate);
         deadlineSet = true;
-        widget.submit(selectedDate);
+        context
+            .read<SubmissionBloc>()
+            .add(SubmissionEvent.submitDeadline(selectedDate));
       });
     } else {
       setState(() {

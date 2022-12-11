@@ -1,9 +1,9 @@
 part of '../todo_settings_page.dart';
 
 class _Tag extends StatefulWidget {
-  final Function(List<Tag>) submit;
+  final Todo? element;
   const _Tag({
-    required this.submit,
+    this.element,
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +12,7 @@ class _Tag extends StatefulWidget {
 }
 
 class _TagState extends State<_Tag> {
-  List<Tag> tags = [];
+  late List<Tag> tags = widget.element?.tags?.toList() ?? [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,9 @@ class _TagState extends State<_Tag> {
       children: [
         Text(
           S.of(context).tag,
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.title.copyWith(
+                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              ),
         ),
         const SizedBox(height: 8),
         Wrap(
@@ -37,7 +39,9 @@ class _TagState extends State<_Tag> {
                           tags.add(tag);
                         }
                       });
-                      widget.submit(tags);
+                      context
+                          .read<SubmissionBloc>()
+                          .add(SubmissionEvent.submitTags(tags));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -45,8 +49,8 @@ class _TagState extends State<_Tag> {
                         horizontal: 12,
                       ),
                       decoration: BoxDecoration(
-                        color:
-                            tag.color.withOpacity(tags.contains(tag) ? 1 : 0.3),
+                        color: tag.color
+                            .withOpacity(tags.contains(tag) ? 0.75 : 0.30),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15)),
                         border: Border.all(
@@ -61,9 +65,17 @@ class _TagState extends State<_Tag> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(tag.iconData),
+                          Icon(
+                            tag.iconData,
+                            color: textColor(tags.contains(tag)),
+                          ),
                           const SizedBox(width: 8),
-                          Text(tag.name),
+                          Text(
+                            tag.name,
+                            style: Theme.of(context).textTheme.body.copyWith(
+                                  color: textColor(tags.contains(tag)),
+                                ),
+                          ),
                         ],
                       ),
                     ),
@@ -73,4 +85,7 @@ class _TagState extends State<_Tag> {
       ],
     );
   }
+
+  Color textColor(bool isSelected) =>
+      isSelected ? LightTheme().labelPrimary : LightTheme().labelSecondary;
 }

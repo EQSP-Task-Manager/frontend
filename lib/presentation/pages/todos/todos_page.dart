@@ -43,7 +43,11 @@ class _TodosPageState extends State<TodosPage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 24),
         child: FloatingActionButton(
-          child: const Icon(Icons.add),
+          backgroundColor: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+          child: Icon(
+            Icons.add,
+            color: getIt.get<ThemeBloc>().currentTheme.backPrimary,
+          ),
           onPressed: () {
             (Router.of(context).routerDelegate as TodosRouterDelegate)
                 .goToAddPage();
@@ -70,7 +74,10 @@ class _TodosPageState extends State<TodosPage> {
                         hasScrollBody: false,
                         child: Center(
                           child: CircularProgressIndicator(
-                            color: context.read<ThemeBloc>().currentTheme.black,
+                            color: getIt
+                                .get<ThemeBloc>()
+                                .currentTheme
+                                .labelPrimary,
                           ),
                         ),
                       ),
@@ -86,9 +93,7 @@ class _TodosPageState extends State<TodosPage> {
               child: Text(
                 'DEV',
                 style: TextStyle(
-                  color: getIt.get<ThemeBloc>().currentTheme is LightTheme
-                      ? Colors.black.withOpacity(0.5)
-                      : Colors.white.withOpacity(0.5),
+                  color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
                 ),
               ),
             ),

@@ -2,10 +2,8 @@ part of '../todo_settings_page.dart';
 
 class _Importance extends StatefulWidget {
   final Todo? element;
-  final Function(Importance) submit;
   const _Importance({
     this.element,
-    required this.submit,
     Key? key,
   }) : super(key: key);
 
@@ -60,7 +58,7 @@ class __ImportanceState extends State<_Importance> {
                 Text(
                   S.of(context).importance,
                   style: Theme.of(context).textTheme.title.copyWith(
-                        color: context.read<ThemeBloc>().currentTheme.black,
+                        color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
                       ),
                 ),
                 const SizedBox(height: 8),
@@ -91,7 +89,9 @@ class __ImportanceState extends State<_Importance> {
               valueToSubmit = importanceTranslations.keys.firstWhere(
                 (e) => importanceTranslations[e] == (value as Text).data!,
               );
-              widget.submit(valueToSubmit);
+              context
+                  .read<SubmissionBloc>()
+                  .add(SubmissionEvent.submitImportance(valueToSubmit));
             });
           },
         ),

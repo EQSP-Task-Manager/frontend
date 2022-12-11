@@ -11,13 +11,6 @@ class ItemContent extends StatefulWidget {
   State<ItemContent> createState() => _ItemContentState();
 }
 
-// Здесь сделал LayoutBuilder + TextSpan, потому что в дизайне
-// (хоть и почти незаметно) выравниваение текста разное в зависимости
-// от количества строк:
-// 1 строка => Текст выравнивается на уровень иконок
-// 2 и больше строки => Текст и иконки все вместе выравниваются
-// к верхней части элемента списка.
-
 class _ItemContentState extends State<ItemContent> {
   final EdgeInsets checkboxPadding = const EdgeInsets.fromLTRB(19, 15, 15, 15);
   final EdgeInsets textPadding = const EdgeInsets.symmetric(vertical: 14);
@@ -72,7 +65,7 @@ class _ItemContentState extends State<ItemContent> {
               if (widget.element.color != null)
                 Container(
                   width: 5,
-                  color: widget.element.color!.toColor(),
+                  color: widget.element.color!.toColor()?.withOpacity(0.85),
                 ),
               Padding(
                 padding: checkboxPadding,
@@ -150,14 +143,11 @@ class _ItemContentState extends State<ItemContent> {
     if (widget.element.deadline != null) return false;
     if (widget.element.tags != null) return false;
     if (metrics.length == 1) {
-      // если строка одна, но иконки важности не позволяют тексту
-      // уместиться в эту одну строку, то централизировать не нужно
       if (widget.element.importance != Importance.low &&
           metrics[0].width > maxTextWidth - importanceIconOccpiableWidth) {
         return false;
       }
     } else {
-      // ну и если строк больше, чем одна, тоже централизация не нужна
       return false;
     }
 
