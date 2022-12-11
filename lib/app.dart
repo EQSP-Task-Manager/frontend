@@ -19,8 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  TodosRouterDelegate routerDelegate = TodosRouterDelegate();
-
   @override
   void initState() {
     super.initState();
@@ -41,15 +39,14 @@ class _MyAppState extends State<MyApp> {
         if (uri != null) {
           switch (uri.pathSegments[0]) {
             case 'add':
-              routerDelegate.goToAddPage();
+              goRouter.pushNamed('TodoSettingsPage');
               break;
             case 'edit':
               if (uri.pathSegments.length > 1) {
-                routerDelegate.goToEditPage(id: uri.pathSegments[1]);
+                goRouter.pushNamed('TodoSettingsPage',
+                    params: {'todo_id': uri.pathSegments[1]});
               }
               break;
-            default:
-              routerDelegate.goToTodosPage();
           }
         }
       } on PlatformException {
@@ -67,7 +64,7 @@ class _MyAppState extends State<MyApp> {
       if (uri != null) {
         String firstSegment = uri.pathSegments[0];
         if (firstSegment == 'add') {
-          routerDelegate.goToAddPage();
+          goRouter.pushNamed('TodoSettingsPage');
         }
       }
     }, onError: (err) {});
@@ -90,6 +87,7 @@ class _MyAppState extends State<MyApp> {
       child: BlocBuilder<ThemeBloc, AppTheme>(
         builder: (context, themeState) {
           return MaterialApp.router(
+            routerConfig: goRouter,
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -98,9 +96,6 @@ class _MyAppState extends State<MyApp> {
             ],
             supportedLocales: S.delegate.supportedLocales,
             theme: themeState.themeData,
-            routeInformationParser: TodosRouteInformationParser(),
-            routerDelegate: routerDelegate,
-            routeInformationProvider: DebugRouteInformationProvider(),
           );
         },
       ),

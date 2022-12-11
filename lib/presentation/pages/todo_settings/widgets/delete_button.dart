@@ -40,8 +40,7 @@ class __DeleteButtonState extends State<_DeleteButton> {
                 ),
               );
 
-          (Router.of(context).routerDelegate as TodosRouterDelegate)
-              .goToTodosPage();
+          goRouter.pop();
         }
       },
     );
