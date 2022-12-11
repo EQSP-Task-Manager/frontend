@@ -15,8 +15,7 @@ class _ItemInfoButton extends StatelessWidget {
         color: getIt.get<ThemeBloc>().currentTheme.labelTertiary,
       ),
       onPressed: () {
-        (Router.of(context).routerDelegate as TodosRouterDelegate)
-            .goToEditPage(todo: element);
+        goRouter.pushNamed('TodoSettingsPage', extra: element);
       },
     );
   }

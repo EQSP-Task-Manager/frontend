@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import 'package:done/application/application.dart';
 import 'package:done/data/repositories/todos_repository.dart';
@@ -32,10 +33,13 @@ void mainCommon(FlavorConfigDTO flavorConfigDTO) async {
     getIt.get<RemoteConfigService>().initialize();
 
     runApp(
-      FlavorConfig(
+      KeyboardVisibilityProvider(
+        child: FlavorConfig(
           appName: flavorConfigDTO.appName,
           flavor: flavorConfigDTO.flavor,
-          child: const MyApp()),
+          child: const MyApp(),
+        ),
+      ),
     );
   }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }

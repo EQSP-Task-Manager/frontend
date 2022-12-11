@@ -45,6 +45,11 @@ class _TextInputState extends State<_TextInput> {
 
   @override
   Widget build(BuildContext context) {
+    if (KeyboardVisibilityProvider.isKeyboardVisible(context) &&
+        _textFocus.hasFocus) {
+      Future.delayed(Duration.zero, () => Scrollable.ensureVisible(context));
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

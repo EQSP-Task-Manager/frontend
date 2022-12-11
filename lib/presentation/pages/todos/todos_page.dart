@@ -49,8 +49,7 @@ class _TodosPageState extends State<TodosPage> {
             color: getIt.get<ThemeBloc>().currentTheme.backPrimary,
           ),
           onPressed: () {
-            (Router.of(context).routerDelegate as TodosRouterDelegate)
-                .goToAddPage();
+            goRouter.pushNamed('TodoSettingsPage');
           },
         ),
       ),

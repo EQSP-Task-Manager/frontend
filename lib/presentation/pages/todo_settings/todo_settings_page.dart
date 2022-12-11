@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:intl/intl.dart';
 import 'package:done/application/application.dart';
 import 'package:done/data/data.dart';
@@ -9,7 +10,6 @@ import 'package:done/domain/domain.dart';
 
 export 'bloc/submission_bloc.dart';
 
-part 'widgets/close_button.dart';
 part 'widgets/save_button.dart';
 part 'widgets/text_input.dart';
 part 'widgets/importance.dart';
@@ -71,6 +71,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: todoFetched
             ? NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (overscroll) {
@@ -81,20 +82,23 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                   create: (context) => SubmissionBloc(todo),
                   child: BlocBuilder<SubmissionBloc, SubmissionState>(
                     builder: (context, state) {
-                      return CustomScrollView(
-                        controller: controller,
-                        slivers: [
-                          _AppBar(
-                            element: todo,
-                          ),
-                          SliverToBoxAdapter(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              child: _PageContent(
+                      return Stack(
+                        children: [
+                          ListView(
+                            padding: const EdgeInsets.only(top: 10, bottom: 20),
+                            controller: controller,
+                            shrinkWrap: true,
+                            children: [
+                              _PageContent(
                                 scrollController: controller,
                                 element: todo,
                               ),
-                            ),
+                              const SizedBox(height: 90),
+                            ],
+                          ),
+                          const Align(
+                            alignment: Alignment.bottomCenter,
+                            child: _SaveButton(),
                           ),
                         ],
                       );
@@ -107,44 +111,6 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
                   color: getIt.get<ThemeBloc>().currentTheme.black,
                 ),
               ),
-      ),
-    );
-  }
-}
-
-class _AppBar extends StatelessWidget {
-  final Todo? element;
-  const _AppBar({
-    this.element,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  build(BuildContext context) {
-    return BlocBuilder<AppBarBloc, bool>(
-      builder: (context, isShown) => SliverAppBar(
-        automaticallyImplyLeading: false,
-        pinned: isShown,
-        snap: !isShown,
-        floating: !isShown,
-        elevation: 0,
-        flexibleSpace: FlexibleSpaceBar(
-          titlePadding: const EdgeInsets.only(left: 21, right: 16),
-          title: Container(
-            alignment: Alignment.center,
-            child: Row(
-              children: [
-                const _CloseButton(),
-                const Spacer(),
-                _SaveButton(
-                    key: const Key('save_button'),
-                    send: () => context
-                        .read<SubmissionBloc>()
-                        .add(const SubmissionEvent.submit())),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }
