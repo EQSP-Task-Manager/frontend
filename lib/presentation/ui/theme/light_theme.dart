@@ -12,7 +12,7 @@ class LightTheme extends AppTheme {
           labelTertiary: const Color(0x4D000000),
           labelDisable: const Color(0x26000000),
           lightGrey: const Color(0xFFD1D1D6),
-          backPrimary: const Color(0xFF161618),
+          backPrimary: const Color(0xFFFCFCFC),
           backSecondary: const Color(0xFFFFFFFF),
           backElevated: const Color(0xFFFFFFFF),
         );
