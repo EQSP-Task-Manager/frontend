@@ -60,9 +60,10 @@ class _MyAppState extends State<MyApp> {
 
   late StreamSubscription _sub;
   Future<void> _handleIncomingLinks() async {
-    _sub = uriLinkStream.listen((Uri? uri) {
+    _sub = uriLinkStream.listen((Uri? uri) async {
       if (uri != null) {
         String firstSegment = uri.pathSegments[0];
+
         if (firstSegment == 'add') {
           goRouter.pushNamed('TodoSettingsPage');
         }
@@ -81,6 +82,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt.get<TodosBloc>()),
+        BlocProvider(create: (_) => getIt.get<AuthBloc>()),
         BlocProvider(create: (_) => getIt.get<ThemeBloc>()),
         BlocProvider(create: (_) => getIt.get<AppBarBloc>()),
       ],

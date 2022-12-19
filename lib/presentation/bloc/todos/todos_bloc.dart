@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:done/application/application.dart';
@@ -23,6 +24,7 @@ enum ActionType {
   edited,
 }
 
+@Singleton()
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
 

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addDescription":
             MessageLookupByLibrary.simpleMessage("Add description"),
+        "authSuggestion": MessageLookupByLibrary.simpleMessage(
+            "To synchronize data across devices, we recommend that you log in"),
         "basic": MessageLookupByLibrary.simpleMessage("No"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
@@ -31,15 +33,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "enableDarkMode":
+            MessageLookupByLibrary.simpleMessage("Enable dark mode"),
         "high": MessageLookupByLibrary.simpleMessage("!! High"),
         "importance": MessageLookupByLibrary.simpleMessage("Importance"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "low": MessageLookupByLibrary.simpleMessage("Low"),
         "myTodos": MessageLookupByLibrary.simpleMessage("My todos"),
         "new_": MessageLookupByLibrary.simpleMessage("New"),
+        "notLoggedIn": MessageLookupByLibrary.simpleMessage("Not logged in"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "tag": MessageLookupByLibrary.simpleMessage("Tag"),
         "taskTitle": MessageLookupByLibrary.simpleMessage("Task Title"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
         "whatShouldBeDone":
-            MessageLookupByLibrary.simpleMessage("What should be done...")
+            MessageLookupByLibrary.simpleMessage("What should be done..."),
+        "youCanStillUseApp": MessageLookupByLibrary.simpleMessage(
+            "You can still use the application without authorization")
       };
 }

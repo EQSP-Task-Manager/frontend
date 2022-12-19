@@ -4,7 +4,17 @@ import 'package:flutter/foundation.dart';
 
 import 'package:done/data/data.dart';
 import 'package:done/domain/domain.dart';
+import 'package:injectable/injectable.dart';
 
+export 'todos_repository_interface.dart';
+export 'fake_todos_repsitory.dart';
+export 'todos_local_repository.dart';
+export 'todos_remote_repository.dart';
+
+@Singleton(
+  as: TodosRepository,
+  order: -1,
+)
 class TodosRepositoryImpl implements TodosRepository {
   final TodosLocalRepository localRepository = TodosLocalRepository();
   final TodosRemoteRepository remoteRepository = TodosRemoteRepository();

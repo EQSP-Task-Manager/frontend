@@ -23,6 +23,12 @@ final goRouter = GoRouter(
         ),
       ),
     ),
+    GoRoute(
+      path: '/login',
+      pageBuilder: (context, state) => const ModalBottomSheetPage(
+        child: LoginPage(),
+      ),
+    ),
   ],
 );
 
@@ -54,10 +60,7 @@ class ModalBottomSheetPage<T> extends Page<T> {
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: child,
-            ),
+            child,
           ],
         ),
         expanded: false,

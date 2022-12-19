@@ -219,6 +219,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome!`
+  String get welcome {
+    return Intl.message(
+      'Welcome!',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To synchronize data across devices, we recommend that you log in`
+  String get authSuggestion {
+    return Intl.message(
+      'To synchronize data across devices, we recommend that you log in',
+      name: 'authSuggestion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can still use the application without authorization`
+  String get youCanStillUseApp {
+    return Intl.message(
+      'You can still use the application without authorization',
+      name: 'youCanStillUseApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not logged in`
+  String get notLoggedIn {
+    return Intl.message(
+      'Not logged in',
+      name: 'notLoggedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable dark mode`
+  String get enableDarkMode {
+    return Intl.message(
+      'Enable dark mode',
+      name: 'enableDarkMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get logOut {
+    return Intl.message(
+      'Log out',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

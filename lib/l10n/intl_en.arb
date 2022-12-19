@@ -15,5 +15,11 @@
     "description": "Description",
     "addDescription": "Add description",
     "tag": "Tag",
-    "color": "Color"
+    "color": "Color",
+    "welcome": "Welcome!",
+    "authSuggestion": "To synchronize data across devices, we recommend that you log in",
+    "youCanStillUseApp": "You can still use the application without authorization",
+    "notLoggedIn": "Not logged in",
+    "enableDarkMode": "Enable dark mode",
+    "logOut": "Log out"
 }

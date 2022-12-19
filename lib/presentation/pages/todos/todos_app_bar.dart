@@ -17,7 +17,7 @@ class _TodosAppBarState extends State<_TodosAppBar> {
   double minBottomOffset = 16;
 
   double maxLeftOffset = 60;
-  double minLeftOffset = 16;
+  double minLeftOffset = 60;
 
   double currentHeightRatio = 0;
   bool showDone = false;
@@ -26,44 +26,45 @@ class _TodosAppBarState extends State<_TodosAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    colorTween = ColorTween(
-      begin: getIt.get<ThemeBloc>().currentTheme is DarkTheme
-          ? getIt.get<ThemeBloc>().currentTheme.backSecondary
-          : getIt.get<ThemeBloc>().currentTheme.backPrimary,
-      end: getIt.get<ThemeBloc>().currentTheme.backPrimary,
-    );
-
     return BlocBuilder<AppBarBloc, bool>(
-      builder: (context, isShown) => SliverAppBar(
-        pinned: isShown,
-        snap: false,
-        floating: false,
-        expandedHeight: 132,
-        elevation: 0,
-        backgroundColor: getIt.get<ThemeBloc>().currentTheme.backPrimary,
-        flexibleSpace: LayoutBuilder(builder: (context, constraints) {
-          double minimumHeight =
-              MediaQuery.of(context).padding.top + kToolbarHeight;
-          double currentHeight = constraints.biggest.height;
-
-          currentHeightRatio =
-              (currentHeight - minimumHeight) / (132 - kToolbarHeight);
-          return Container(
-            color: colorTween.lerp(currentHeightRatio),
-            child: Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                _AppBarTitle(
-                  leftOffset: leftOffset,
-                  bottomOffset: bottomOffset,
-                  labelTertiaty:
-                      getIt.get<ThemeBloc>().currentTheme.labelTertiary,
-                ),
-                const _ShowDoneButton(),
-              ],
-            ),
+      builder: (context, isShown) => BlocBuilder<ThemeBloc, AppTheme>(
+        builder: (context, theme) {
+          colorTween = ColorTween(
+            begin: theme is DarkTheme ? theme.backSecondary : theme.backPrimary,
+            end: theme.backPrimary,
           );
-        }),
+          return SliverAppBar(
+            pinned: isShown,
+            snap: false,
+            floating: false,
+            expandedHeight: 132,
+            elevation: 0,
+            backgroundColor: getIt.get<ThemeBloc>().currentTheme.backPrimary,
+            flexibleSpace: LayoutBuilder(builder: (context, constraints) {
+              double minimumHeight =
+                  MediaQuery.of(context).padding.top + kToolbarHeight;
+              double currentHeight = constraints.biggest.height;
+
+              currentHeightRatio =
+                  (currentHeight - minimumHeight) / (132 - kToolbarHeight);
+              return Container(
+                color: colorTween.lerp(currentHeightRatio),
+                child: Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    _AppBarTitle(
+                      leftOffset: leftOffset,
+                      bottomOffset: bottomOffset,
+                      labelTertiaty:
+                          getIt.get<ThemeBloc>().currentTheme.labelTertiary,
+                    ),
+                    const _ShowDoneButton(),
+                  ],
+                ),
+              );
+            }),
+          );
+        },
       ),
     );
   }
@@ -160,9 +161,13 @@ class _ShowDoneButtonState extends State<_ShowDoneButton> {
           orElse: () => Padding(
             padding: const EdgeInsets.only(right: 11),
             child: IconButton(
-              icon: Icon(
-                showDone ? Icons.visibility_off : Icons.visibility,
-                color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+              icon: BlocBuilder<ThemeBloc, AppTheme>(
+                builder: (context, state) {
+                  return Icon(
+                    showDone ? Icons.visibility_off : Icons.visibility,
+                    color: getIt.get<ThemeBloc>().currentTheme.labelPrimary,
+                  );
+                },
               ),
               onPressed: () {
                 showDone

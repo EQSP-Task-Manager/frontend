@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addDescription":
             MessageLookupByLibrary.simpleMessage("Добавить описание"),
+        "authSuggestion": MessageLookupByLibrary.simpleMessage(
+            "Для синхронизации данных на разных устройствах, мы рекомендуем авторизоваться"),
         "basic": MessageLookupByLibrary.simpleMessage("Нет"),
         "category": MessageLookupByLibrary.simpleMessage("Категория"),
         "color": MessageLookupByLibrary.simpleMessage("Цвет"),
@@ -31,15 +33,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "done": MessageLookupByLibrary.simpleMessage("Выполнено"),
+        "enableDarkMode": MessageLookupByLibrary.simpleMessage("Темный режим"),
         "high": MessageLookupByLibrary.simpleMessage("!! Высокий"),
         "importance": MessageLookupByLibrary.simpleMessage("Важность"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Выход"),
         "low": MessageLookupByLibrary.simpleMessage("Низкий"),
         "myTodos": MessageLookupByLibrary.simpleMessage("Мои дела"),
         "new_": MessageLookupByLibrary.simpleMessage("Новое"),
+        "notLoggedIn":
+            MessageLookupByLibrary.simpleMessage("Без входа в аккаунт"),
         "save": MessageLookupByLibrary.simpleMessage("Сохранить"),
         "tag": MessageLookupByLibrary.simpleMessage("Тег"),
         "taskTitle": MessageLookupByLibrary.simpleMessage("Название задания"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Добро пожаловать!"),
         "whatShouldBeDone":
-            MessageLookupByLibrary.simpleMessage("Что надо сделать...")
+            MessageLookupByLibrary.simpleMessage("Что надо сделать..."),
+        "youCanStillUseApp": MessageLookupByLibrary.simpleMessage(
+            "Вы все еще можете пользоваться приложением без авторизации")
       };
 }

@@ -7,10 +7,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import 'package:done/application/application.dart';
-import 'package:done/data/repositories/todos_repository.dart';
 import 'package:done/domain/domain.dart';
 import 'package:done/flavor_config.dart';
-import 'package:done/presentation/bloc/bloc.dart';
 import 'app.dart';
 
 void mainCommon(FlavorConfigDTO flavorConfigDTO) async {
@@ -25,11 +23,15 @@ void mainCommon(FlavorConfigDTO flavorConfigDTO) async {
     Hive.registerAdapter(ImportanceAdapter());
     Hive.registerAdapter(TodoAdapter());
     Hive.registerAdapter(TagAdapter());
+    Hive.registerAdapter(UserAdapter());
+
+    await Hive.openBox<bool>('authSuggest');
     await Hive.openBox<Todo>('todos');
+    await Hive.openBox<User>('user');
     await Hive.openBox<int>('lastRevision');
+
     configureDependencies();
 
-    getIt.registerSingleton(TodosBloc(TodosRepositoryImpl()));
     getIt.get<RemoteConfigService>().initialize();
 
     runApp(
