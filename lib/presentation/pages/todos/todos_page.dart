@@ -6,7 +6,6 @@ import 'package:done/application/application.dart';
 import 'package:done/flavor_config.dart';
 import 'package:done/presentation/presentation.dart';
 import 'package:done/domain/domain.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../data/data.dart';
 import 'todos_item/todos_item.dart';
 
