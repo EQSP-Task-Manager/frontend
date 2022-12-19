@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:done/data/data.dart';
 import 'package:pixel_snap/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -21,6 +24,12 @@ final goRouter = GoRouter(
           todoId: state.params['todo_id'],
           todo: state.extra as Todo?,
         ),
+      ),
+    ),
+    GoRoute(
+      path: '/login',
+      pageBuilder: (context, state) => const ModalBottomSheetPage(
+        child: LoginPage(),
       ),
     ),
   ],
@@ -54,10 +63,7 @@ class ModalBottomSheetPage<T> extends Page<T> {
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: child,
-            ),
+            child,
           ],
         ),
         expanded: false,

@@ -3,8 +3,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:uuid/uuid.dart';
-import 'package:done/data/repositories/todos_repository_interface.dart';
-import 'package:done/domain/models/todo/todo.dart';
+
+import '../../../domain/domain.dart';
+import '../../data.dart';
 
 class FakeTodosRepsitoryImpl implements TodosRepository {
   late List<Todo> todos;

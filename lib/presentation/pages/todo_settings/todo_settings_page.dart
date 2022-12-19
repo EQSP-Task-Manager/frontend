@@ -57,7 +57,7 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
 
   void fecthTodo() async {
     todo = widget.todoId != null
-        ? await TodosRepositoryImpl().getTodo(widget.todoId!)
+        ? await getIt.get<TodosRepository>().getTodo(widget.todoId!)
         : null;
 
     if (mounted) {
@@ -69,48 +69,52 @@ class _TodoSettingsPageState extends State<TodoSettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        top: false,
-        child: todoFetched
-            ? NotificationListener<OverscrollIndicatorNotification>(
-                onNotification: (overscroll) {
-                  overscroll.disallowIndicator();
-                  return true;
-                },
-                child: BlocProvider(
-                  create: (context) => SubmissionBloc(todo),
-                  child: BlocBuilder<SubmissionBloc, SubmissionState>(
-                    builder: (context, state) {
-                      return Stack(
-                        children: [
-                          ListView(
-                            padding: const EdgeInsets.only(top: 10, bottom: 20),
-                            controller: controller,
-                            shrinkWrap: true,
-                            children: [
-                              _PageContent(
-                                scrollController: controller,
-                                element: todo,
-                              ),
-                              const SizedBox(height: 90),
-                            ],
-                          ),
-                          const Align(
-                            alignment: Alignment.bottomCenter,
-                            child: _SaveButton(),
-                          ),
-                        ],
-                      );
-                    },
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.8,
+      child: Scaffold(
+        body: SafeArea(
+          top: false,
+          child: todoFetched
+              ? NotificationListener<OverscrollIndicatorNotification>(
+                  onNotification: (overscroll) {
+                    overscroll.disallowIndicator();
+                    return true;
+                  },
+                  child: BlocProvider(
+                    create: (context) => SubmissionBloc(todo),
+                    child: BlocBuilder<SubmissionBloc, SubmissionState>(
+                      builder: (context, state) {
+                        return Stack(
+                          children: [
+                            ListView(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 20),
+                              controller: controller,
+                              shrinkWrap: true,
+                              children: [
+                                _PageContent(
+                                  scrollController: controller,
+                                  element: todo,
+                                ),
+                                const SizedBox(height: 90),
+                              ],
+                            ),
+                            const Align(
+                              alignment: Alignment.bottomCenter,
+                              child: _SaveButton(),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                )
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: getIt.get<ThemeBloc>().currentTheme.black,
                   ),
                 ),
-              )
-            : Center(
-                child: CircularProgressIndicator(
-                  color: getIt.get<ThemeBloc>().currentTheme.black,
-                ),
-              ),
+        ),
       ),
     );
   }
