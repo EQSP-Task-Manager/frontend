@@ -4,6 +4,8 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   flutter_test:
     name: Run flutter test and analyze
@@ -11,7 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup secret files
-        uses: ./.github/workflows/setup-secret-files.yml
+        uses: EQSP-Task-Manager/frontend/.github/workflows/setup-secret-files.yml@release-configuration
+        with:
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+        with:
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
+        with:
+          key_properties: ${{ secrets.KEY_PROPERTIES}}
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
@@ -27,7 +35,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: setup secret files
-      uses: ./.github/workflows/setup-secret-files.yml
+      uses: EQSP-Task-Manager/frontend/.github/workflows/setup-secret-files.yml@release-configuration
+      with:
+        firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+      with:
+        google_services: ${{ secrets.GOOGLE_SERVICES}}
+      with:
+        key_properties: ${{ secrets.KEY_PROPERTIES}}
     - uses: actions/setup-java@v1
       with:
         java-version: "12.x"
