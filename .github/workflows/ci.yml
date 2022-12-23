@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: setup secret files
         uses: EQSP-Task-Manager/frontend/.github/workflows/setup-secret-files.yml@release-configuration
-        with:
+        secrets:
           firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
           google_services: ${{ secrets.GOOGLE_SERVICES}}
           key_properties: ${{ secrets.KEY_PROPERTIES}}
@@ -34,7 +34,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: setup secret files
       uses: EQSP-Task-Manager/frontend/.github/workflows/setup-secret-files.yml@release-configuration
-      with:
+      secrets:
         firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
         google_services: ${{ secrets.GOOGLE_SERVICES}}
         key_properties: ${{ secrets.KEY_PROPERTIES}}
