@@ -14,16 +14,16 @@ runs:
       with:
         path: 'lib'
         file: 'firebase_options.dart'
-        content: ${{ secrets.firebase_options}}
+        content: ${{ inputs.firebase_options}}
     - name: create google services
       uses: 1arp/create-a-file-action@0.2
       with:
         path: 'android/app'
         file: 'google-services.json'
-        content: ${{ secrets.google_services}}
+        content: ${{ inputs.google_services}}
     - name: create key.properties
       uses: 1arp/create-a-file-action@0.2
       with:
         path: 'android'
         file: 'key.properties'
-        content: ${{ secrets.key_properties }}
+        content: ${{ inputs.key_properties }}
