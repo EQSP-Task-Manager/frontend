@@ -33,4 +33,4 @@ runs:
       uses: 1arp/create-a-file-action@0.2
       with:
         path: 'android/app'
-        content: echo ${{ inputs.upload_keystore_b64 } | base64 --decode
+        content: echo ${{ inputs.upload_keystore_b64 }} | base64 --decode
