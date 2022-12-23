@@ -19,12 +19,8 @@ jobs:
           google_services: ${{ secrets.GOOGLE_SERVICES}}
           key_properties: ${{ secrets.KEY_PROPERTIES }}
           upload_keystore_b64: ${{ secrets.UPLOAD_KEYSTORE_B64}}
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
+      - name: setup flutter
+        uses: ./.github/actions/setup_flutter
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
@@ -40,13 +36,8 @@ jobs:
         google_services: ${{ secrets.GOOGLE_SERVICES}}
         key_properties: ${{ secrets.KEY_PROPERTIES }}
         upload_keystore_b64: ${{ secrets.UPLOAD_KEYSTORE_B64}}
-    - uses: actions/setup-java@v1
-      with:
-        java-version: "12.x"
-    - name: build release 
-      uses: subosito/flutter-action@v1
-      with:
-        channel: "stable"
+    - name: setup flutter
+      uses: ./.github/actions/setup_flutter
     - run: flutter build apk -t lib/main_dev.dart --flavor=dev --release
     - name: upload artifact to Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
