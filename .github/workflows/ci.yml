@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: setup secret files
-        uses: ./.github/actions/setup-secret-files
+        uses: ./.github/workflows/setup-secret-files.yml
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: setup secret files
-      uses: ./.github/actions/setup-secret-files
+      uses: ./.github/workflows/setup-secret-files.yml
     - uses: actions/setup-java@v1
       with:
         java-version: "12.x"
