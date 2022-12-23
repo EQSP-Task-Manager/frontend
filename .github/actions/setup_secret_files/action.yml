@@ -5,6 +5,8 @@ inputs:
     requered: true
   key_properties:
     requered: true
+  upload_keystore_b64:
+    required: true
 
 runs:
   using: "composite"
@@ -27,3 +29,8 @@ runs:
         path: 'android'
         file: 'key.properties'
         content: ${{ inputs.key_properties }}
+    - name: create upload-keystore
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'android/app'
+        content: echo ${{ inputs.upload_keystore_b64 } | base64 --decode
