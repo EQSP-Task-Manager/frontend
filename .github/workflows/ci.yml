@@ -68,9 +68,9 @@ jobs:
 
     - run: flutter build apk -t lib/main_prod.dart --flavor=prod --release
     - uses: actions/upload-artifact@v1
-        with:
-          name: release-apk
-          path: build/app/outputs/flutter-apk/app-prod-release.apk
+      with:
+        name: release-apk
+        path: build/app/outputs/flutter-apk/app-prod-release.apk
 
   release:
     runs-on: ubuntu-latest
@@ -88,4 +88,4 @@ jobs:
           prerelease: false
           title: Release Build
           files: |
-            app-release.apk
+            app-prod-release.apk
