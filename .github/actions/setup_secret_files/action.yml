@@ -30,7 +30,5 @@ runs:
         file: 'key.properties'
         content: ${{ inputs.key_properties }}
     - name: create upload-keystore
-      uses: 1arp/create-a-file-action@0.2
-      with:
-        path: 'android/app'
-        content: echo ${{ inputs.upload_keystore_b64 }} | base64 --decode
+      run: |
+        echo ${{ inputs.upload_keystore_b64 }} | base64 -d > android/app/upload-keystore.jks
