@@ -30,5 +30,6 @@ runs:
         file: 'key.properties'
         content: ${{ inputs.key_properties }}
     - name: create upload-keystore
+      shell: bash
       run: |
         echo ${{ inputs.upload_keystore_b64 }} | base64 -d > android/app/upload-keystore.jks
