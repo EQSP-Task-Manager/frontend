@@ -8,7 +8,7 @@ on:
 
 jobs:
   flutter_analyze:
-    name: Run flutter test and analyze
+    name: Run flutter analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
       - run: flutter analyze
 
   flutter_test:
-    name: Run flutter test and analyze
+    name: Run flutter test
     runs-on: ubuntu-latest
     needs: [flutter_analyze]
     steps:
