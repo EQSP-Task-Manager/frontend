@@ -9,7 +9,7 @@ jobs:
     name: Run flutter test and analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: setup secret files
         uses: ./.github/workflows/setup-secret-files.yml
       - uses: actions/setup-java@v1
@@ -25,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: setup secret files
       uses: ./.github/workflows/setup-secret-files.yml
     - uses: actions/setup-java@v1
