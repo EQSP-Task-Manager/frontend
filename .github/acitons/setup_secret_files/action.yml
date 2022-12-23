@@ -1,13 +1,5 @@
 on:
   workflow_call:
-    inputs:
-      firebase_options:
-        requered: true
-      google_services:
-        requered: true
-      key_properties:
-        requered: true
-        
 
 jobs:
   setup_secret_files:
@@ -19,16 +11,16 @@ jobs:
         with:
           path: 'lib'
           file: 'firebase_options.dart'
-          content: ${{ secrets.firebase_options}}
+          content: ${{ secrets.FIREBASE_OPTIONS}}
       - name: create google services
         uses: 1arp/create-a-file-action@0.2
         with:
           path: 'android/app'
           file: 'google-services.json'
-          content: ${{ secrets.google_services}}
+          content: ${{ secrets.GOOGLE_SERVICES}}
       - name: create key.properties
         uses: 1arp/create-a-file-action@0.2
         with:
           path: 'android'
           file: 'key.properties'
-          content: ${{ secrets.key_properties }}
+          content: ${{ secrets.KEY_PROPERTIES }}
