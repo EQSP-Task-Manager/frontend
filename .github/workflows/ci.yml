@@ -11,7 +11,7 @@ jobs:
     name: Run flutter test and analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
       - name: setup secret files
         uses: ./.github/actions/setup_secret_files
       - uses: actions/setup-java@v1
