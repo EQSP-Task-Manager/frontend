@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
-import 'package:done/application/application.dart';
 import 'package:done/data/data.dart';
 import 'package:done/domain/domain.dart';
 
@@ -48,6 +47,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     _Fetch event,
     Emitter emit,
   ) async {
+    emit(const TodosState.initial());
     var list = await _todosRepository.getTodosList();
     _currentTodos = list.toList();
     emit(TodosState.dataFetched(
@@ -63,11 +63,13 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     assert(_editCondition(event.actionTool));
 
     Todo itemToEdit = event.item.copyWith(
-      changedAt: DateTime.now().toUtc().millisecondsSinceEpoch,
-      deviceId: await getDeviceId() ?? '',
+      changedAt: DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000,
     );
 
     bool setDone = false;
+    int? deadline = event.deadline?.toUtc().millisecondsSinceEpoch;
+    if (deadline != null) deadline ~/= 1000;
+
     if (event.actionTool == ActionTool.swipe) {
       setDone = true;
       itemToEdit = itemToEdit.copyWith(
@@ -83,9 +85,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
         title: event.title ?? itemToEdit.title,
         description: event.description ?? itemToEdit.description,
         importance: event.importance ?? itemToEdit.importance,
-        deadline: event.deadline?.toUtc().millisecondsSinceEpoch,
+        deadline: deadline,
         color: event.color,
-        tags: event.tags,
+        tags: event.tags ?? [],
       );
     }
 
@@ -127,19 +129,20 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
     var uuid = const Uuid();
     DateTime now = DateTime.now();
+    int? deadline = event.deadline?.toUtc().millisecondsSinceEpoch;
+    if (deadline != null) deadline ~/= 1000;
 
     Todo itemToAdd = Todo(
-      id: uuid.v1(),
+      id: uuid.v4(),
       title: event.title ?? '',
       description: event.description ?? '',
       importance: event.importance,
-      deadline: event.deadline?.toUtc().millisecondsSinceEpoch,
+      deadline: deadline,
       done: false,
       color: event.color,
-      createdAt: now.toUtc().millisecondsSinceEpoch,
-      changedAt: now.toUtc().millisecondsSinceEpoch,
-      deviceId: await getDeviceId() ?? '',
-      tags: event.tags,
+      createdAt: now.toUtc().millisecondsSinceEpoch ~/ 1000,
+      changedAt: now.toUtc().millisecondsSinceEpoch ~/ 1000,
+      tags: event.tags ?? [],
     );
 
     _currentTodos.add(itemToAdd);
@@ -150,7 +153,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       showDone: _showFinishedTodos,
     ));
 
-    await _todosRepository.addTodo(itemToAdd);
+    await _todosRepository.addTodos([itemToAdd]);
   }
 
   void _hideDone(event, emit) {

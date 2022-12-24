@@ -10,11 +10,15 @@ export 'auth_repository_interface.dart';
 
 const _user = 'user';
 const _authSuggest = 'authSuggest';
+const _todos = "todos";
+const _lastRevision = 'lastRevision';
 
 @Singleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final _userBox = Hive.box<User>(_user);
   final _suggestBox = Hive.box<bool>(_authSuggest);
+  final _todosBox = Hive.box<Todo>(_todos);
+  final _lastRevisionBox = Hive.box<int>(_lastRevision);
 
   @override
   bool get isLoggedIn => _userBox.isNotEmpty;
@@ -36,6 +40,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logOut() async {
+    await _todosBox.clear();
+    await _lastRevisionBox.clear();
     await _userBox.clear();
   }
 

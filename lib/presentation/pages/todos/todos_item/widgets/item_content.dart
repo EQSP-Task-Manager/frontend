@@ -85,13 +85,13 @@ class _ItemContentState extends State<ItemContent> {
                         descriprionSpan: descriprionSpan,
                         importanceIconSize: importanceIconSize,
                       ),
-                      if (widget.element.tags != null)
+                      if (widget.element.tags.isNotEmpty)
                         const SizedBox(height: 5),
-                      if (widget.element.tags != null)
+                      if (widget.element.tags.isNotEmpty)
                         Wrap(
                           spacing: 8,
                           runSpacing: 8,
-                          children: widget.element.tags!
+                          children: widget.element.tags
                               .map(
                                 (tag) => Icon(
                                   tag.iconData,
@@ -141,7 +141,7 @@ class _ItemContentState extends State<ItemContent> {
     final metrics = textPainter.computeLineMetrics();
 
     if (widget.element.deadline != null) return false;
-    if (widget.element.tags != null) return false;
+    if (widget.element.tags.isEmpty) return false;
     if (metrics.length == 1) {
       if (widget.element.importance != Importance.low &&
           metrics[0].width > maxTextWidth - importanceIconOccpiableWidth) {

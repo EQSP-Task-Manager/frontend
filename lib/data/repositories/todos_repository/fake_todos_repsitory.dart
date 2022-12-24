@@ -17,7 +17,7 @@ class FakeTodosRepsitoryImpl implements TodosRepository {
 
     todos = List<Todo>.generate(30, (index) {
       return Todo(
-        id: uuid.v1(),
+        id: uuid.v4(),
         title: String.fromCharCodes(
             List.generate(15, (index) => random.nextInt(33) + 89)),
         description: String.fromCharCodes(
@@ -26,17 +26,16 @@ class FakeTodosRepsitoryImpl implements TodosRepository {
         deadline: null,
         done: false,
         color: null,
-        createdAt: now.toUtc().millisecondsSinceEpoch,
-        changedAt: now.toUtc().millisecondsSinceEpoch,
-        deviceId: 'kek',
+        createdAt: now.toUtc().millisecondsSinceEpoch ~/ 1000,
+        changedAt: now.toUtc().millisecondsSinceEpoch ~/ 1000,
         tags: [Tag.home],
       );
     });
   }
 
   @override
-  FutureOr<void> addTodo(Todo todo) {
-    todos.add(todo);
+  FutureOr<void> addTodos(List<Todo> todos) {
+    todos.addAll(todos);
   }
 
   @override

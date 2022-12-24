@@ -39,7 +39,7 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i6.AuthRepository>(_i6.AuthRepositoryImpl());
   gh.singleton<_i7.RemoteConfigService>(_i7.RemoteConfigService());
   gh.singleton<_i8.ThemeBloc>(_i8.ThemeBloc());
-  gh.singleton<_i9.TodosApi>(_i9.TodosApi());
+  gh.singletonAsync<_i9.TodosApi>(() => _i9.TodosApi.create());
   gh.singleton<_i10.YandexApi>(_i10.YandexApi());
   gh.singleton<_i11.TodosBloc>(_i11.TodosBloc(gh<_i12.TodosRepository>()));
   return getIt;

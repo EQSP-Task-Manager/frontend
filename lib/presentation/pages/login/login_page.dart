@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           loggedIn: () {
             getIt.get<AuthRepository>().setSuggested(true);
             goRouter.go('/');
+            getIt.get<TodosBloc>().add(const TodosEvent.fetch());
           },
         );
       },

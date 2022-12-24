@@ -1,21 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'element_response.dart';
+part of 'element_transaction.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ElementResponse _$$_ElementResponseFromJson(Map<String, dynamic> json) =>
-    _$_ElementResponse(
-      status: json['status'] as String,
-      element: Todo.fromJson(json['element'] as Map<String, dynamic>),
+_$_ElementTransaction _$$_ElementTransactionFromJson(
+        Map<String, dynamic> json) =>
+    _$_ElementTransaction(
+      element: json['element'] == null
+          ? null
+          : Todo.fromJson(json['element'] as Map<String, dynamic>),
       revision: json['revision'] as int,
     );
 
-Map<String, dynamic> _$$_ElementResponseToJson(_$_ElementResponse instance) =>
+Map<String, dynamic> _$$_ElementTransactionToJson(
+        _$_ElementTransaction instance) =>
     <String, dynamic>{
-      'status': instance.status,
       'element': instance.element,
       'revision': instance.revision,
     };

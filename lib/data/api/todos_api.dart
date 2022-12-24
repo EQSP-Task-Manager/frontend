@@ -1,69 +1,78 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import '../../application/application.dart';
+import '../../domain/domain.dart';
 import '../models/models.dart';
 
-const _baseUrl = 'https://your_base_url.com/';
-const _token = String.fromEnvironment('TOKEN');
+const _baseUrl = 'http://158.160.22.123:8080/api';
+const _user = "user";
 
 @Singleton()
 class TodosApi {
-  static final Dio dio = Dio(
+  final _userBox = Hive.box<User>(_user);
+
+  final String? deviceId;
+  TodosApi(this.deviceId);
+
+  @factoryMethod
+  static Future<TodosApi> create() async {
+    var deviceId = await getDeviceId() ?? '';
+    return TodosApi(deviceId);
+  }
+
+  late final Dio dio = Dio(
     BaseOptions(baseUrl: _baseUrl, headers: {
-      'Authorization': 'Bearer $_token',
+      'Authorization': 'OAuth ${_userBox.values.first.oauthToken}',
+      'X-Device-id': deviceId,
     }),
   );
 
   Future<Response> getList() async {
-    return TodosApi.dio.get(
-      '/list',
-    );
+    return dio.get('/tasks');
   }
 
   Future<Response> updateList({
-    required ListRequest listRequest,
-    required int lastRevision,
+    required ListTransaction listRequest,
   }) async {
-    return TodosApi.dio.patch(
-      '/list',
+    return dio.patch(
+      '/tasks',
       data: jsonEncode(listRequest),
     );
   }
 
   Future<Response> addTodo({
-    required ElementRequest elementRequest,
-    required int lastRevision,
+    required ListTransaction listRequest,
   }) async {
-    return TodosApi.dio.post(
-      '/list',
-      data: jsonEncode(elementRequest),
+    return dio.post(
+      '/tasks',
+      data: jsonEncode(listRequest),
     );
   }
 
   Future<Response> getTodo({
     required String id,
   }) async {
-    return TodosApi.dio.get(
-      '/list/$id',
+    return dio.get(
+      '/tasks/$id',
     );
   }
 
   Future<Response> removeTodo({
     required String id,
-    required int lastRevision,
   }) async {
-    return TodosApi.dio.delete(
-      '/list/$id',
+    return dio.delete(
+      '/tasks/$id',
     );
   }
 
   Future<Response> editTodo({
-    required ElementRequest elementRequest,
-    required int lastRevision,
+    required ElementTransaction elementRequest,
   }) async {
-    return TodosApi.dio.put(
-      '/list/${elementRequest.element.id}',
+    return dio.put(
+      '/tasks',
       data: jsonEncode(elementRequest),
     );
   }
