@@ -35,7 +35,7 @@ class FakeTodosRepsitoryImpl implements TodosRepository {
 
   @override
   FutureOr<void> addTodos(List<Todo> todos) {
-    todos.addAll(todos);
+    this.todos.addAll(todos);
   }
 
   @override
