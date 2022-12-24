@@ -14,36 +14,34 @@ class TodosRemoteRepository implements TodosRepository {
   int get lastRevision => _lastRevisionBox.get(_valueStr) ?? 0;
 
   static void _updateRevisionAfterElementResponse(Response response) {
-    var elementResponse = ElementResponse.fromJson(response.data);
+    var elementResponse = ElementTransaction.fromJson(response.data);
     _lastRevisionBox.put(_valueStr, elementResponse.revision);
   }
 
   static void _updateRevisionAfterListResponse(Response response) {
-    var elementResponse = ListResponse.fromJson(response.data);
+    var elementResponse = ListTransaction.fromJson(response.data);
     _lastRevisionBox.put(_valueStr, elementResponse.revision);
   }
 
   @override
-  FutureOr<void> addTodo(Todo todo) async {
+  FutureOr<void> addTodos(List<Todo> todos) async {
     var response = await getIt.get<TodosApi>().addTodo(
-          elementRequest: ElementRequest(
-            status: "ok",
-            element: todo,
+          listRequest: ListTransaction(
+            list: todos,
+            revision: lastRevision,
           ),
-          lastRevision: lastRevision,
         );
 
-    _updateRevisionAfterElementResponse(response);
+    _updateRevisionAfterListResponse(response);
   }
 
   @override
   FutureOr<void> editTodo(Todo todo, {bool setDone = false}) async {
     var response = await getIt.get<TodosApi>().editTodo(
-          elementRequest: ElementRequest(
-            status: "ok",
+          elementRequest: ElementTransaction(
             element: todo,
+            revision: lastRevision,
           ),
-          lastRevision: lastRevision,
         );
 
     _updateRevisionAfterElementResponse(response);
@@ -52,28 +50,24 @@ class TodosRemoteRepository implements TodosRepository {
   @override
   FutureOr<List<Todo>> getTodosList() async {
     var rawResponse = await getIt.get<TodosApi>().getList();
-    var listResponse = ListResponse.fromJson(rawResponse.data);
+    var listResponse = ListTransaction.fromJson(rawResponse.data);
 
     _updateRevisionAfterListResponse(rawResponse);
 
-    return listResponse.list;
+    return listResponse.list!;
   }
 
   @override
   FutureOr<void> removeTodo(String id) async {
-    var response = await getIt.get<TodosApi>().removeTodo(
-          id: id,
-          lastRevision: lastRevision,
-        );
+    var response = await getIt.get<TodosApi>().removeTodo(id: id);
 
     _updateRevisionAfterElementResponse(response);
   }
 
   @override
   FutureOr<Todo?> getTodo(String id) async {
-    var response = await getIt.get<TodosApi>().getTodo(
-          id: id,
-        );
+    var response = await getIt.get<TodosApi>().getTodo(id: id);
+
     _updateRevisionAfterElementResponse(response);
     return Todo.fromJson(response.data);
   }
@@ -81,11 +75,10 @@ class TodosRemoteRepository implements TodosRepository {
   @override
   FutureOr<void> updateList(List<Todo> todos) async {
     var response = await getIt.get<TodosApi>().updateList(
-          listRequest: ListRequest(
-            status: "ok",
+          listRequest: ListTransaction(
             list: todos,
+            revision: lastRevision,
           ),
-          lastRevision: lastRevision,
         );
 
     _updateRevisionAfterListResponse(response);

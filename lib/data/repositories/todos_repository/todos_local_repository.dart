@@ -9,8 +9,10 @@ class TodosLocalRepository implements TodosRepository {
   final _todosBox = Hive.box<Todo>(_todosStr);
 
   @override
-  void addTodo(Todo todo) {
-    _todosBox.put(todo.id, todo);
+  void addTodos(List<Todo> todos) {
+    for (var e in todos) {
+      _todosBox.put(e.id, e);
+    }
   }
 
   @override

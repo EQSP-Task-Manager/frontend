@@ -12,7 +12,7 @@ class _Tag extends StatefulWidget {
 }
 
 class _TagState extends State<_Tag> {
-  late List<Tag> tags = widget.element?.tags?.toList() ?? [];
+  late List<Tag> tags = widget.element?.tags.toList() ?? [];
 
   @override
   Widget build(BuildContext context) {

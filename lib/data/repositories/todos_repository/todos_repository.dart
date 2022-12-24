@@ -6,6 +6,8 @@ import 'package:done/data/data.dart';
 import 'package:done/domain/domain.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../application/application.dart';
+
 export 'todos_repository_interface.dart';
 export 'fake_todos_repsitory.dart';
 export 'todos_local_repository.dart';
@@ -22,6 +24,8 @@ class TodosRepositoryImpl implements TodosRepository {
   List<Todo> get localTodos => localRepository.getTodosList();
   int get lastRevision => remoteRepository.lastRevision;
 
+  bool get isLoggedIn => getIt.get<AuthRepository>().isLoggedIn;
+
   void debugPrintOnError(e) {
     if (e is DioError) {
       debugPrint(e.message);
@@ -32,17 +36,17 @@ class TodosRepositoryImpl implements TodosRepository {
   Future<void> updateList(List<Todo> todos) async {
     try {
       localRepository.updateList(todos);
-      await remoteRepository.updateList(todos);
+      if (isLoggedIn) await remoteRepository.updateList(todos);
     } catch (e) {
       debugPrintOnError(e);
     }
   }
 
   @override
-  Future<void> addTodo(Todo todo) async {
+  Future<void> addTodos(List<Todo> todos) async {
     try {
-      localRepository.addTodo(todo);
-      await remoteRepository.addTodo(todo);
+      localRepository.addTodos(todos);
+      if (isLoggedIn) await remoteRepository.addTodos(todos);
     } catch (e) {
       debugPrintOnError(e);
     }
@@ -53,7 +57,7 @@ class TodosRepositoryImpl implements TodosRepository {
   Future<void> editTodo(Todo todo, {bool setDone = false}) async {
     try {
       localRepository.editTodo(todo);
-      await remoteRepository.editTodo(todo);
+      if (isLoggedIn) await remoteRepository.editTodo(todo);
     } catch (e) {
       debugPrintOnError(e);
     }
@@ -65,16 +69,18 @@ class TodosRepositoryImpl implements TodosRepository {
 
   @override
   Future<List<Todo>> getTodosList() async {
-    try {
-      var oldLastRevision = lastRevision;
-      var todos = await remoteRepository.getTodosList();
-      if (lastRevision > oldLastRevision) {
-        localRepository.updateList(todos);
-      } else {
-        remoteRepository.updateList(localRepository.getTodosList());
+    if (isLoggedIn) {
+      try {
+        var oldLastRevision = lastRevision;
+        var todos = await remoteRepository.getTodosList();
+        if (lastRevision > oldLastRevision) {
+          localRepository.updateList(todos);
+        } else {
+          remoteRepository.updateList(localRepository.getTodosList());
+        }
+      } catch (e) {
+        debugPrintOnError(e);
       }
-    } catch (e) {
-      debugPrintOnError(e);
     }
 
     return localRepository.getTodosList();
@@ -84,7 +90,7 @@ class TodosRepositoryImpl implements TodosRepository {
   Future<void> removeTodo(String id) async {
     try {
       localRepository.removeTodo(id);
-      await remoteRepository.removeTodo(id);
+      if (isLoggedIn) await remoteRepository.removeTodo(id);
     } catch (e) {
       debugPrintOnError(e);
     }
@@ -93,22 +99,24 @@ class TodosRepositoryImpl implements TodosRepository {
 
   @override
   Future<Todo?> getTodo(String id) async {
-    try {
-      var oldLastRevision = lastRevision;
-      var remoteTodo = await remoteRepository.getTodo(id);
-      var localTodo = localRepository.getTodo(id);
+    if (isLoggedIn) {
+      try {
+        var oldLastRevision = lastRevision;
+        var remoteTodo = await remoteRepository.getTodo(id);
+        var localTodo = localRepository.getTodo(id);
 
-      if (remoteTodo != null) {
-        if (lastRevision > oldLastRevision) {
-          localRepository.editTodo(remoteTodo);
-        } else {
-          if (localTodo != null) {
-            remoteRepository.editTodo(localTodo);
+        if (remoteTodo != null) {
+          if (lastRevision > oldLastRevision) {
+            localRepository.editTodo(remoteTodo);
+          } else {
+            if (localTodo != null) {
+              remoteRepository.editTodo(localTodo);
+            }
           }
         }
+      } catch (e) {
+        debugPrintOnError(e);
       }
-    } catch (e) {
-      debugPrintOnError(e);
     }
 
     return localRepository.getTodo(id);

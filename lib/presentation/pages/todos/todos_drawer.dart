@@ -20,8 +20,14 @@ class _TodosDrawerState extends State<_TodosDrawer> {
           child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               state.whenOrNull(
-                loggedOut: () => Navigator.pop(context),
-                loggedIn: () => Navigator.pop(context),
+                loggedOut: () {
+                  getIt.get<TodosBloc>().add(const TodosEvent.fetch());
+                  Navigator.pop(context);
+                },
+                loggedIn: () {
+                  getIt.get<TodosBloc>().add(const TodosEvent.fetch());
+                  Navigator.pop(context);
+                },
               );
             },
             builder: (context, state) {

@@ -32,14 +32,23 @@ class SubmissionState with _$SubmissionState {
 }
 
 class SubmissionBloc extends Bloc<SubmissionEvent, SubmissionState> {
-  String titleToSubmit = '';
-  Importance importanceToSubmit = Importance.basic;
-  DateTime? deadlineToSubmit;
-  String descriptionToSubmit = '';
-  List<Tag> tagsToSubmit = [];
-  String? colorToSubmit;
+  late String titleToSubmit;
+  late Importance importanceToSubmit;
+  late DateTime? deadlineToSubmit;
+  late String descriptionToSubmit;
+  late List<Tag> tagsToSubmit;
+  late String? colorToSubmit;
 
   SubmissionBloc(Todo? todo) : super(_Initial(todo)) {
+    titleToSubmit = todo?.title ?? '';
+    importanceToSubmit = todo?.importance ?? Importance.basic;
+    deadlineToSubmit = todo?.deadline != null
+        ? DateTime.fromMillisecondsSinceEpoch(todo!.deadline! * 1000)
+        : null;
+    descriptionToSubmit = todo?.description ?? '';
+    tagsToSubmit = todo?.tags ?? [];
+    colorToSubmit = todo?.color;
+
     on<_SubmitTitle>((event, emit) => titleToSubmit = event.text);
     on<_SubmitDescription>((event, emit) => descriptionToSubmit = event.text);
     on<_SubmitImportance>(

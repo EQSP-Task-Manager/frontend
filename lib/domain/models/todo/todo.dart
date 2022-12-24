@@ -49,8 +49,7 @@ class Todo with _$Todo {
     @JsonKey(name: 'color') @HiveField(6) required String? color,
     @JsonKey(name: 'created_at') @HiveField(7) required int createdAt,
     @JsonKey(name: 'changed_at') @HiveField(8) required int changedAt,
-    @JsonKey(name: 'last_updated_by') @HiveField(9) required String deviceId,
-    @JsonKey(name: 'tags') @HiveField(10) required List<Tag>? tags,
+    @JsonKey(name: 'tags') @HiveField(10) required List<Tag> tags,
   }) = _Todo;
 
   factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);

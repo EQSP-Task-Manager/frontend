@@ -26,15 +26,14 @@ class TodoAdapter extends TypeAdapter<Todo> {
       color: fields[6] as String?,
       createdAt: fields[7] as int,
       changedAt: fields[8] as int,
-      deviceId: fields[9] as String,
-      tags: (fields[10] as List?)?.cast<Tag>(),
+      tags: (fields[10] as List).cast<Tag>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, Todo obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,8 +52,6 @@ class TodoAdapter extends TypeAdapter<Todo> {
       ..write(obj.createdAt)
       ..writeByte(8)
       ..write(obj.changedAt)
-      ..writeByte(9)
-      ..write(obj.deviceId)
       ..writeByte(10)
       ..write(obj.tags);
   }
@@ -182,9 +179,8 @@ _$_Todo _$$_TodoFromJson(Map<String, dynamic> json) => _$_Todo(
       color: json['color'] as String?,
       createdAt: json['created_at'] as int,
       changedAt: json['changed_at'] as int,
-      deviceId: json['last_updated_by'] as String,
-      tags: (json['tags'] as List<dynamic>?)
-          ?.map((e) => $enumDecode(_$TagEnumMap, e))
+      tags: (json['tags'] as List<dynamic>)
+          .map((e) => $enumDecode(_$TagEnumMap, e))
           .toList(),
     );
 
@@ -198,8 +194,7 @@ Map<String, dynamic> _$$_TodoToJson(_$_Todo instance) => <String, dynamic>{
       'color': instance.color,
       'created_at': instance.createdAt,
       'changed_at': instance.changedAt,
-      'last_updated_by': instance.deviceId,
-      'tags': instance.tags?.map((e) => _$TagEnumMap[e]!).toList(),
+      'tags': instance.tags.map((e) => _$TagEnumMap[e]!).toList(),
     };
 
 const _$ImportanceEnumMap = {

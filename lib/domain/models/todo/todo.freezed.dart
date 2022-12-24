@@ -47,12 +47,9 @@ mixin _$Todo {
   @JsonKey(name: 'changed_at')
   @HiveField(8)
   int get changedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'last_updated_by')
-  @HiveField(9)
-  String get deviceId => throw _privateConstructorUsedError;
   @JsonKey(name: 'tags')
   @HiveField(10)
-  List<Tag>? get tags => throw _privateConstructorUsedError;
+  List<Tag> get tags => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,8 +70,7 @@ abstract class $TodoCopyWith<$Res> {
       @JsonKey(name: 'color') @HiveField(6) String? color,
       @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
-      @JsonKey(name: 'tags') @HiveField(10) List<Tag>? tags});
+      @JsonKey(name: 'tags') @HiveField(10) List<Tag> tags});
 }
 
 /// @nodoc
@@ -96,7 +92,6 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
     Object? color = freezed,
     Object? createdAt = freezed,
     Object? changedAt = freezed,
-    Object? deviceId = freezed,
     Object? tags = freezed,
   }) {
     return _then(_value.copyWith(
@@ -136,14 +131,10 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: deviceId == freezed
-          ? _value.deviceId
-          : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
       tags: tags == freezed
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ));
   }
 }
@@ -163,8 +154,7 @@ abstract class _$$_TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
       @JsonKey(name: 'color') @HiveField(6) String? color,
       @JsonKey(name: 'created_at') @HiveField(7) int createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) int changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(9) String deviceId,
-      @JsonKey(name: 'tags') @HiveField(10) List<Tag>? tags});
+      @JsonKey(name: 'tags') @HiveField(10) List<Tag> tags});
 }
 
 /// @nodoc
@@ -187,7 +177,6 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
     Object? color = freezed,
     Object? createdAt = freezed,
     Object? changedAt = freezed,
-    Object? deviceId = freezed,
     Object? tags = freezed,
   }) {
     return _then(_$_Todo(
@@ -227,14 +216,10 @@ class __$$_TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
           ? _value.changedAt
           : changedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      deviceId: deviceId == freezed
-          ? _value.deviceId
-          : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
       tags: tags == freezed
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
-              as List<Tag>?,
+              as List<Tag>,
     ));
   }
 }
@@ -252,8 +237,7 @@ class _$_Todo implements _Todo {
       @JsonKey(name: 'color') @HiveField(6) required this.color,
       @JsonKey(name: 'created_at') @HiveField(7) required this.createdAt,
       @JsonKey(name: 'changed_at') @HiveField(8) required this.changedAt,
-      @JsonKey(name: 'last_updated_by') @HiveField(9) required this.deviceId,
-      @JsonKey(name: 'tags') @HiveField(10) required final List<Tag>? tags})
+      @JsonKey(name: 'tags') @HiveField(10) required final List<Tag> tags})
       : _tags = tags;
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) => _$$_TodoFromJson(json);
@@ -294,24 +278,18 @@ class _$_Todo implements _Todo {
   @JsonKey(name: 'changed_at')
   @HiveField(8)
   final int changedAt;
-  @override
-  @JsonKey(name: 'last_updated_by')
-  @HiveField(9)
-  final String deviceId;
-  final List<Tag>? _tags;
+  final List<Tag> _tags;
   @override
   @JsonKey(name: 'tags')
   @HiveField(10)
-  List<Tag>? get tags {
-    final value = _tags;
-    if (value == null) return null;
+  List<Tag> get tags {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_tags);
   }
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, description: $description, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, deviceId: $deviceId, tags: $tags)';
+    return 'Todo(id: $id, title: $title, description: $description, importance: $importance, deadline: $deadline, done: $done, color: $color, createdAt: $createdAt, changedAt: $changedAt, tags: $tags)';
   }
 
   @override
@@ -330,7 +308,6 @@ class _$_Todo implements _Todo {
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.changedAt, changedAt) &&
-            const DeepCollectionEquality().equals(other.deviceId, deviceId) &&
             const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
@@ -347,7 +324,6 @@ class _$_Todo implements _Todo {
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(changedAt),
-      const DeepCollectionEquality().hash(deviceId),
       const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
@@ -392,12 +368,9 @@ abstract class _Todo implements Todo {
       @JsonKey(name: 'changed_at')
       @HiveField(8)
           required final int changedAt,
-      @JsonKey(name: 'last_updated_by')
-      @HiveField(9)
-          required final String deviceId,
       @JsonKey(name: 'tags')
       @HiveField(10)
-          required final List<Tag>? tags}) = _$_Todo;
+          required final List<Tag> tags}) = _$_Todo;
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
@@ -438,13 +411,9 @@ abstract class _Todo implements Todo {
   @HiveField(8)
   int get changedAt;
   @override
-  @JsonKey(name: 'last_updated_by')
-  @HiveField(9)
-  String get deviceId;
-  @override
   @JsonKey(name: 'tags')
   @HiveField(10)
-  List<Tag>? get tags;
+  List<Tag> get tags;
   @override
   @JsonKey(ignore: true)
   _$$_TodoCopyWith<_$_Todo> get copyWith => throw _privateConstructorUsedError;
