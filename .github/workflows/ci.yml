@@ -4,57 +4,59 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
-  flutter_test:
-    name: Run flutter test and analyze
+  flutter_analyze:
+    name: Run flutter analyze
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: create firebase options
-        uses: 1arp/create-a-file-action@0.2
+      - uses: actions/checkout@v3
+      - name: setup secret files
+        uses: ./.github/actions/setup_secret_files
         with:
-          path: 'lib'
-          file: 'firebase_options.dart'
-          content: ${{ secrets.FIREBASE_OPTIONS}}
-      - name: create google services
-        uses: 1arp/create-a-file-action@0.2
-        with:
-          path: 'android/app'
-          file: 'google-services.json'
-          content: ${{ secrets.GOOGLE_SERVICES}}
-      - uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: flutter pub get
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
+          key_properties: ${{ secrets.KEY_PROPERTIES }}
+          upload_keystore_b64: ${{ secrets.UPLOAD_KEYSTORE_B64}}
+      - name: setup flutter
+        uses: ./.github/actions/setup_flutter
       - run: flutter analyze
+
+  flutter_test:
+    name: Run flutter test
+    runs-on: ubuntu-latest
+    needs: [flutter_analyze]
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup secret files
+        uses: ./.github/actions/setup_secret_files
+        with:
+          firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+          google_services: ${{ secrets.GOOGLE_SERVICES}}
+          key_properties: ${{ secrets.KEY_PROPERTIES }}
+          upload_keystore_b64: ${{ secrets.UPLOAD_KEYSTORE_B64}}
+
+      - name: setup flutter
+        uses: ./.github/actions/setup_flutter
       - run: flutter test
 
-  build:
+  build_and_distribute:
     runs-on: ubuntu-latest
+    needs: [flutter_analyze, flutter_test]
     steps:
-    - uses: actions/checkout@v2
-    - name: create firebase options
-      uses: 1arp/create-a-file-action@0.2
+    - uses: actions/checkout@v3
+    - name: setup secret files
+      uses: ./.github/actions/setup_secret_files
       with:
-        path: 'lib'
-        file: 'firebase_options.dart'
-        content: ${{ secrets.FIREBASE_OPTIONS}}
-    - name: create google services
-      uses: 1arp/create-a-file-action@0.2
-      with:
-        path: 'android/app'
-        file: 'google-services.json'
-        content: ${{ secrets.GOOGLE_SERVICES}}
-    - uses: actions/setup-java@v1
-      with:
-        java-version: "12.x"
-    - name: build release 
-      uses: subosito/flutter-action@v1
-      with:
-        channel: "stable"
+        firebase_options: ${{ secrets.FIREBASE_OPTIONS}}
+        google_services: ${{ secrets.GOOGLE_SERVICES}}
+        key_properties: ${{ secrets.KEY_PROPERTIES }}
+        upload_keystore_b64: ${{ secrets.UPLOAD_KEYSTORE_B64}}
+
+    - name: setup flutter
+      uses: ./.github/actions/setup_flutter
+
     - run: flutter build apk -t lib/main_dev.dart --flavor=dev --release
     - name: upload artifact to Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -63,3 +65,27 @@ jobs:
         token: ${{secrets.FIREBASE_TOKEN}}
         groups: testers
         file: build/app/outputs/flutter-apk/app-dev-release.apk
+
+    - run: flutter build apk -t lib/main_prod.dart --flavor=prod --release
+    - uses: actions/upload-artifact@v1
+      with:
+        name: release-apk
+        path: build/app/outputs/flutter-apk/app-prod-release.apk
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [flutter_analyze, flutter_test, build_and_distribute]
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: release-apk
+      - name: display structure of downloaded files
+        run: ls -R
+      - uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.REPO_TOKEN }}
+          automatic_release_tag: latest
+          prerelease: false
+          title: Release Build
+          files: |
+            app-prod-release.apk

@@ -1,0 +1,35 @@
+inputs:
+  firebase_options:
+    requered: true
+  google_services:
+    requered: true
+  key_properties:
+    requered: true
+  upload_keystore_b64:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: create firebase options
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'lib'
+        file: 'firebase_options.dart'
+        content: ${{ inputs.firebase_options}}
+    - name: create google services
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'android/app'
+        file: 'google-services.json'
+        content: ${{ inputs.google_services}}
+    - name: create key.properties
+      uses: 1arp/create-a-file-action@0.2
+      with:
+        path: 'android'
+        file: 'key.properties'
+        content: ${{ inputs.key_properties }}
+    - name: create upload-keystore
+      shell: bash
+      run: |
+        echo ${{ inputs.upload_keystore_b64 }} | base64 -d > ./android/app/upload-keystore.jks
