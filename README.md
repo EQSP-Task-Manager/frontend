@@ -3,6 +3,7 @@
 ![](https://github.com/EQSP-Task-Manager/frontend/actions/workflows/ci.yml/badge.svg)
 ![](https://img.shields.io/github/tag/EQSP-Task-Manager/frontend)
 ![](https://hitsofcode.com/github/EQSP-Task-Manager/frontend?branch=main)
+[![codecov](https://codecov.io/gh/EQSP-Task-Manager/frontend/branch/main/graph/badge.svg?token=9RYGV5OKUE)](https://codecov.io/gh/EQSP-Task-Manager/frontend)
 
 [Frontend](https://github.com/EQSP-Task-Manager/frontend): Android app implemented with Dart + Flutter
 
