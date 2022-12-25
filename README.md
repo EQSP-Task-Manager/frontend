@@ -20,7 +20,7 @@
     4. Last, but not least, finish your to-do's
   - Syncronize your to-do's among your devices
  
-## How to run
+## How to run 🛠
 
  * Install [flutter](https://docs.flutter.dev/get-started/install)
  * Clone the repo
@@ -28,7 +28,7 @@
  * Run `flutter run --flavor prod --target lib/main_prod.dart --release`
  * Enjoy!
  
-## Screenshots
+## Screenshots 🖥
 
 <p float="left">
 <img width="230" src="https://user-images.githubusercontent.com/69918609/209458340-8906e9c8-e912-45f8-bc76-112061b89e16.jpg"/>
@@ -46,7 +46,7 @@
 <img width="230" src="https://user-images.githubusercontent.com/69918609/209458378-73b933cf-a646-41a3-8a73-7789cdbe732b.jpg"/>
 </p>
 
-## App Features
+## App Features 🕹
  
  * Data are stored both remotely and locally, which allows to synchronize data among devices and still use the application without internet connection
  * Night mode is supported
@@ -58,7 +58,7 @@
     - [http://todos.ru/add](http://todos.ru/add) to add a task
     - [http://todos.ru/edit/{id}](http://todos.ru/edit/{id}) to open a task
  
-## Project Features
+## Project Features 🛠
 
  * The project follows clean architecture philosophy and implements BLoC pattern 
  * In-project services (repositpries, apis, and etc.) are injected
@@ -80,4 +80,12 @@
   * With the use of Firebase Remote Config, some features of the app (Colors) can be changed without a need to update the app
   * Firebase Crashlytics notifies if any kind of errors happen on the app
   
+ ## Flutter Best Practices Applied 📌
  
+  * Using Widget instances rather than functions returning Widgets
+  * Having build function pure and simple
+  * Using state-management rather than setState((){}) function
+  * Having a well-defined acrhitecture
+  * Following dart style guides
+  * Using const keyword whenever possible
+  * Using relative imports instead of absolute imports
