@@ -138,7 +138,7 @@ void main() async {
     await tester.showKeyboard(textInput);
     await tester.enterText(textInput, 'A new task');
     await tester.testTextInput.receiveAction(TextInputAction.done);
-    await tester.pumpAndSettle(Duration(seconds: 5));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
 
     expect(find.byIcon(Icons.info_outline), findsWidgets);
   });
