@@ -9,6 +9,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:done/application/application.dart';
 import 'package:done/domain/domain.dart';
 import 'package:done/flavor_config.dart';
+import 'package:injectable/injectable.dart';
 import 'app.dart';
 
 void mainCommon(FlavorConfigDTO flavorConfigDTO) async {
@@ -30,7 +31,7 @@ void mainCommon(FlavorConfigDTO flavorConfigDTO) async {
     await Hive.openBox<User>('user');
     await Hive.openBox<int>('lastRevision');
 
-    configureDependencies();
+    configureDependencies(Environment.prod);
 
     getIt.get<RemoteConfigService>().initialize();
 

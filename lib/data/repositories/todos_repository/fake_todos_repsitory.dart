@@ -2,11 +2,17 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../domain/domain.dart';
 import '../../data.dart';
 
+@Singleton(
+  as: TodosRepository,
+  order: -1,
+  env: [Environment.test],
+)
 class FakeTodosRepsitoryImpl implements TodosRepository {
   late List<Todo> todos;
 

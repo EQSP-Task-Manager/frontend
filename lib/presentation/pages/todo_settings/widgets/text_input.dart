@@ -43,10 +43,12 @@ class _TextInputState extends State<_TextInput> {
     super.dispose();
   }
 
+  bool isKeyboardVisible(BuildContext context) =>
+      isTest ? false : KeyboardVisibilityProvider.isKeyboardVisible(context);
+
   @override
   Widget build(BuildContext context) {
-    if (KeyboardVisibilityProvider.isKeyboardVisible(context) &&
-        _textFocus.hasFocus) {
+    if (isKeyboardVisible(context) && _textFocus.hasFocus) {
       Future.delayed(Duration.zero, () => Scrollable.ensureVisible(context));
     }
 

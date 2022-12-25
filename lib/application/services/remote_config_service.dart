@@ -7,7 +7,7 @@ import 'package:injectable/injectable.dart';
 
 const String _importanceColor = "importanceColor";
 
-@Singleton()
+@Singleton(env: [Environment.prod])
 class RemoteConfigService {
   final FirebaseRemoteConfig _remoteConfig = FirebaseRemoteConfig.instance;
 

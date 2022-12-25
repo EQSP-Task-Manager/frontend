@@ -10,7 +10,7 @@ import '../models/models.dart';
 const _baseUrl = 'http://158.160.22.123:8080/api';
 const _user = "user";
 
-@Singleton()
+@Singleton(env: [Environment.prod])
 class TodosApi {
   final _userBox = Hive.box<User>(_user);
 
@@ -75,5 +75,47 @@ class TodosApi {
       '/tasks',
       data: jsonEncode(elementRequest),
     );
+  }
+}
+
+@Singleton(env: [Environment.test])
+class FakeTodosApi implements TodosApi {
+  @override
+  Box<User> get _userBox => throw UnimplementedError();
+
+  @override
+  Future<Response> addTodo({required ListTransaction listRequest}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  String? get deviceId => null;
+
+  @override
+  Dio get dio => throw UnimplementedError();
+
+  @override
+  Future<Response> editTodo({required ElementTransaction elementRequest}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> getList() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> getTodo({required String id}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> removeTodo({required String id}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Response> updateList({required ListTransaction listRequest}) {
+    throw UnimplementedError();
   }
 }

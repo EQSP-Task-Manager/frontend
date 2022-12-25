@@ -13,7 +13,7 @@ const _authSuggest = 'authSuggest';
 const _todos = "todos";
 const _lastRevision = 'lastRevision';
 
-@Singleton(as: AuthRepository)
+@Singleton(as: AuthRepository, env: [Environment.prod])
 class AuthRepositoryImpl implements AuthRepository {
   final _userBox = Hive.box<User>(_user);
   final _suggestBox = Hive.box<bool>(_authSuggest);
@@ -54,4 +54,27 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> setSuggested(bool value) async {
     await _suggestBox.add(value);
   }
+}
+
+@Singleton(as: AuthRepository, env: [Environment.test])
+class AuthRepositoryTestImpl implements AuthRepository {
+  @override
+  bool get isLoggedIn => true;
+
+  @override
+  bool get hasSuggested => true;
+
+  @override
+  Future<void> logIn(String oauthToken) async {}
+
+  @override
+  Future<void> logOut() async {}
+
+  @override
+  User? getUser() {
+    return null;
+  }
+
+  @override
+  Future<void> setSuggested(bool value) async {}
 }
