@@ -39,16 +39,11 @@ jobs:
 
       - name: setup flutter
         uses: ./.github/actions/setup_flutter
-      - name: run tests
-        run: dart pub run test --coverage="coverage"
-      - name: install coverage tools
-        run: dart pub global activate coverage
-      - name: format coverage
-        run: $HOME/.pub-cache/bin/format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
-      - uses: codecov/codecov-action@v2
+      - run: flutter test --coverage
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v3
         with:
-          files: coverage.lcov
-          verbose: true # optional (default = false)
+          files: coverage/lcov.info
 
   build_and_distribute:
     runs-on: ubuntu-latest
