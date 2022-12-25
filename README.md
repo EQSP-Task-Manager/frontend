@@ -1,7 +1,7 @@
 # **Done** app ✔️
 
 ![](https://github.com/EQSP-Task-Manager/frontend/actions/workflows/ci.yml/badge.svg)
-![](https://img.shields.io/github/tag/EQSP-Task-Manager/frontend)(https://GitHub.com/EQSP-Task-Manager/frontend/tags/)
+![](https://img.shields.io/github/tag/EQSP-Task-Manager/frontend)
 
 [Frontend](https://github.com/EQSP-Task-Manager/frontend): Android app implemented with Dart + Flutter
 
