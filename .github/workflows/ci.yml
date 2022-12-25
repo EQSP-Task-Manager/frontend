@@ -39,7 +39,11 @@ jobs:
 
       - name: setup flutter
         uses: ./.github/actions/setup_flutter
-      - run: flutter test
+      - run: flutter test --coverage
+
+      - name: Upload coverage to codecov
+        run: curl -s https://codecov.io/bash
+        shell: bash
 
   build_and_distribute:
     runs-on: ubuntu-latest
