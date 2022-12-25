@@ -1,5 +1,7 @@
 # **Done** app ✔️
 
+![example workflow](https://github.com/EQSP-Task-Manager/frontend/actions/workflows/cy.yml/badge.svg)
+
 [Frontend](https://github.com/EQSP-Task-Manager/frontend): Android app implemented with Dart + Flutter
 
 [Backend](https://github.com/EQSP-Task-Manager/backend): REST API implemented with python + aiohttp
