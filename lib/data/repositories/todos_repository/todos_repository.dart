@@ -16,6 +16,7 @@ export 'todos_remote_repository.dart';
 @Singleton(
   as: TodosRepository,
   order: -1,
+  env: [Environment.prod],
 )
 class TodosRepositoryImpl implements TodosRepository {
   final TodosLocalRepository localRepository = TodosLocalRepository();
